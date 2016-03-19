@@ -32,7 +32,10 @@
 /* Begin PBXFileReference section */
 		11F6DFE2732DB0DE49976BA5 /* Pods-ParseLiveQuery OSX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParseLiveQuery OSX.release.xcconfig"; path = "../Pods/Target Support Files/Pods-ParseLiveQuery OSX/Pods-ParseLiveQuery OSX.release.xcconfig"; sourceTree = "<group>"; };
 		6062D7994653A4F07D1358B9 /* Pods-ParseLiveQuery iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParseLiveQuery iOS.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-ParseLiveQuery iOS/Pods-ParseLiveQuery iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		7A40A16386D0D6B38F8B2F07 /* Pods-ParseLiveQuery-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParseLiveQuery-iOS.release.xcconfig"; path = "../Pods/Target Support Files/Pods-ParseLiveQuery-iOS/Pods-ParseLiveQuery-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		8445DD921B87567C1E6A6042 /* Pods-ParseLiveQuery OSX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParseLiveQuery OSX.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-ParseLiveQuery OSX/Pods-ParseLiveQuery OSX.debug.xcconfig"; sourceTree = "<group>"; };
+		89BFA3478A42D22F84D9F19C /* Pods-ParseLiveQuery-OSX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParseLiveQuery-OSX.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-ParseLiveQuery-OSX/Pods-ParseLiveQuery-OSX.debug.xcconfig"; sourceTree = "<group>"; };
+		9A79B9CA1B493BADC66AE15A /* Pods-ParseLiveQuery-OSX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParseLiveQuery-OSX.release.xcconfig"; path = "../Pods/Target Support Files/Pods-ParseLiveQuery-OSX/Pods-ParseLiveQuery-OSX.release.xcconfig"; sourceTree = "<group>"; };
 		AF5A55E51D52E372CD28FF08 /* Pods_ParseLiveQuery_OSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParseLiveQuery_OSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE2643D85A7565FC20EE144C /* Pods_ParseLiveQuery_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParseLiveQuery_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4BFFC7C2B6C5374CA5F7440 /* Pods-ParseLiveQuery iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParseLiveQuery iOS.release.xcconfig"; path = "../Pods/Target Support Files/Pods-ParseLiveQuery iOS/Pods-ParseLiveQuery iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -48,6 +51,7 @@
 		F59CA92E1C8E496200329737 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Errors.swift; path = Internal/Errors.swift; sourceTree = "<group>"; };
 		F5A88F491C9B6EBA002F0E0D /* PFQuery+Subscribe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PFQuery+Subscribe.swift"; sourceTree = "<group>"; };
 		F5A9BFCA1BE0248D00E78326 /* ParseLiveQuery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParseLiveQuery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC3C8121FAAE363257898195 /* Pods-ParseLiveQuery-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParseLiveQuery-iOS.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-ParseLiveQuery-iOS/Pods-ParseLiveQuery-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +90,10 @@
 				11F6DFE2732DB0DE49976BA5 /* Pods-ParseLiveQuery OSX.release.xcconfig */,
 				6062D7994653A4F07D1358B9 /* Pods-ParseLiveQuery iOS.debug.xcconfig */,
 				E4BFFC7C2B6C5374CA5F7440 /* Pods-ParseLiveQuery iOS.release.xcconfig */,
+				89BFA3478A42D22F84D9F19C /* Pods-ParseLiveQuery-OSX.debug.xcconfig */,
+				9A79B9CA1B493BADC66AE15A /* Pods-ParseLiveQuery-OSX.release.xcconfig */,
+				FC3C8121FAAE363257898195 /* Pods-ParseLiveQuery-iOS.debug.xcconfig */,
+				7A40A16386D0D6B38F8B2F07 /* Pods-ParseLiveQuery-iOS.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -289,7 +297,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-ParseLiveQuery OSX/Pods-ParseLiveQuery OSX-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-ParseLiveQuery-OSX/Pods-ParseLiveQuery-OSX-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		89E3C0C052352147C9B80227 /* 📦 Copy Pods Resources */ = {
@@ -304,7 +312,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-ParseLiveQuery iOS/Pods-ParseLiveQuery iOS-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-ParseLiveQuery-iOS/Pods-ParseLiveQuery-iOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -367,7 +375,7 @@
 		};
 		F5903CF01BD999C500C3EFFE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8445DD921B87567C1E6A6042 /* Pods-ParseLiveQuery OSX.debug.xcconfig */;
+			baseConfigurationReference = 89BFA3478A42D22F84D9F19C /* Pods-ParseLiveQuery-OSX.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGNING_REQUIRED = NO;
@@ -391,7 +399,7 @@
 		};
 		F5903CF11BD999C500C3EFFE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 11F6DFE2732DB0DE49976BA5 /* Pods-ParseLiveQuery OSX.release.xcconfig */;
+			baseConfigurationReference = 9A79B9CA1B493BADC66AE15A /* Pods-ParseLiveQuery-OSX.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGNING_REQUIRED = NO;
@@ -414,7 +422,7 @@
 		};
 		F5A9BFC81BE0248D00E78326 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6062D7994653A4F07D1358B9 /* Pods-ParseLiveQuery iOS.debug.xcconfig */;
+			baseConfigurationReference = FC3C8121FAAE363257898195 /* Pods-ParseLiveQuery-iOS.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGNING_REQUIRED = NO;
@@ -438,7 +446,7 @@
 		};
 		F5A9BFC91BE0248D00E78326 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E4BFFC7C2B6C5374CA5F7440 /* Pods-ParseLiveQuery iOS.release.xcconfig */;
+			baseConfigurationReference = 7A40A16386D0D6B38F8B2F07 /* Pods-ParseLiveQuery-iOS.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGNING_REQUIRED = NO;

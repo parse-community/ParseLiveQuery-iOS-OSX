@@ -4,7 +4,7 @@
 use_frameworks!
 workspace 'ParseLiveQuery.xcworkspace'
 
-target 'ParseLiveQuery OSX' do
+target 'ParseLiveQuery-OSX' do
   project 'Sources/ParseLiveQuery.xcodeproj'
   platform :osx, '10.10'
   pod 'Parse'
@@ -12,7 +12,7 @@ target 'ParseLiveQuery OSX' do
   pod 'SocketRocket'
 end
 
-target 'ParseLiveQuery iOS' do
+target 'ParseLiveQuery-iOS' do
   project 'Sources/ParseLiveQuery.xcodeproj'
   platform :ios, '8.0'
   pod 'Parse'

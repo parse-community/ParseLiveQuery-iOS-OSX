@@ -12,15 +12,11 @@ env:
     - TEST_TYPE=OSX
     - TEST_TYPE=OSXDemo
     - TEST_TYPE=CocoaPods
-before_install:
+install:
 - |
-  gem install cocoapods --pre --quiet --no-ri --no-rdoc
-  pod setup --silent
-  pod repo update --silent
-  
   if [ "$TEST_TYPE" = iOS ] || [ "$TEST_TYPE" = OSX ] || [ "$TEST_TYPE" = OSXDemo ]; then
-    pod install
-    gem install xcpretty -N --no-ri --no-rdoc
+    bundle install
+    bundle exec pod install
   fi
 script:
 - |

@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/ParsePlatform/parse-server'
   s.authors          = { 'Richard Ross' => 'richardross@fb.com', 'Nikita Lutsenko' => 'nlutsenko@me.com' }
   
-  s.source       = { :git => 'https://github.com/ParsePlatform/LiveQueryClient-iOS-OSX.git', :tag => s.version.to_s }
+  s.source       = { :git => 'https://github.com/ParsePlatform/ParseLiveQuery-iOS-OSX.git', :tag => s.version.to_s }
 
   s.requires_arc = true
 
