@@ -14,10 +14,9 @@ env:
     - TEST_TYPE=CocoaPods
 install:
 - |
-  if [ "$TEST_TYPE" = iOS ] || [ "$TEST_TYPE" = OSX ] || [ "$TEST_TYPE" = OSXDemo ]; then
-    bundle install
-    bundle exec pod install
-  fi
+  bundle install
+  bundle exec pod repo update
+  bundle exec pod install
 script:
 - |
     if [ "$TEST_TYPE" = iOS ]; then
