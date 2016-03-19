@@ -6,7 +6,6 @@
 [![License][license-svg]][license-link]
 
 [![Build Status][build-status-svg]][build-status-link]
-[![Coverage Status][coverage-status-svg]][coverage-status-link]
 
 `PFQuery` is one of the key concepts for Parse. It allows you to retrieve `PFObject`s by specifying some conditions, making it easy to build apps such as a dashboard, a todo list or even some strategy games. However, `PFQuery` is based on a pull model, which is not suitable for apps that need real-time support.
 
