@@ -101,6 +101,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		81464FC51CA31DA0000235E7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F5256FD31BD71F9A0052FB8A /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		F5256FC41BD71F9A0052FB8A = {
 			isa = PBXGroup;
 			children = (
@@ -125,8 +133,8 @@
 		F5256FD01BD71F9A0052FB8A /* ParseLiveQuery */ = {
 			isa = PBXGroup;
 			children = (
-				F5256FD31BD71F9A0052FB8A /* Info.plist */,
 				F5DC9D381BD9BAFC00E8FF07 /* Internal */,
+				81464FC51CA31DA0000235E7 /* Resources */,
 				F5591BA31BD720E10072F966 /* Client.swift */,
 				F534A5B11BDAFE0200CBD11A /* Subscription.swift */,
 				F54D58B51C8E33D9009F8D6C /* ObjCCompat.swift */,
