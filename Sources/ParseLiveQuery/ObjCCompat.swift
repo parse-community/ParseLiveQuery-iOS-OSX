@@ -254,26 +254,29 @@ extension Client {
     private class HandlerConverter: SubscriptionHandling {
         typealias PFObjectSubclass = PFObject
 
-        private let handler: ObjCCompat_SubscriptionHandling
+        private static var associatedObjectKey: Int = 0
+        private weak var handler: ObjCCompat_SubscriptionHandling?
 
         init(handler: ObjCCompat_SubscriptionHandling) {
             self.handler = handler
+
+            objc_setAssociatedObject(handler, &HandlerConverter.associatedObjectKey, self, .OBJC_ASSOCIATION_RETAIN)
         }
 
         private func didReceive(event: Event<PFObjectSubclass>, forQuery query: PFQuery, inClient client: Client) {
-            handler.didRecieveEvent?(query, event: ObjCCompat.Event(event: event), client: client)
+            handler?.didRecieveEvent?(query, event: ObjCCompat.Event(event: event), client: client)
         }
 
         private func didEncounter(error: ErrorType, forQuery query: PFQuery, inClient client: Client) {
-            handler.didRecieveError?(query, error: error as NSError, client: client)
+            handler?.didRecieveError?(query, error: error as NSError, client: client)
         }
 
         private func didSubscribe(toQuery query: PFQuery, inClient client: Client) {
-            handler.didSubscribe?(query, client: client)
+            handler?.didSubscribe?(query, client: client)
         }
 
         private func didUnsubscribe(fromQuery query: PFQuery, inClient client: Client) {
-            handler.didUnsubscribe?(query, client: client)
+            handler?.didUnsubscribe?(query, client: client)
         }
     }
 
