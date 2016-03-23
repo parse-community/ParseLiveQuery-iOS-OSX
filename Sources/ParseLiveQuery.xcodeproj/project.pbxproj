@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0632EDD41CA1A6DB00DD3CB8 /* Parse+LiveQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0632EDD31CA1A6DB00DD3CB8 /* Parse+LiveQuery.swift */; };
+		0632EDD51CA1A6DB00DD3CB8 /* Parse+LiveQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0632EDD31CA1A6DB00DD3CB8 /* Parse+LiveQuery.swift */; };
 		629DC3BE90DA87A7857677D2 /* Pods_ParseLiveQuery_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2643D85A7565FC20EE144C /* Pods_ParseLiveQuery_iOS.framework */; };
 		DE7126BDB27E5DDB1C21490A /* Pods_ParseLiveQuery_OSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF5A55E51D52E372CD28FF08 /* Pods_ParseLiveQuery_OSX.framework */; };
 		F534A5B21BDAFE0200CBD11A /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = F534A5B11BDAFE0200CBD11A /* Subscription.swift */; };
@@ -30,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0632EDD31CA1A6DB00DD3CB8 /* Parse+LiveQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Parse+LiveQuery.swift"; sourceTree = "<group>"; };
 		11F6DFE2732DB0DE49976BA5 /* Pods-ParseLiveQuery OSX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParseLiveQuery OSX.release.xcconfig"; path = "../Pods/Target Support Files/Pods-ParseLiveQuery OSX/Pods-ParseLiveQuery OSX.release.xcconfig"; sourceTree = "<group>"; };
 		6062D7994653A4F07D1358B9 /* Pods-ParseLiveQuery iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParseLiveQuery iOS.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-ParseLiveQuery iOS/Pods-ParseLiveQuery iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		7A40A16386D0D6B38F8B2F07 /* Pods-ParseLiveQuery-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParseLiveQuery-iOS.release.xcconfig"; path = "../Pods/Target Support Files/Pods-ParseLiveQuery-iOS/Pods-ParseLiveQuery-iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -128,6 +131,7 @@
 				F534A5B11BDAFE0200CBD11A /* Subscription.swift */,
 				F54D58B51C8E33D9009F8D6C /* ObjCCompat.swift */,
 				F59CA92E1C8E496200329737 /* Errors.swift */,
+				0632EDD31CA1A6DB00DD3CB8 /* Parse+LiveQuery.swift */,
 				F5A88F491C9B6EBA002F0E0D /* PFQuery+Subscribe.swift */,
 			);
 			path = ParseLiveQuery;
@@ -324,6 +328,7 @@
 			files = (
 				F54D58B81C8E3446009F8D6C /* ClientPrivate.swift in Sources */,
 				F5D965351BD99DA200C3AAFC /* Client.swift in Sources */,
+				0632EDD51CA1A6DB00DD3CB8 /* Parse+LiveQuery.swift in Sources */,
 				F54D58B61C8E33D9009F8D6C /* ObjCCompat.swift in Sources */,
 				F54D58BA1C8E345F009F8D6C /* BoltsHelpers.swift in Sources */,
 				F5D965381BD99DA200C3AAFC /* QueryEncoder.swift in Sources */,
@@ -340,6 +345,7 @@
 			files = (
 				F5A88F541C9B7341002F0E0D /* ObjCCompat.swift in Sources */,
 				F5A88F531C9B7341002F0E0D /* Subscription.swift in Sources */,
+				0632EDD41CA1A6DB00DD3CB8 /* Parse+LiveQuery.swift in Sources */,
 				F5A88F511C9B7341002F0E0D /* BoltsHelpers.swift in Sources */,
 				F5A88F501C9B7341002F0E0D /* ClientPrivate.swift in Sources */,
 				F5A88F551C9B7341002F0E0D /* Errors.swift in Sources */,

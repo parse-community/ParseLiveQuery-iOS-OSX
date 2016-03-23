@@ -33,11 +33,10 @@ public class Client: NSObject {
     internal let queue = dispatch_queue_create("com.parse.livequery", DISPATCH_QUEUE_SERIAL)
 
     /**
-     Creates a Client which automatically attempts to connect to the custom parse-server URL set
-     in Parse.currentConfiguration
+     Creates a Client which automatically attempts to connect to the custom parse-server URL set in Parse.currentConfiguration().
      */
     public override convenience init() {
-        self.init(server: Parse.currentConfiguration().server)
+        self.init(server: Parse.validatedCurrentConfiguration().server)
     }
 
     /**
@@ -61,8 +60,8 @@ public class Client: NSObject {
             return RequestId(value: currentRequestId)
         }
 
-        self.applicationId = applicationId ?? Parse.currentConfiguration().applicationId!
-        self.clientKey = clientKey ?? Parse.currentConfiguration().clientKey
+        self.applicationId = applicationId ?? Parse.validatedCurrentConfiguration().applicationId!
+        self.clientKey = clientKey ?? Parse.validatedCurrentConfiguration().clientKey
 
         self.host = components.URL!
     }
@@ -94,7 +93,7 @@ extension Client {
             dispatch_sync(storage.queue) {
                 client = storage.client
                 if client == nil {
-                    let configuration = Parse.currentConfiguration()
+                    let configuration = Parse.validatedCurrentConfiguration()
                     client = Client(
                         server: configuration.server,
                         applicationId: configuration.applicationId,

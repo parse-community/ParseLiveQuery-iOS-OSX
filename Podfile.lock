@@ -1,8 +1,8 @@
 PODS:
   - Bolts-Swift (1.0.0)
   - Bolts/Tasks (1.6.0)
-  - Parse (1.12.0):
-    - Bolts/Tasks (~> 1.5)
+  - Parse (1.13.0):
+    - Bolts/Tasks (~> 1.6)
   - SocketRocket (0.5.0)
 
 DEPENDENCIES:
@@ -13,7 +13,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Bolts: f52a250053bb517ca874523c3913776359ab3def
   Bolts-Swift: 1b20170f1edf3568ec62142ea16ecdc369deced7
-  Parse: de2c52a9a1421b91ae7594ab8ce191afd184f19b
+  Parse: f51c24d2feb412e4b2d6cc73d37cb24e8d0089bc
   SocketRocket: 2c51efccd2d73c99a923407ca4b06e7e9da95dbf
 
 PODFILE CHECKSUM: b9a8e3333816abb217972f59b02783395bc8c2e2
