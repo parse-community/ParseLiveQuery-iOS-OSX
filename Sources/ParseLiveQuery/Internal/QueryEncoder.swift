@@ -13,8 +13,8 @@ import Parse
 /**
  NOTE: This is super hacky, and we need a better answer for this.
  */
-internal extension Dictionary where Key: StringLiteralConvertible, Value: AnyObject {
-    internal init(query: PFQuery) {
+extension Dictionary where Key: StringLiteralConvertible, Value: AnyObject {
+    init(query: PFQuery) {
         self.init()
 
         let queryState = query.valueForKey("state")

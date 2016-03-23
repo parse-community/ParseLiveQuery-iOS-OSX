@@ -18,19 +18,19 @@ import SocketRocket
  */
 @objc(PFLiveQueryClient)
 public class Client: NSObject {
-    internal let host: NSURL
-    internal let applicationId: String
-    internal let clientKey: String?
+    let host: NSURL
+    let applicationId: String
+    let clientKey: String?
 
-    internal var socket: SRWebSocket?
-    internal var disconnected = false
+    var socket: SRWebSocket?
+    var disconnected = false
 
     // This allows us to easily plug in another request ID generation scheme, or more easily change the request id type
     // if needed (technically this could be a string).
-    internal let requestIdGenerator: () -> RequestId
-    internal var subscriptions = [SubscriptionRecord]()
+    let requestIdGenerator: () -> RequestId
+    var subscriptions = [SubscriptionRecord]()
 
-    internal let queue = dispatch_queue_create("com.parse.livequery", DISPATCH_QUEUE_SERIAL)
+    let queue = dispatch_queue_create("com.parse.livequery", DISPATCH_QUEUE_SERIAL)
 
     /**
      Creates a Client which automatically attempts to connect to the custom parse-server URL set in Parse.currentConfiguration().
@@ -180,7 +180,7 @@ extension Client {
         unsubscribe { $0.query == query && $0.subscriptionHandler === handler }
     }
 
-    internal func unsubscribe(@noescape matching matcher: SubscriptionRecord -> Bool) {
+    func unsubscribe(@noescape matching matcher: SubscriptionRecord -> Bool) {
         subscriptions.filter {
             matcher($0)
         }.forEach {
