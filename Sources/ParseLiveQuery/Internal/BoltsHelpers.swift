@@ -10,9 +10,9 @@
 import Bolts
 import BoltsSwift
 
-internal let unknownDomain = "unknown"
+let unknownDomain = "unknown"
 
-internal func objcTask<T where T: AnyObject>(task: Task<T>) -> BFTask {
+func objcTask<T where T: AnyObject>(task: Task<T>) -> BFTask {
     let taskCompletionSource = BFTaskCompletionSource()
     task.continueWith { task in
         if task.cancelled {
@@ -27,7 +27,7 @@ internal func objcTask<T where T: AnyObject>(task: Task<T>) -> BFTask {
     return taskCompletionSource.task
 }
 
-internal func swiftTask(task: BFTask) -> Task<AnyObject> {
+func swiftTask(task: BFTask) -> Task<AnyObject> {
     let taskCompletionSource = TaskCompletionSource<AnyObject>()
     task.continueWithBlock { task in
         if task.cancelled {

@@ -122,10 +122,10 @@ public struct ObjCCompat {
         public typealias EventHandler = @convention(block) (PFQuery, Event) -> Void
         public typealias ObjectHandler = @convention(block) (PFQuery, PFObject) -> Void
 
-        internal var subscribeHandlers = [SubscribeHandler]()
-        internal var unsubscribeHandlers = [SubscribeHandler]()
-        internal var errorHandlers = [ErrorHandler]()
-        internal var eventHandlers = [EventHandler]()
+        var subscribeHandlers = [SubscribeHandler]()
+        var unsubscribeHandlers = [SubscribeHandler]()
+        var errorHandlers = [ErrorHandler]()
+        var eventHandlers = [EventHandler]()
 
         /**
          Register a callback for when a client succesfully subscribes to a query.

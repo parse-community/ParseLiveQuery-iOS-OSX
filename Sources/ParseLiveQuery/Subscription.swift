@@ -84,7 +84,7 @@ public enum Event<T where T: PFObject> {
     /// The object has been deleted, and is no longer included in the query
     case Deleted(T)
 
-    internal init<V where V: PFObject>(event: Event<V>) {
+    init<V where V: PFObject>(event: Event<V>) {
         switch event {
         case .Entered(let value as T): self = .Entered(value)
         case .Left(let value as T):    self = .Left(value)

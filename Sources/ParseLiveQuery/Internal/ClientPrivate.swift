@@ -21,6 +21,7 @@ private func parseObject<T: PFObject>(objectDictionary: [String:AnyObject]) thro
     }
 
     let parseObject = T(withoutDataWithClassName: parseClassName, objectId: objectId)
+
     objectDictionary.filter { key, _ in
         key != "parseClassName" && key != "objectId"
         }.forEach { key, value in
@@ -33,8 +34,8 @@ private func parseObject<T: PFObject>(objectDictionary: [String:AnyObject]) thro
 // MARK: Subscriptions
 // ---------------
 
-internal extension Client {
-    internal class SubscriptionRecord {
+extension Client {
+    class SubscriptionRecord {
         weak var subscriptionHandler: AnyObject?
 
         // HandlerClosure captures the generic type info passed into the constructor of SubscriptionRecord,
@@ -99,10 +100,10 @@ internal extension Client {
 
     // An opaque placeholder structed used to ensure that we type-safely create request IDs and don't shoot ourself in
     // the foot with array indexes.
-    internal struct RequestId: Equatable {
-        internal let value: Int
+    struct RequestId: Equatable {
+        let value: Int
 
-        internal init(value: Int) {
+        init(value: Int) {
             self.value = value
         }
     }
@@ -155,7 +156,7 @@ extension Client: SRWebSocketDelegate {
 // MARK: Operations
 // -------------------
 
-internal extension Event {
+extension Event {
     init(serverResponse: ServerResponse, inout requestId: Client.RequestId) throws {
         switch serverResponse {
         case .Enter(let reqId, let object):
@@ -183,7 +184,7 @@ internal extension Event {
     }
 }
 
-internal extension Client {
+extension Client {
     private func subscriptionRecord(requestId: RequestId) -> SubscriptionRecord? {
         guard
             let recordIndex = self.subscriptions.indexOf({ $0.requestId == requestId }),
@@ -195,7 +196,7 @@ internal extension Client {
         return record
     }
 
-    internal func sendOperationAsync(operation: ClientOperation) -> Task<Void> {
+    func sendOperationAsync(operation: ClientOperation) -> Task<Void> {
         return Task(.Queue(queue)) {
             let jsonEncoded = operation.JSONObjectRepresentation
             let jsonData = try NSJSONSerialization.dataWithJSONObject(jsonEncoded, options: NSJSONWritingOptions(rawValue: 0))
@@ -205,7 +206,7 @@ internal extension Client {
         }
     }
 
-    internal func handleOperationAsync(string: String) -> Task<Void> {
+    func handleOperationAsync(string: String) -> Task<Void> {
         return Task(.Queue(queue)) {
             guard
                 let jsonData = string.dataUsingEncoding(NSUTF8StringEncoding),
