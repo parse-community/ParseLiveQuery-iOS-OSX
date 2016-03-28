@@ -10,7 +10,8 @@ env:
   matrix:
     - TEST_TYPE=iOS
     - TEST_TYPE=OSX
-    - TEST_TYPE=OSXDemo
+    - TEST_TYPE=OSXDemoSwift
+    - TEST_TYPE=OSXDemoObjC
     - TEST_TYPE=CocoaPods
 install:
 - |
@@ -25,9 +26,14 @@ script:
     elif [ "$TEST_TYPE" = OSX ]; then
       set -o pipefail
       xcodebuild build -workspace ParseLiveQuery.xcworkspace -sdk macosx -scheme ParseLiveQuery-OSX -configuration Debug GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c
-    elif [ "$TEST_TYPE" = OSXDemo ]; then
+    elif [ "$TEST_TYPE" = OSXDemoSwift ]; then
       set -o pipefail
-      xcodebuild build -workspace ParseLiveQuery.xcworkspace -sdk macosx -scheme LiveQueryDemo -configuration Debug GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c
+      xcodebuild clean -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo | xcpretty -c
+      xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo -configuration Debug | xcpretty -c
+    elif [ "$TEST_TYPE" = OSXDemoObjC ]; then
+      set -o pipefail
+      xcodebuild clean -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo-ObjC | xcpretty -c
+      xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo-ObjC -configuration Debug | xcpretty -c
     elif [ "$TEST_TYPE" = CocoaPods ]; then
       pod lib lint ParseLiveQuery.podspec
     fi
