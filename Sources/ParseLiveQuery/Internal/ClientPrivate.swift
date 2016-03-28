@@ -22,10 +22,18 @@ private func parseObject<T: PFObject>(objectDictionary: [String:AnyObject]) thro
 
     let parseObject = T(withoutDataWithClassName: parseClassName, objectId: objectId)
 
+    // Map of strings to closures to determine if the key is valid. Allows for more advanced checking of
+    // classnames and such.
+    let invalidKeys: [String:Void->Bool] = [
+        "objectId": { true },
+        "parseClassName": { true },
+        "sessionToken": { parseClassName == "_User" }
+    ]
+
     objectDictionary.filter { key, _ in
-        key != "parseClassName" && key != "objectId"
-        }.forEach { key, value in
-            parseObject[key] = value
+        return !(invalidKeys[key].map { $0() } ?? false)
+    }.forEach { key, value in
+        parseObject[key] = value
     }
     return parseObject
 }
