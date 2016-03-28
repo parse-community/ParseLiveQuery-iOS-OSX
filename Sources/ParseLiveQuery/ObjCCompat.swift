@@ -61,6 +61,28 @@ public protocol ObjCCompat_SubscriptionHandling {
     optional func didUnsubscribe(query: PFQuery, client: Client)
 }
 
+// HACK: Compiler bug causes enums that are declared in structs that are marked as @objc to not actually be emitted by 
+// the compiler (lolwut?). Moving this to global scope fixes the problem, but we can't change the objc name of an enum
+// either, so we pollute the swift namespace here.
+// TODO: Fix this eventually.
+
+/**
+ A type of an update event on a specific object from the live query server.
+ */
+@objc
+public enum PFLiveQueryEventType: Int {
+    /// The object has been updated, and is now included in the query.
+    case Entered
+    /// The object has been updated, and is no longer included in the query.
+    case Left
+    /// The object has been created, and is a part of the query.
+    case Created
+    /// The object has been updated, and is still a part of the query.
+    case Updated
+    /// The object has been deleted, and is no longer included in the query.
+    case Deleted
+}
+
 /**
  This struct wraps up all of our Objective-C compatibility layer. You should never need to touch this if you're using Swift.
  */
@@ -68,43 +90,17 @@ public struct ObjCCompat {
     private init() { }
 
     /**
-     A type of an update event on a specific object from the live query server.
-     */
-    @objc
-    public enum PFLiveQueryEventType: Int {
-        /// The object has been updated, and is now included in the query.
-        case Entered
-        /// The object has been updated, and is no longer included in the query.
-        case Left
-        /// The object has been created, and is a part of the query.
-        case Created
-        /// The object has been updated, and is still a part of the query.
-        case Updated
-        /// The object has been deleted, and is no longer included in the query.
-        case Deleted
-    }
-
-    /**
       Represents an update on a specific object from the live query server.
      */
     @objc(PFLiveQueryEvent)
     public class Event: NSObject {
         /// Type of the event.
+        @objc
         public let type: PFLiveQueryEventType
-        /// Object this event is for.
-        public let object: PFObject
 
-        init<T>(event: ParseLiveQuery.Event<T>) {
-            (type, object) = {
-                switch event {
-                case .Entered(let object): return (.Entered, object)
-                case .Left(let object): return (.Left, object)
-                case .Created(let object): return (.Created, object)
-                case .Updated(let object): return (.Updated, object)
-                case .Deleted(let object): return (.Deleted, object)
-                }
-                }()
-        }
+        /// Object this event is for.
+        @objc
+        public let object: PFObject
 
         init(type: PFLiveQueryEventType, object: PFObject) {
             self.type = type
@@ -326,6 +322,25 @@ extension Client {
             }
             return record.query == query && handler.handler === subscriptionHandler
         }
+    }
+}
+
+// HACK: Another compiler bug - if you have a required initializer with a generic type, the compiler simply refuses to 
+// emit the entire class altogether. Moving this to an extension for now solves the issue.
+
+extension ObjCCompat.Event {
+    convenience init<T>(event: ParseLiveQuery.Event<T>) {
+        let results: (type: PFLiveQueryEventType, object: PFObject) = {
+            switch event {
+            case .Entered(let object): return (.Entered, object)
+            case .Left(let object):    return (.Left, object)
+            case .Created(let object): return (.Created, object)
+            case .Updated(let object): return (.Updated, object)
+            case .Deleted(let object): return (.Deleted, object)
+            }
+        }()
+
+        self.init(type: results.type, object: results.object)
     }
 }
 
