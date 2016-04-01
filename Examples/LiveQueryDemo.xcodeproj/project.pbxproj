@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7F64F07377979A28C88AF3AE /* Pods_LiveQueryDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6A6F02FD57E57309877DA38 /* Pods_LiveQueryDemo.framework */; };
-		8199A4091CA1EF3300BF61E1 /* ParseLiveQuery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8199A4061CA1EF1800BF61E1 /* ParseLiveQuery.framework */; };
-		F59F85B01C9BB48200566A29 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59F85AF1C9BB48200566A29 /* main.swift */; };
-		F59F85B81C9BB4B600566A29 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59F85B61C9BB4B600566A29 /* Message.swift */; };
-		F59F85B91C9BB4B600566A29 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59F85B71C9BB4B600566A29 /* Room.swift */; };
+		B88040BD3E7C225E22705572 /* Pods_LiveQueryDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6A6F02FD57E57309877DA38 /* Pods_LiveQueryDemo.framework */; };
+		F509D5281CA9E4D9007B15B0 /* ParseLiveQuery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8199A4061CA1EF1800BF61E1 /* ParseLiveQuery.framework */; };
+		F509D5291CA9E53D007B15B0 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59F85B61C9BB4B600566A29 /* Message.swift */; };
+		F509D52A1CA9E53D007B15B0 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59F85B71C9BB4B600566A29 /* Room.swift */; };
+		F509D52B1CA9E53D007B15B0 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59F85AF1C9BB48200566A29 /* main.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,33 +29,15 @@
 			remoteGlobalIDString = F5903CEA1BD999C500C3EFFE;
 			remoteInfo = "ParseLiveQuery-OSX";
 		};
-		8199A4071CA1EF2100BF61E1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8199A3FE1CA1EF1800BF61E1 /* ParseLiveQuery.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = F5903CE91BD999C500C3EFFE;
-			remoteInfo = "ParseLiveQuery-OSX";
-		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		F59F85AA1C9BB48200566A29 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3AC9312CEDA0007F8EAA9880 /* Pods-LiveQueryDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveQueryDemo.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-LiveQueryDemo/Pods-LiveQueryDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		497772719B97C861F0896BFC /* Pods-LiveQueryDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveQueryDemo.release.xcconfig"; path = "../Pods/Target Support Files/Pods-LiveQueryDemo/Pods-LiveQueryDemo.release.xcconfig"; sourceTree = "<group>"; };
 		8199A3FE1CA1EF1800BF61E1 /* ParseLiveQuery.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ParseLiveQuery.xcodeproj; path = ../Sources/ParseLiveQuery.xcodeproj; sourceTree = "<group>"; };
 		E6A6F02FD57E57309877DA38 /* Pods_LiveQueryDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiveQueryDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F59F85AC1C9BB48200566A29 /* LiveQueryDemo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LiveQueryDemo; sourceTree = BUILT_PRODUCTS_DIR; };
+		F509D5171CA9E4AE007B15B0 /* LiveQueryDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveQueryDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F509D5241CA9E4AE007B15B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F59F85AF1C9BB48200566A29 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		F59F85B61C9BB4B600566A29 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		F59F85B71C9BB4B600566A29 /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
@@ -63,12 +45,12 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		F59F85A91C9BB48200566A29 /* Frameworks */ = {
+		F509D5141CA9E4AE007B15B0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8199A4091CA1EF3300BF61E1 /* ParseLiveQuery.framework in Frameworks */,
-				7F64F07377979A28C88AF3AE /* Pods_LiveQueryDemo.framework in Frameworks */,
+				F509D5281CA9E4D9007B15B0 /* ParseLiveQuery.framework in Frameworks */,
+				B88040BD3E7C225E22705572 /* Pods_LiveQueryDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,7 +100,7 @@
 		F59F85AD1C9BB48200566A29 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F59F85AC1C9BB48200566A29 /* LiveQueryDemo */,
+				F509D5171CA9E4AE007B15B0 /* LiveQueryDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -126,6 +108,7 @@
 		F59F85AE1C9BB48200566A29 /* LiveQueryDemo */ = {
 			isa = PBXGroup;
 			children = (
+				F509D5241CA9E4AE007B15B0 /* Info.plist */,
 				F59F85B61C9BB4B600566A29 /* Message.swift */,
 				F59F85B71C9BB4B600566A29 /* Room.swift */,
 				F59F85AF1C9BB48200566A29 /* main.swift */,
@@ -136,25 +119,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F59F85AB1C9BB48200566A29 /* LiveQueryDemo */ = {
+		F509D5161CA9E4AE007B15B0 /* LiveQueryDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F59F85B31C9BB48200566A29 /* Build configuration list for PBXNativeTarget "LiveQueryDemo" */;
+			buildConfigurationList = F509D5251CA9E4AE007B15B0 /* Build configuration list for PBXNativeTarget "LiveQueryDemo" */;
 			buildPhases = (
-				15BD0AAA808A79D4D9BF001B /* 📦 Check Pods Manifest.lock */,
-				F59F85A81C9BB48200566A29 /* Sources */,
-				F59F85A91C9BB48200566A29 /* Frameworks */,
-				F59F85AA1C9BB48200566A29 /* CopyFiles */,
-				61A2B4349CA47E883546F289 /* 📦 Copy Pods Resources */,
+				E6F699DDDA9E6B861F705AD5 /* 📦 Check Pods Manifest.lock */,
+				F509D5131CA9E4AE007B15B0 /* Sources */,
+				F509D5141CA9E4AE007B15B0 /* Frameworks */,
+				F509D5151CA9E4AE007B15B0 /* Resources */,
+				045C33FD1807E3932888A2F9 /* 📦 Embed Pods Frameworks */,
+				D9EF05A29B9F1AAC9B62408C /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				8199A4081CA1EF2100BF61E1 /* PBXTargetDependency */,
 			);
 			name = LiveQueryDemo;
-			productName = LiveQueryDemo;
-			productReference = F59F85AC1C9BB48200566A29 /* LiveQueryDemo */;
-			productType = "com.apple.product-type.tool";
+			productName = AppKitDemo;
+			productReference = F509D5171CA9E4AE007B15B0 /* LiveQueryDemo.app */;
+			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
@@ -166,8 +149,8 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = Parse;
 				TargetAttributes = {
-					F59F85AB1C9BB48200566A29 = {
-						CreatedOnToolsVersion = 7.2.1;
+					F509D5161CA9E4AE007B15B0 = {
+						CreatedOnToolsVersion = 7.3;
 					};
 				};
 			};
@@ -177,6 +160,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = F59F85A31C9BB48200566A29;
 			productRefGroup = F59F85AD1C9BB48200566A29 /* Products */;
@@ -189,7 +173,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				F59F85AB1C9BB48200566A29 /* LiveQueryDemo */,
+				F509D5161CA9E4AE007B15B0 /* LiveQueryDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -211,23 +195,33 @@
 		};
 /* End PBXReferenceProxy section */
 
+/* Begin PBXResourcesBuildPhase section */
+		F509D5151CA9E4AE007B15B0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXShellScriptBuildPhase section */
-		15BD0AAA808A79D4D9BF001B /* 📦 Check Pods Manifest.lock */ = {
+		045C33FD1807E3932888A2F9 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-LiveQueryDemo/Pods-LiveQueryDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		61A2B4349CA47E883546F289 /* 📦 Copy Pods Resources */ = {
+		D9EF05A29B9F1AAC9B62408C /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -242,30 +236,63 @@
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-LiveQueryDemo/Pods-LiveQueryDemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E6F699DDDA9E6B861F705AD5 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		F59F85A81C9BB48200566A29 /* Sources */ = {
+		F509D5131CA9E4AE007B15B0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F59F85B01C9BB48200566A29 /* main.swift in Sources */,
-				F59F85B81C9BB4B600566A29 /* Message.swift in Sources */,
-				F59F85B91C9BB4B600566A29 /* Room.swift in Sources */,
+				F509D52A1CA9E53D007B15B0 /* Room.swift in Sources */,
+				F509D5291CA9E53D007B15B0 /* Message.swift in Sources */,
+				F509D52B1CA9E53D007B15B0 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		8199A4081CA1EF2100BF61E1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "ParseLiveQuery-OSX";
-			targetProxy = 8199A4071CA1EF2100BF61E1 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
+		F509D5261CA9E4AE007B15B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3AC9312CEDA0007F8EAA9880 /* Pods-LiveQueryDemo.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/LiveQueryDemo/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.parse.LiveQueryDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F509D5271CA9E4AE007B15B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 497772719B97C861F0896BFC /* Pods-LiveQueryDemo.release.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/LiveQueryDemo/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.parse.LiveQueryDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		F59F85B11C9BB48200566A29 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -346,41 +373,23 @@
 			};
 			name = Release;
 		};
-		F59F85B41C9BB48200566A29 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3AC9312CEDA0007F8EAA9880 /* Pods-LiveQueryDemo.debug.xcconfig */;
-			buildSettings = {
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		F59F85B51C9BB48200566A29 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 497772719B97C861F0896BFC /* Pods-LiveQueryDemo.release.xcconfig */;
-			buildSettings = {
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F509D5251CA9E4AE007B15B0 /* Build configuration list for PBXNativeTarget "LiveQueryDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F509D5261CA9E4AE007B15B0 /* Debug */,
+				F509D5271CA9E4AE007B15B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F59F85A71C9BB48200566A29 /* Build configuration list for PBXProject "LiveQueryDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F59F85B11C9BB48200566A29 /* Debug */,
 				F59F85B21C9BB48200566A29 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F59F85B31C9BB48200566A29 /* Build configuration list for PBXNativeTarget "LiveQueryDemo" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F59F85B41C9BB48200566A29 /* Debug */,
-				F59F85B51C9BB48200566A29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
