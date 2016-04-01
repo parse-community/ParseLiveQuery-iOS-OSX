@@ -130,6 +130,7 @@ extension Client: SRWebSocketDelegate {
         // TODO: Add support for session token and user authetication.
         self.sendOperationAsync(.Connect(applicationId: applicationId, sessionToken: ""))
         disconnected = false
+        reconnecting = false
     }
 
     public func webSocket(webSocket: SRWebSocket!, didFailWithError error: NSError!) {
