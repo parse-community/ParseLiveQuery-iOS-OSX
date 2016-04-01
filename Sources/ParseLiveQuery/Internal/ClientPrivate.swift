@@ -19,9 +19,9 @@ private func parseObject<T: PFObject>(objectDictionary: [String:AnyObject]) thro
     guard let objectId = objectDictionary["objectId"] as? String else {
         throw LiveQueryErrors.InvalidJSONError(json: objectDictionary, expectedKey: "objectId")
     }
-
+    
     let parseObject = T(withoutDataWithClassName: parseClassName, objectId: objectId)
-
+    
     // Map of strings to closures to determine if the key is valid. Allows for more advanced checking of
     // classnames and such.
     let invalidKeys: [String:Void->Bool] = [
@@ -29,11 +29,11 @@ private func parseObject<T: PFObject>(objectDictionary: [String:AnyObject]) thro
         "parseClassName": { true },
         "sessionToken": { parseClassName == "_User" }
     ]
-
+    
     objectDictionary.filter { key, _ in
         return !(invalidKeys[key].map { $0() } ?? false)
-    }.forEach { key, value in
-        parseObject[key] = value
+        }.forEach { key, value in
+            parseObject[key] = value
     }
     return parseObject
 }
@@ -45,7 +45,7 @@ private func parseObject<T: PFObject>(objectDictionary: [String:AnyObject]) thro
 extension Client {
     class SubscriptionRecord {
         weak var subscriptionHandler: AnyObject?
-
+        
         // HandlerClosure captures the generic type info passed into the constructor of SubscriptionRecord,
         // and 'unwraps' it so that it can be used with just a 'PFObject' instance.
         // Technically, this should be a compiler no-op, as no witness tables should be used as 'PFObject' currently inherits from NSObject.
@@ -55,62 +55,62 @@ extension Client {
         var errorHandlerClosure: (ErrorType, Client) -> Void
         var subscribeHandlerClosure: Client -> Void
         var unsubscribeHandlerClosure: Client -> Void
-
+        
         let query: PFQuery
         let requestId: RequestId
-
+        
         init<T: SubscriptionHandling>(query: PFQuery, requestId: RequestId, handler: T) {
             self.query = query
             self.requestId = requestId
-
+            
             subscriptionHandler = handler
-
+            
             // This is needed because swift requires 'handlerClosure' to be fully initialized before we setup the
             // capture list for the closure.
             eventHandlerClosure = { _, _ in }
             errorHandlerClosure = { _, _ in }
             subscribeHandlerClosure = { _ in }
             unsubscribeHandlerClosure = { _ in }
-
+            
             eventHandlerClosure = { [weak self] event, client in
                 guard let handler = self?.subscriptionHandler as? T else {
                     return
                 }
-
+                
                 handler.didReceive(Event(event: event), forQuery: query, inClient: client)
             }
-
+            
             errorHandlerClosure = { [weak self] error, client in
                 guard let handler = self?.subscriptionHandler as? T else {
                     return
                 }
-
+                
                 handler.didEncounter(error, forQuery: query, inClient: client)
             }
-
+            
             subscribeHandlerClosure = { [weak self] client in
                 guard let handler = self?.subscriptionHandler as? T else {
                     return
                 }
-
+                
                 handler.didSubscribe(toQuery: query, inClient: client)
             }
-
+            
             unsubscribeHandlerClosure = { [weak self] client in
                 guard let handler = self?.subscriptionHandler as? T else {
                     return
                 }
-
+                
                 handler.didUnsubscribe(fromQuery: query, inClient: client)
             }
         }
     }
-
+    
     // An opaque placeholder structed used to ensure that we type-safely create request IDs and don't shoot ourself in
     // the foot with array indexes.
     struct RequestId: Equatable {
         let value: Int
-
+        
         init(value: Int) {
             self.value = value
         }
@@ -129,28 +129,22 @@ extension Client: SRWebSocketDelegate {
     public func webSocketDidOpen(webSocket: SRWebSocket!) {
         // TODO: Add support for session token and user authetication.
         self.sendOperationAsync(.Connect(applicationId: applicationId, sessionToken: ""))
-        disconnected = false
-        reconnecting = false
     }
-
+    
     public func webSocket(webSocket: SRWebSocket!, didFailWithError error: NSError!) {
         print("Error: \(error)")
-        //set disconnect and try reconnecting
-        disconnected = true
+        
         reconnect()
     }
-
+    
     public func webSocket(webSocket: SRWebSocket!, didCloseWithCode code: Int, reason: String!, wasClean: Bool) {
         print("code: \(code) reason: \(reason)")
-
         
-        //set disconnect and try reconnecting on error
-        disconnected = true
         reconnect()
         
         // TODO: Find better logic to handle user disconnect
     }
-
+    
     public func webSocket(webSocket: SRWebSocket!, didReceiveMessage message: AnyObject?) {
         guard let messageString = message as? String else {
             fatalError("Socket got into inconsistent state and received \(message) instead.")
@@ -173,23 +167,23 @@ extension Event {
         case .Enter(let reqId, let object):
             requestId = reqId
             self = .Entered(try parseObject(object))
-
+            
         case .Leave(let reqId, let object):
             requestId = reqId
             self = .Left(try parseObject(object))
-
+            
         case .Create(let reqId, let object):
             requestId = reqId
             self = .Created(try parseObject(object))
-
+            
         case .Update(let reqId, let object):
             requestId = reqId
             self = .Updated(try parseObject(object))
-
+            
         case .Delete(let reqId, let object):
             requestId = reqId
             self = .Deleted(try parseObject(object))
-
+            
         default: fatalError("Invalid state reached")
         }
     }
@@ -203,20 +197,20 @@ extension Client {
             where record.subscriptionHandler != nil else {
                 return nil
         }
-
+        
         return record
     }
-
+    
     func sendOperationAsync(operation: ClientOperation) -> Task<Void> {
         return Task(.Queue(queue)) {
             let jsonEncoded = operation.JSONObjectRepresentation
             let jsonData = try NSJSONSerialization.dataWithJSONObject(jsonEncoded, options: NSJSONWritingOptions(rawValue: 0))
             let jsonString = String(data: jsonData, encoding: NSUTF8StringEncoding)
-
+            
             self.socket?.send(jsonString)
         }
     }
-
+    
     func handleOperationAsync(string: String) -> Task<Void> {
         return Task(.Queue(queue)) {
             guard
@@ -227,30 +221,30 @@ extension Client {
                 else {
                     throw LiveQueryErrors.InvalidResponseError(response: string)
             }
-
+            
             switch response {
             case .Connected:
                 self.subscriptions.forEach {
                     self.sendOperationAsync(.Subscribe(requestId: $0.requestId, query: $0.query))
                 }
-
+                
             case .Redirect:
                 // TODO: Handle redirect.
                 break
-
+                
             case .Subscribed(let requestId):
                 self.subscriptionRecord(requestId)?.subscribeHandlerClosure(self)
-
+                
             case .Unsubscribed(let requestId):
                 guard
                     let recordIndex = self.subscriptions.indexOf({ $0.requestId == requestId }),
                     let record: SubscriptionRecord = self.subscriptions[recordIndex] else {
                         break
                 }
-
+                
                 record.unsubscribeHandlerClosure(self)
                 self.subscriptions.removeAtIndex(recordIndex)
-
+                
             case .Create, .Delete, .Enter, .Leave, .Update:
                 guard
                     var requestId: RequestId = RequestId(value: 0),
@@ -259,9 +253,9 @@ extension Client {
                     else {
                         break
                 }
-
+                
                 record.eventHandlerClosure(event, self)
-
+                
             case .Error(let requestId, let code, let error, let reconnect):
                 let error = LiveQueryErrors.ServerReportedError(code: code, error: error, reconnect: reconnect)
                 if let requestId = requestId {
