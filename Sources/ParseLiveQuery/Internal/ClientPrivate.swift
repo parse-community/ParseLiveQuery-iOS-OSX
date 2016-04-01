@@ -129,23 +129,25 @@ extension Client: SRWebSocketDelegate {
     public func webSocketDidOpen(webSocket: SRWebSocket!) {
         // TODO: Add support for session token and user authetication.
         self.sendOperationAsync(.Connect(applicationId: applicationId, sessionToken: ""))
+        disconnected = false
     }
 
     public func webSocket(webSocket: SRWebSocket!, didFailWithError error: NSError!) {
         print("Error: \(error)")
-
-        if !disconnected {
-            reconnect()
-        }
+        //set disconnect and try reconnecting
+        disconnected = true
+        reconnect()
     }
 
     public func webSocket(webSocket: SRWebSocket!, didCloseWithCode code: Int, reason: String!, wasClean: Bool) {
         print("code: \(code) reason: \(reason)")
 
-        // TODO: Better retry logic, unless `disconnect()` was explicitly called
-        if !disconnected {
-            reconnect()
-        }
+        
+        //set disconnect and try reconnecting on error
+        disconnected = true
+        reconnect()
+        
+        // TODO: Find better logic to handle user disconnect
     }
 
     public func webSocket(webSocket: SRWebSocket!, didReceiveMessage message: AnyObject?) {

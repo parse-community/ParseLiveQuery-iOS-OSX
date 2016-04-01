@@ -23,7 +23,10 @@ public class Client: NSObject {
     let clientKey: String?
 
     var socket: SRWebSocket?
-    var disconnected = false
+    //we are disconnected by default
+    var disconnected = true
+    //boolean to check if socket is trying to connect
+    var reconnecting = false
 
     // This allows us to easily plug in another request ID generation scheme, or more easily change the request id type
     // if needed (technically this could be a string).
@@ -149,11 +152,11 @@ extension Client {
             )
             subscriptions.append(subscriptionRecord)
 
-            if socket == nil {
-                if !disconnected {
-                    reconnect()
-                }
-            } else {
+            if socket == nil && disconnected{
+                reconnect()
+            } else if !reconnecting{
+                
+                //if not reconnecting send operation otherwise let handler take care of it upon socket delegate handleing
                 sendOperationAsync(.Subscribe(requestId: subscriptionRecord.requestId, query: query))
             }
 
@@ -197,6 +200,7 @@ extension Client {
      you use the client, and should usually only be called when an error occurs.
      */
     public func reconnect() {
+        reconnecting = true
         socket?.close()
         socket = {
             let socket = SRWebSocket(URL: host)
