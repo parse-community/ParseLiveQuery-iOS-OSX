@@ -23,7 +23,6 @@ public class Client: NSObject {
     let clientKey: String?
     
     var socket: SRWebSocket?
-    
     var userDisconnected = false
     
     // This allows us to easily plug in another request ID generation scheme, or more easily change the request id type
