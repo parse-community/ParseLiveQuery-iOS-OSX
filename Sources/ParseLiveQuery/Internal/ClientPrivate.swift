@@ -133,7 +133,6 @@ extension Client: SRWebSocketDelegate {
 
     public func webSocket(webSocket: SRWebSocket!, didFailWithError error: NSError!) {
         print("Error: \(error)")
-        //set disconnect and try reconnecting
         if !userDisconnected{
             reconnect()
         }
@@ -141,8 +140,7 @@ extension Client: SRWebSocketDelegate {
 
     public func webSocket(webSocket: SRWebSocket!, didCloseWithCode code: Int, reason: String!, wasClean: Bool) {
         print("code: \(code) reason: \(reason)")
-        
-        //set disconnect and try reconnecting on error
+        // TODO: Better retry logic, unless `disconnect()` was explicitly called
         if !userDisconnected{
             reconnect()
         }
