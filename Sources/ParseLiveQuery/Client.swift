@@ -150,9 +150,14 @@ extension Client {
             )
             subscriptions.append(subscriptionRecord)
 
-        if socket == nil || socket?.readyState == .CLOSED{
-            userDisconnected = false
-            reconnect()
+        if socket == nil || socket?.readyState != .OPEN{
+            
+            if !userDisconnected{
+                reconnect()
+            }else{
+                print("Warning: The client was explicitly disconnected! You must explicitly call .reconnect() in order to process your subscriptions.")
+            }
+            
         } else if socket?.readyState == .OPEN{
             
             sendOperationAsync(.Subscribe(requestId: subscriptionRecord.requestId, query: query))
@@ -188,6 +193,7 @@ extension Client {
             sendOperationAsync(.Unsubscribe(requestId: $0.requestId))
         }
     }
+    
 }
 
 extension Client {
@@ -204,7 +210,7 @@ extension Client {
             socket.delegate = self
             socket.setDelegateDispatchQueue(queue)
             socket.open()
-
+            userDisconnected = true
             return socket
             }()
     }
