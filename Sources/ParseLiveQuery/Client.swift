@@ -149,12 +149,12 @@ extension Client {
         )
         subscriptions.append(subscriptionRecord)
         
-        if socket?.readyState == .OPEN{
+        if socket?.readyState == .OPEN {
             sendOperationAsync(.Subscribe(requestId: subscriptionRecord.requestId, query: query))
-        } else if socket == nil || socket?.readyState != .CONNECTING{
-            if !userDisconnected{
+        } else if socket == nil || socket?.readyState != .CONNECTING {
+            if !userDisconnected {
                 reconnect()
-            }else{
+            } else {
                 print("Warning: The client was explicitly disconnected! You must explicitly call .reconnect() in order to process your subscriptions.")
             }
         }
