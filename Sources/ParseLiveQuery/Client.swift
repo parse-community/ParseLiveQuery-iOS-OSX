@@ -23,7 +23,7 @@ public class Client: NSObject {
     let clientKey: String?
 
     var socket: SRWebSocket?
-    var disconnected = false
+    var userDisconnected = false
 
     // This allows us to easily plug in another request ID generation scheme, or more easily change the request id type
     // if needed (technically this could be a string).
@@ -119,7 +119,7 @@ extension Client {
 
      - parameter query:        The query to register for updates.
      - parameter subclassType: The subclass of PFObject to be used as the type of the Subscription.
-                               This parameter can be automatically inferred from context most of the time
+     This parameter can be automatically inferred from context most of the time
 
      - returns: The subscription that has just been registered
      */
@@ -127,7 +127,7 @@ extension Client {
         query: PFQuery,
         subclassType: T.Type = T.self
         ) -> Subscription<T> {
-            return subscribe(query, handler: Subscription<T>())
+        return subscribe(query, handler: Subscription<T>())
     }
 
     /**
@@ -142,22 +142,24 @@ extension Client {
         query: PFQuery,
         handler: T
         ) -> T {
-            let subscriptionRecord = SubscriptionRecord(
-                query: query,
-                requestId: requestIdGenerator(),
-                handler: handler
-            )
-            subscriptions.append(subscriptionRecord)
-
-            if socket == nil {
-                if !disconnected {
-                    reconnect()
-                }
+        let subscriptionRecord = SubscriptionRecord(
+            query: query,
+            requestId: requestIdGenerator(),
+            handler: handler
+        )
+        subscriptions.append(subscriptionRecord)
+        
+        if socket?.readyState == .OPEN {
+            sendOperationAsync(.Subscribe(requestId: subscriptionRecord.requestId, query: query))
+        } else if socket == nil || socket?.readyState != .CONNECTING {
+            if !userDisconnected {
+                reconnect()
             } else {
-                sendOperationAsync(.Subscribe(requestId: subscriptionRecord.requestId, query: query))
+                debugPrint("Warning: The client was explicitly disconnected! You must explicitly call .reconnect() in order to process your subscriptions.")
             }
-
-            return handler
+        }
+        
+        return handler
     }
 
     /**
@@ -183,10 +185,11 @@ extension Client {
     func unsubscribe(@noescape matching matcher: SubscriptionRecord -> Bool) {
         subscriptions.filter {
             matcher($0)
-        }.forEach {
-            sendOperationAsync(.Unsubscribe(requestId: $0.requestId))
+            }.forEach {
+                sendOperationAsync(.Unsubscribe(requestId: $0.requestId))
         }
     }
+    
 }
 
 extension Client {
@@ -203,7 +206,7 @@ extension Client {
             socket.delegate = self
             socket.setDelegateDispatchQueue(queue)
             socket.open()
-
+            userDisconnected = false
             return socket
             }()
     }
@@ -221,6 +224,6 @@ extension Client {
         }
         socket.close()
         self.socket = nil
-        disconnected = true
+        userDisconnected = true
     }
 }
