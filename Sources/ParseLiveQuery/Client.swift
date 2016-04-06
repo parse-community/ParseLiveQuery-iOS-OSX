@@ -50,7 +50,7 @@ public class Client: NSObject {
         guard let components = NSURLComponents(string: server) else {
             fatalError("Server should be a valid URL.")
         }
-        components.scheme = "ws"
+        components.scheme = components.scheme == "https" ? "wss" : "ws"
         components.path = "/LQ"
 
         // Simple incrementing generator - can't use ++, that operator is deprecated!
