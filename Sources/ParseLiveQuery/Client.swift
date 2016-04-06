@@ -174,7 +174,7 @@ extension Client {
 
     /**
      Unsubscribes from a specific query-handler pair.
-     
+
      - parameter query:   The query to unsubscribe from.
      - parameter handler: The specific handler to unsubscribe from.
      */
