@@ -209,7 +209,7 @@ extension Client {
             let jsonEncoded = operation.JSONObjectRepresentation
             let jsonData = try NSJSONSerialization.dataWithJSONObject(jsonEncoded, options: NSJSONWritingOptions(rawValue: 0))
             let jsonString = String(data: jsonData, encoding: NSUTF8StringEncoding)
-            
+
             self.socket?.send(jsonString)
         }
     }
