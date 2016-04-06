@@ -21,24 +21,24 @@ public class Client: NSObject {
     let host: NSURL
     let applicationId: String
     let clientKey: String?
-
+    
     var socket: SRWebSocket?
     var userDisconnected = false
-
+    
     // This allows us to easily plug in another request ID generation scheme, or more easily change the request id type
     // if needed (technically this could be a string).
     let requestIdGenerator: () -> RequestId
     var subscriptions = [SubscriptionRecord]()
-
+    
     let queue = dispatch_queue_create("com.parse.livequery", DISPATCH_QUEUE_SERIAL)
-
+    
     /**
      Creates a Client which automatically attempts to connect to the custom parse-server URL set in Parse.currentConfiguration().
      */
     public override convenience init() {
         self.init(server: Parse.validatedCurrentConfiguration().server)
     }
-
+    
     /**
      Creates a client which will connect to a specific server with an optional application id and client key
 
@@ -50,19 +50,20 @@ public class Client: NSObject {
         guard let components = NSURLComponents(string: server) else {
             fatalError("Server should be a valid URL.")
         }
-        components.scheme = "ws"
+        
+        components.scheme = components.scheme == "https" ? "wss" : "ws"
         components.path = "/LQ"
-
+        
         // Simple incrementing generator - can't use ++, that operator is deprecated!
         var currentRequestId = 0
         requestIdGenerator = {
             currentRequestId += 1
             return RequestId(value: currentRequestId)
         }
-
+        
         self.applicationId = applicationId ?? Parse.validatedCurrentConfiguration().applicationId!
         self.clientKey = clientKey ?? Parse.validatedCurrentConfiguration().clientKey
-
+        
         self.host = components.URL!
     }
 }
@@ -79,11 +80,11 @@ extension Client {
             }
             return sharedStorage
         }
-
+        
         let queue: dispatch_queue_t = dispatch_queue_create("com.parse.livequery.client.storage", DISPATCH_QUEUE_SERIAL)
         var client: Client?
     }
-
+    
     /// Gets or sets shared live query client to be used for default subscriptions
     @objc(sharedClient)
     public static var shared: Client! {
@@ -126,10 +127,10 @@ extension Client {
     public func subscribe<T where T: PFObject>(
         query: PFQuery,
         subclassType: T.Type = T.self
-        ) -> Subscription<T> {
+    ) -> Subscription<T> {
         return subscribe(query, handler: Subscription<T>())
     }
-
+    
     /**
      Registers a query for live updates, using a custom subscription handler
 
@@ -141,7 +142,7 @@ extension Client {
     public func subscribe<T where T: SubscriptionHandling>(
         query: PFQuery,
         handler: T
-        ) -> T {
+    ) -> T {
         let subscriptionRecord = SubscriptionRecord(
             query: query,
             requestId: requestIdGenerator(),
@@ -161,7 +162,7 @@ extension Client {
         
         return handler
     }
-
+    
     /**
      Unsubscribes all current subscriptions for a given query.
 
@@ -171,7 +172,7 @@ extension Client {
     public func unsubscribe(query: PFQuery) {
         unsubscribe { $0.query == query }
     }
-
+    
     /**
      Unsubscribes from a specific query-handler pair.
 
@@ -181,15 +182,14 @@ extension Client {
     public func unsubscribe<T where T: SubscriptionHandling>(query: PFQuery, handler: T) {
         unsubscribe { $0.query == query && $0.subscriptionHandler === handler }
     }
-
+    
     func unsubscribe(@noescape matching matcher: SubscriptionRecord -> Bool) {
         subscriptions.filter {
             matcher($0)
-            }.forEach {
-                sendOperationAsync(.Unsubscribe(requestId: $0.requestId))
+        }.forEach {
+            sendOperationAsync(.Unsubscribe(requestId: $0.requestId))
         }
     }
-    
 }
 
 extension Client {
@@ -208,9 +208,9 @@ extension Client {
             socket.open()
             userDisconnected = false
             return socket
-            }()
+        }()
     }
-
+    
     /**
      Explicitly disconnects this client from the server.
 
@@ -219,8 +219,8 @@ extension Client {
      */
     public func disconnect() {
         guard let socket = socket
-            else {
-                return
+        else {
+            return
         }
         socket.close()
         self.socket = nil
