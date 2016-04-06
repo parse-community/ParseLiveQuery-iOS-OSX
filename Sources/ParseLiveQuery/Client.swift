@@ -155,7 +155,7 @@ extension Client {
             if !userDisconnected {
                 reconnect()
             } else {
-                print("Warning: The client was explicitly disconnected! You must explicitly call .reconnect() in order to process your subscriptions.")
+                debugPrint("Warning: The client was explicitly disconnected! You must explicitly call .reconnect() in order to process your subscriptions.")
             }
         }
         
