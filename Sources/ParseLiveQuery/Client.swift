@@ -51,7 +51,6 @@ public class Client: NSObject {
             fatalError("Server should be a valid URL.")
         }
         components.scheme = components.scheme == "https" ? "wss" : "ws"
-        components.path = "/LQ"
 
         // Simple incrementing generator - can't use ++, that operator is deprecated!
         var currentRequestId = 0
