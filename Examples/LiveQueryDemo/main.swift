@@ -19,7 +19,7 @@ Parse.initializeWithConfiguration(ParseClientConfiguration {
     $0.server = "http://localhost:1337/parse"
     })
 
-let liveQueryClient = ParseLiveQuery.Client(server: "http://localhost:1337")
+let liveQueryClient = ParseLiveQuery.Client()
 
 class ChatRoomManager {
     private var currentChatRoom: Room?
@@ -28,7 +28,7 @@ class ChatRoomManager {
     var connected: Bool { return currentChatRoom != nil }
     var messagesQuery: PFQuery {
         return (Message.query()?
-            .whereKey("room_name", equalTo: currentChatRoom!.name!)
+            .whereKey("roomName", equalTo: currentChatRoom!.name!)
             .orderByAscending("createdAt"))!
     }
 
