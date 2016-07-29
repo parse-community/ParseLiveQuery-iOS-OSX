@@ -26,16 +26,15 @@ func objcTask<T where T: AnyObject>(task: Task<T>) -> BFTask {
     }
     return taskCompletionSource.task
 }
-
 func swiftTask(task: BFTask) -> Task<AnyObject> {
     let taskCompletionSource = TaskCompletionSource<AnyObject>()
     task.continueWithBlock { task in
         if task.cancelled {
             taskCompletionSource.tryCancel()
         } else if let error = task.error where task.faulted {
-            taskCompletionSource.trySetError(error)
+            taskCompletionSource.set(error: error)
         } else if let result = task.result {
-            taskCompletionSource.trySetResult(result)
+            taskCompletionSource.set(result: result)
         } else {
             fatalError("Unknown task state")
         }
@@ -43,3 +42,4 @@ func swiftTask(task: BFTask) -> Task<AnyObject> {
     }
     return taskCompletionSource.task
 }
+
