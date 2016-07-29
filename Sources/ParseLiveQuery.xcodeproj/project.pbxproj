@@ -134,13 +134,13 @@
 			isa = PBXGroup;
 			children = (
 				F5DC9D381BD9BAFC00E8FF07 /* Internal */,
-				81464FC51CA31DA0000235E7 /* Resources */,
 				F5591BA31BD720E10072F966 /* Client.swift */,
 				F534A5B11BDAFE0200CBD11A /* Subscription.swift */,
 				F54D58B51C8E33D9009F8D6C /* ObjCCompat.swift */,
 				F59CA92E1C8E496200329737 /* Errors.swift */,
 				0632EDD31CA1A6DB00DD3CB8 /* Parse+LiveQuery.swift */,
 				F5A88F491C9B6EBA002F0E0D /* PFQuery+Subscribe.swift */,
+				81464FC51CA31DA0000235E7 /* Resources */,
 			);
 			path = ParseLiveQuery;
 			sourceTree = "<group>";
