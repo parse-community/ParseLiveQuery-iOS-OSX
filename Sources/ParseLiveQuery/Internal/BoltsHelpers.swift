@@ -33,9 +33,9 @@ func swiftTask(task: BFTask) -> Task<AnyObject> {
         if task.cancelled {
             taskCompletionSource.tryCancel()
         } else if let error = task.error where task.faulted {
-            taskCompletionSource.trySetError(error)
+            taskCompletionSource.trySet(error: error)
         } else if let result = task.result {
-            taskCompletionSource.trySetResult(result)
+            taskCompletionSource.trySet(result: result)
         } else {
             fatalError("Unknown task state")
         }

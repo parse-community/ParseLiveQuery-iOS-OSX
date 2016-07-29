@@ -17,6 +17,6 @@ Pod::Spec.new do |s|
   s.module_name = 'ParseLiveQuery'
 
   s.dependency 'Parse', '~> 1.14.0'
-  s.dependency 'Bolts-Swift', '~> 1.1.0'
+  s.dependency 'Bolts-Swift', '~> 1.2.0'
   s.dependency 'SocketRocket', '~> 0.5.0'
 end

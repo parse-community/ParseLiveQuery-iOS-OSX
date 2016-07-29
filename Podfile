@@ -6,7 +6,7 @@ workspace 'ParseLiveQuery.xcworkspace'
 
 def commonPods
     pod 'Parse', '~> 1.14.0'
-    pod 'Bolts-Swift', '~> 1.1.0'
+    pod 'Bolts-Swift', '~> 1.2.0'
     pod 'SocketRocket', '~> 0.5.0'
 end
 
