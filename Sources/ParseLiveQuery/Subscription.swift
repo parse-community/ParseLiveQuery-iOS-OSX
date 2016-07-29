@@ -18,7 +18,7 @@ import BoltsSwift
  */
 public protocol SubscriptionHandling: AnyObject {
     /// The type of the PFObject subclass that this handler uses.
-    typealias PFObjectSubclass: PFObject
+    associatedtype PFObjectSubclass: PFObject
 
     /**
      Tells the handler that an event has been received from the live query server.
