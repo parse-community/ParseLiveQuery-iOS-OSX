@@ -21,20 +21,19 @@ extension Dictionary where Key: StringLiteralConvertible, Value: AnyObject {
             self["className"] = className as? Value
         }
         if let conditions: [String:AnyObject] = queryState?.valueForKey("conditions") as? [String:AnyObject] {
-            let newConditions = conditions.encodedQueryDictionary
-            self["where"] = newConditions as? Value
+            self["where"] = conditions.encodedQueryDictionary as? Value
         }
     }
 }
 
-extension Dictionary where Key: String, Value: AnyObject {
+extension Dictionary where Key: StringLiteralConvertible, Value: AnyObject {
     var encodedQueryDictionary: Dictionary {
         var encodedQueryDictionary = Dictionary()
         for (key, val) in self {
             if let dict = val as? [String:AnyObject] {
-                encodedQueryDictionary[key] = dict.encodedQueryDictionary
+                encodedQueryDictionary[key] = dict.encodedQueryDictionary as? Value
             } else if let geoPoint = val as? PFGeoPoint {
-                encodedQueryDictionary[key] = geoPoint.encodedQueryDictionary
+                encodedQueryDictionary[key] = geoPoint.encodedDictionary as? Value
             } else {
                 encodedQueryDictionary[key] = val
             }
@@ -44,7 +43,7 @@ extension Dictionary where Key: String, Value: AnyObject {
 }
 
 extension PFGeoPoint {
-    var encodedQueryDictionary: [String:AnyObject] {
+    var encodedDictionary: [String:AnyObject] {
         return ["__type": "GeoPoint",
                 "latitude": latitude,
                 "longitude": longitude]
