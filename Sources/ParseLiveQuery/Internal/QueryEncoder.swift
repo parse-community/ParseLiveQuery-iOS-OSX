@@ -16,37 +16,35 @@ import Parse
 extension Dictionary where Key: StringLiteralConvertible, Value: AnyObject {
     init(query: PFQuery) {
         self.init()
-        
         let queryState = query.valueForKey("state")
         if let className = queryState?.valueForKey("parseClassName") {
             self["className"] = className as? Value
         }
-        
         if let conditions: [String:AnyObject] = queryState?.valueForKey("conditions") as? [String:AnyObject] {
-            let newConditions = conditions.sanitizeParseObjects()
+            let newConditions = conditions.encodedQueryDictionary
             self["where"] = newConditions as? Value
         }
     }
 }
 
-extension Dictionary {
-    func sanitizeParseObjects() -> Dictionary {
-        var newSelf = Dictionary()
-        for keyVal in self {
-            if let dict = keyVal.1 as? [String:AnyObject] {
-                newSelf[keyVal.0] = dict.sanitizeParseObjects() as? Value
-            } else if let geoPoint = keyVal.1 as? PFGeoPoint {
-                newSelf[keyVal.0] = geoPoint.toDict() as? Value
+extension Dictionary where Key: String, Value: AnyObject {
+    var encodedQueryDictionary: Dictionary {
+        var encodedQueryDictionary = Dictionary()
+        for (key, val) in self {
+            if let dict = val as? [String:AnyObject] {
+                encodedQueryDictionary[key] = dict.encodedQueryDictionary
+            } else if let geoPoint = val as? PFGeoPoint {
+                encodedQueryDictionary[key] = geoPoint.encodedQueryDictionary
             } else {
-                newSelf[keyVal.0] = keyVal.1
+                encodedQueryDictionary[key] = val
             }
         }
-        return newSelf
+        return encodedQueryDictionary
     }
 }
 
 extension PFGeoPoint {
-    func toDict() -> [String:AnyObject] {
+    var encodedQueryDictionary: [String:AnyObject] {
         return ["__type": "GeoPoint",
                 "latitude": latitude,
                 "longitude": longitude]
