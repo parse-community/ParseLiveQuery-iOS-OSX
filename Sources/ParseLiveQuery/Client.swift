@@ -185,7 +185,11 @@ extension Client {
         subscriptions.filter {
             matcher($0)
             }.forEach {
-                sendOperationAsync(.Unsubscribe(requestId: $0.requestId))
+                if socket?.readyState == .OPEN {
+                    sendOperationAsync(.Unsubscribe(requestId: $0.requestId))
+                } else {
+                    debugPrint("Warning: The client socket was not in an open state.")
+                }
         }
     }
     
