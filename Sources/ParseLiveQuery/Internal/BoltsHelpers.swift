@@ -12,7 +12,7 @@ import BoltsSwift
 
 let unknownDomain = "unknown"
 
-func objcTask<T where T: AnyObject>(task: Task<T>) -> BFTask {
+func objcTask<T>(_ task: Task<T>) -> BFTask where T: AnyObject {
     let taskCompletionSource = BFTaskCompletionSource()
     task.continueWith { task in
         if task.cancelled {
@@ -27,12 +27,12 @@ func objcTask<T where T: AnyObject>(task: Task<T>) -> BFTask {
     return taskCompletionSource.task
 }
 
-func swiftTask(task: BFTask) -> Task<AnyObject> {
+func swiftTask(_ task: BFTask) -> Task<AnyObject> {
     let taskCompletionSource = TaskCompletionSource<AnyObject>()
     task.continueWithBlock { task in
         if task.cancelled {
             taskCompletionSource.tryCancel()
-        } else if let error = task.error where task.faulted {
+        } else if let error = task.error , task.faulted {
             taskCompletionSource.trySet(error: error)
         } else if let result = task.result {
             taskCompletionSource.trySet(result: result)

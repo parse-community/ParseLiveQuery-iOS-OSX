@@ -13,7 +13,7 @@ import Parse
 /**
  NOTE: This is super hacky, and we need a better answer for this.
  */
-extension Dictionary where Key: StringLiteralConvertible, Value: AnyObject {
+extension Dictionary where Key: ExpressibleByStringLiteral, Value: AnyObject {
     init(query: PFQuery) {
         self.init()
         let queryState = query.valueForKey("state")
@@ -26,7 +26,7 @@ extension Dictionary where Key: StringLiteralConvertible, Value: AnyObject {
     }
 }
 
-extension Dictionary where Key: StringLiteralConvertible, Value: AnyObject {
+extension Dictionary where Key: ExpressibleByStringLiteral, Value: AnyObject {
     var encodedQueryDictionary: Dictionary {
         var encodedQueryDictionary = Dictionary()
         for (key, val) in self {

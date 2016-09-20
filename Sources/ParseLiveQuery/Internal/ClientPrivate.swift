@@ -12,7 +12,7 @@ import Parse
 import SocketRocket
 import BoltsSwift
 
-private func parseObject<T: PFObject>(objectDictionary: [String:AnyObject]) throws -> T {
+private func parseObject<T: PFObject>(_ objectDictionary: [String:AnyObject]) throws -> T {
     guard let parseClassName = objectDictionary["className"] as? String else {
         throw LiveQueryErrors.InvalidJSONError(json: objectDictionary, expectedKey: "parseClassName")
     }
@@ -24,7 +24,7 @@ private func parseObject<T: PFObject>(objectDictionary: [String:AnyObject]) thro
 
     // Map of strings to closures to determine if the key is valid. Allows for more advanced checking of
     // classnames and such.
-    let invalidKeys: [String:Void->Bool] = [
+    let invalidKeys: [String:(Void)->Bool] = [
         "objectId": { true },
         "parseClassName": { true },
         "sessionToken": { parseClassName == "_User" }
@@ -52,9 +52,9 @@ extension Client {
         // Should we make PFObject ever a native swift class without the backing Objective-C runtime however,
         // this becomes extremely important to have, and makes a ton more sense than just unsafeBitCast-ing everywhere.
         var eventHandlerClosure: (Event<PFObject>, Client) -> Void
-        var errorHandlerClosure: (ErrorType, Client) -> Void
-        var subscribeHandlerClosure: Client -> Void
-        var unsubscribeHandlerClosure: Client -> Void
+        var errorHandlerClosure: (Error, Client) -> Void
+        var subscribeHandlerClosure: (Client) -> Void
+        var unsubscribeHandlerClosure: (Client) -> Void
 
         let query: PFQuery
         let requestId: RequestId
@@ -126,12 +126,12 @@ func == (first: Client.RequestId, second: Client.RequestId) -> Bool {
 // ---------------
 
 extension Client: SRWebSocketDelegate {
-    public func webSocketDidOpen(webSocket: SRWebSocket!) {
+    public func webSocketDidOpen(_ webSocket: SRWebSocket!) {
         // TODO: Add support for session token and user authetication.
         self.sendOperationAsync(.Connect(applicationId: applicationId, sessionToken: ""))
     }
 
-    public func webSocket(webSocket: SRWebSocket!, didFailWithError error: NSError!) {
+    public func webSocket(_ webSocket: SRWebSocket!, didFailWithError error: NSError!) {
         print("Error: \(error)")
 
         if !userDisconnected {
@@ -139,7 +139,7 @@ extension Client: SRWebSocketDelegate {
         }
     }
 
-    public func webSocket(webSocket: SRWebSocket!, didCloseWithCode code: Int, reason: String!, wasClean: Bool) {
+    public func webSocket(_ webSocket: SRWebSocket!, didCloseWithCode code: Int, reason: String!, wasClean: Bool) {
         print("code: \(code) reason: \(reason)")
 
         // TODO: Better retry logic, unless `disconnect()` was explicitly called
@@ -148,7 +148,7 @@ extension Client: SRWebSocketDelegate {
         }
     }
 
-    public func webSocket(webSocket: SRWebSocket!, didReceiveMessage message: AnyObject?) {
+    public func webSocket(_ webSocket: SRWebSocket!, didReceiveMessage message: AnyObject?) {
         guard let messageString = message as? String else {
             fatalError("Socket got into inconsistent state and received \(message) instead.")
         }
@@ -165,27 +165,27 @@ extension Client: SRWebSocketDelegate {
 // -------------------
 
 extension Event {
-    init(serverResponse: ServerResponse, inout requestId: Client.RequestId) throws {
+    init(serverResponse: ServerResponse, requestId: inout Client.RequestId) throws {
         switch serverResponse {
-        case .Enter(let reqId, let object):
+        case .enter(let reqId, let object):
             requestId = reqId
-            self = .Entered(try parseObject(object))
+            self = .entered(try parseObject(object))
 
-        case .Leave(let reqId, let object):
+        case .leave(let reqId, let object):
             requestId = reqId
-            self = .Left(try parseObject(object))
+            self = .left(try parseObject(object))
 
-        case .Create(let reqId, let object):
+        case .create(let reqId, let object):
             requestId = reqId
-            self = .Created(try parseObject(object))
+            self = .created(try parseObject(object))
 
-        case .Update(let reqId, let object):
+        case .update(let reqId, let object):
             requestId = reqId
-            self = .Updated(try parseObject(object))
+            self = .updated(try parseObject(object))
 
-        case .Delete(let reqId, let object):
+        case .delete(let reqId, let object):
             requestId = reqId
-            self = .Deleted(try parseObject(object))
+            self = .deleted(try parseObject(object))
 
         default: fatalError("Invalid state reached")
         }
@@ -193,18 +193,18 @@ extension Event {
 }
 
 extension Client {
-    private func subscriptionRecord(requestId: RequestId) -> SubscriptionRecord? {
+    fileprivate func subscriptionRecord(_ requestId: RequestId) -> SubscriptionRecord? {
         guard
-            let recordIndex = self.subscriptions.indexOf({ $0.requestId == requestId }),
+            let recordIndex = self.subscriptions.index(where: { $0.requestId == requestId }),
             let record: SubscriptionRecord = self.subscriptions[recordIndex]
-            where record.subscriptionHandler != nil else {
+            , record.subscriptionHandler != nil else {
                 return nil
         }
 
         return record
     }
 
-    func sendOperationAsync(operation: ClientOperation) -> Task<Void> {
+    func sendOperationAsync(_ operation: ClientOperation) -> Task<Void> {
         return Task(.Queue(queue)) {
             let jsonEncoded = operation.JSONObjectRepresentation
             let jsonData = try NSJSONSerialization.dataWithJSONObject(jsonEncoded, options: NSJSONWritingOptions(rawValue: 0))
@@ -214,7 +214,7 @@ extension Client {
         }
     }
 
-    func handleOperationAsync(string: String) -> Task<Void> {
+    func handleOperationAsync(_ string: String) -> Task<Void> {
         return Task(.Queue(queue)) {
             guard
                 let jsonData = string.dataUsingEncoding(NSUTF8StringEncoding),

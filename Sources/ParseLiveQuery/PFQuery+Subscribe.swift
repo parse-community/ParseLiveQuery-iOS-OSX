@@ -20,7 +20,7 @@ extension PFQuery {
 
      - returns: The created subscription for observing.
      */
-    public func subscribe<T: PFObject>(subclassType: T.Type = T.self) -> Subscription<T> {
+    public func subscribe<T: PFObject>(_ subclassType: T.Type = T.self) -> Subscription<T> {
         return Client.shared.subscribe(self)
     }
 }
