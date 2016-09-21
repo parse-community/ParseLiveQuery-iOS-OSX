@@ -56,10 +56,10 @@ extension Client {
         var subscribeHandlerClosure: (Client) -> Void
         var unsubscribeHandlerClosure: (Client) -> Void
 
-        let query: PFQuery
+        let query: PFQuery<PFObject>
         let requestId: RequestId
 
-        init<T: SubscriptionHandling>(query: PFQuery, requestId: RequestId, handler: T) {
+        init<T: SubscriptionHandling>(query: PFQuery<PFObject>, requestId: RequestId, handler: T) {
             self.query = query
             self.requestId = requestId
 
@@ -128,10 +128,10 @@ func == (first: Client.RequestId, second: Client.RequestId) -> Bool {
 extension Client: SRWebSocketDelegate {
     public func webSocketDidOpen(_ webSocket: SRWebSocket!) {
         // TODO: Add support for session token and user authetication.
-        self.sendOperationAsync(.Connect(applicationId: applicationId, sessionToken: ""))
+        self.sendOperationAsync(.connect(applicationId: applicationId, sessionToken: ""))
     }
 
-    public func webSocket(_ webSocket: SRWebSocket!, didFailWithError error: NSError!) {
+    @nonobjc public func webSocket(_ webSocket: SRWebSocket!, didFailWithError error: NSError!) {
         print("Error: \(error)")
 
         if !userDisconnected {
@@ -148,7 +148,7 @@ extension Client: SRWebSocketDelegate {
         }
     }
 
-    public func webSocket(_ webSocket: SRWebSocket!, didReceiveMessage message: AnyObject?) {
+    public func webSocket(_ webSocket: SRWebSocket!, didReceiveMessage message: Any!) {
         guard let messageString = message as? String else {
             fatalError("Socket got into inconsistent state and received \(message) instead.")
         }
@@ -205,20 +205,20 @@ extension Client {
     }
 
     func sendOperationAsync(_ operation: ClientOperation) -> Task<Void> {
-        return Task(.Queue(queue)) {
+        return Task(.queue(queue)) {
             let jsonEncoded = operation.JSONObjectRepresentation
-            let jsonData = try NSJSONSerialization.dataWithJSONObject(jsonEncoded, options: NSJSONWritingOptions(rawValue: 0))
-            let jsonString = String(data: jsonData, encoding: NSUTF8StringEncoding)
+            let jsonData = try JSONSerialization.data(withJSONObject: jsonEncoded, options: JSONSerialization.WritingOptions(rawValue: 0))
+            let jsonString = String(data: jsonData, encoding: String.Encoding.utf8)
 
             self.socket?.send(jsonString)
         }
     }
 
     func handleOperationAsync(_ string: String) -> Task<Void> {
-        return Task(.Queue(queue)) {
+        return Task(.queue(queue)) {
             guard
-                let jsonData = string.dataUsingEncoding(NSUTF8StringEncoding),
-                let jsonDecoded = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions(rawValue: 0))
+                let jsonData = string.data(using: String.Encoding.utf8),
+                let jsonDecoded = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions(rawValue: 0))
                     as? [String:AnyObject],
                 let response: ServerResponse = try ServerResponse(json: jsonDecoded)
                 else {
@@ -226,29 +226,29 @@ extension Client {
             }
 
             switch response {
-            case .Connected:
+            case .connected:
                 self.subscriptions.forEach {
-                    self.sendOperationAsync(.Subscribe(requestId: $0.requestId, query: $0.query))
+                    self.sendOperationAsync(.subscribe(requestId: $0.requestId, query: $0.query))
                 }
 
-            case .Redirect:
+            case .redirect:
                 // TODO: Handle redirect.
                 break
 
-            case .Subscribed(let requestId):
+            case .subscribed(let requestId):
                 self.subscriptionRecord(requestId)?.subscribeHandlerClosure(self)
 
-            case .Unsubscribed(let requestId):
+            case .unsubscribed(let requestId):
                 guard
-                    let recordIndex = self.subscriptions.indexOf({ $0.requestId == requestId }),
+                    let recordIndex = self.subscriptions.index(where: { $0.requestId == requestId }),
                     let record: SubscriptionRecord = self.subscriptions[recordIndex] else {
                         break
                 }
 
                 record.unsubscribeHandlerClosure(self)
-                self.subscriptions.removeAtIndex(recordIndex)
+                self.subscriptions.remove(at: recordIndex)
 
-            case .Create, .Delete, .Enter, .Leave, .Update:
+            case .create, .delete, .enter, .leave, .update:
                 guard
                     var requestId: RequestId = RequestId(value: 0),
                     let event: Event<PFObject> = try Event(serverResponse: response, requestId: &requestId),
@@ -259,7 +259,7 @@ extension Client {
 
                 record.eventHandlerClosure(event, self)
 
-            case .Error(let requestId, let code, let error, let reconnect):
+            case .error(let requestId, let code, let error, let reconnect):
                 let error = LiveQueryErrors.ServerReportedError(code: code, error: error, reconnect: reconnect)
                 if let requestId = requestId {
                     self.subscriptionRecord(requestId)?.errorHandlerClosure(error, self)

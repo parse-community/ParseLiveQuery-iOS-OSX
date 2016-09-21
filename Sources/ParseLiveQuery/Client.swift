@@ -47,9 +47,10 @@ open class Client: NSObject {
      - parameter clientKey:     The client key to use
      */
     public init(server: String, applicationId: String? = nil, clientKey: String? = nil) {
-        guard let components = URLComponents(string: server) else {
+        guard var components = URLComponents(string: server) else {
             fatalError("Server should be a valid URL.")
         }
+
         components.scheme = components.scheme == "https" ? "wss" : "ws"
 
         // Simple incrementing generator - can't use ++, that operator is deprecated!
@@ -70,7 +71,7 @@ extension Client {
     // Swift is lame and doesn't allow storage to directly be in extensions.
     // So we create an inner struct to wrap it up.
     fileprivate class Storage {
-        private static var __once: () = {
+        fileprivate static var __once: () = {
                 sharedStorage = Storage()
             }()
         static var onceToken: Int = 0
@@ -124,9 +125,9 @@ extension Client {
      - returns: The subscription that has just been registered
      */
     public func subscribe<T>(
-        _ query: PFQuery,
+        _ query: PFQuery<PFObject>,
         subclassType: T.Type = T.self
-        ) -> Subscription<T> where T: PFObject {
+        ) -> Subscription<T> {
         return subscribe(query, handler: Subscription<T>())
     }
 
@@ -139,7 +140,7 @@ extension Client {
      - returns: Your subscription handler, for easy chaining.
      */
     public func subscribe<T>(
-        _ query: PFQuery,
+        _ query: PFQuery<PFObject>,
         handler: T
         ) -> T where T: SubscriptionHandling {
         let subscriptionRecord = SubscriptionRecord(
@@ -150,7 +151,7 @@ extension Client {
         subscriptions.append(subscriptionRecord)
         
         if socket?.readyState == .OPEN {
-            sendOperationAsync(.Subscribe(requestId: subscriptionRecord.requestId, query: query))
+            sendOperationAsync(.subscribe(requestId: subscriptionRecord.requestId, query: query))
         } else if socket == nil || socket?.readyState != .CONNECTING {
             if !userDisconnected {
                 reconnect()
@@ -168,7 +169,7 @@ extension Client {
      - parameter query: The query to unsubscribe from.
      */
     @objc(unsubscribeFromQuery:)
-    public func unsubscribe(_ query: PFQuery) {
+    public func unsubscribe(_ query: PFQuery<PFObject>) {
         unsubscribe { $0.query == query }
     }
 
@@ -178,7 +179,7 @@ extension Client {
      - parameter query:   The query to unsubscribe from.
      - parameter handler: The specific handler to unsubscribe from.
      */
-    public func unsubscribe<T>(_ query: PFQuery, handler: T) where T: SubscriptionHandling {
+    public func unsubscribe<T>(_ query: PFQuery<PFObject>, handler: T) where T: SubscriptionHandling {
         unsubscribe { $0.query == query && $0.subscriptionHandler === handler }
     }
 
@@ -186,7 +187,7 @@ extension Client {
         subscriptions.filter {
             matcher($0)
             }.forEach {
-                sendOperationAsync(.Unsubscribe(requestId: $0.requestId))
+                sendOperationAsync(.unsubscribe(requestId: $0.requestId))
         }
     }
     
@@ -202,10 +203,10 @@ extension Client {
     public func reconnect() {
         socket?.close()
         socket = {
-            let socket = SRWebSocket(URL: host)
-            socket.delegate = self
-            socket.setDelegateDispatchQueue(queue)
-            socket.open()
+            let socket = SRWebSocket(url: host)
+            socket?.delegate = self
+            socket?.setDelegateDispatchQueue(queue)
+            socket?.open()
             userDisconnected = false
             return socket
             }()

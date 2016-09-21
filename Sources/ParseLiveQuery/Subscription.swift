@@ -27,7 +27,7 @@ public protocol SubscriptionHandling: AnyObject {
      - parameter query: The query that the event occurred on.
      - parameter client: The live query client which received this event.
      */
-    func didReceive(_ event: Event<PFObjectSubclass>, forQuery query: PFQuery, inClient client: Client)
+    func didReceive(_ event: Event<PFObjectSubclass>, forQuery query: PFQuery<PFObject>, inClient client: Client)
 
     /**
      Tells the handler that an error has been received from the live query server.
@@ -36,7 +36,7 @@ public protocol SubscriptionHandling: AnyObject {
      - parameter query: The query that the error occurred on.
      - parameter client: The live query client which received this error.
      */
-    func didEncounter(_ error: Error, forQuery query: PFQuery, inClient client: Client)
+    func didEncounter(_ error: Error, forQuery query: PFQuery<PFObject>, inClient client: Client)
 
     /**
      Tells the handler that a query has been successfully registered with the server.
@@ -46,7 +46,7 @@ public protocol SubscriptionHandling: AnyObject {
      - parameter query: The query that has been subscribed.
      - parameter client: The live query client which subscribed this query.
      */
-    func didSubscribe(toQuery query: PFQuery, inClient client: Client)
+    func didSubscribe(toQuery query: PFQuery<PFObject>, inClient client: Client)
 
     /**
      Tells the handler that a query has been successfully deregistered from the server.
@@ -56,7 +56,7 @@ public protocol SubscriptionHandling: AnyObject {
      - parameter query: The query that has been unsubscribed.
      - parameter client: The live query client which unsubscribed this query.
      */
-    func didUnsubscribe(fromQuery query: PFQuery, inClient client: Client)
+    func didUnsubscribe(fromQuery query: PFQuery<PFObject>, inClient client: Client)
 }
 
 /**
@@ -111,10 +111,10 @@ private func == <T: PFObject>(lhs: Event<T>, rhs: Event<T>) -> Bool {
  A default implementation of the SubscriptionHandling protocol, using closures for callbacks.
  */
 open class Subscription<T>: SubscriptionHandling where T: PFObject {
-    fileprivate var errorHandlers: [(PFQuery, ErrorType) -> Void] = []
-    fileprivate var eventHandlers: [(PFQuery, Event<T>) -> Void] = []
-    fileprivate var subscribeHandlers: [(PFQuery) -> Void] = []
-    fileprivate var unsubscribeHandlers: [(PFQuery) -> Void] = []
+    fileprivate var errorHandlers: [(PFQuery, Error) -> Void] = Array<(PFQuery<PFObject>, Error) -> Void>()
+    fileprivate var eventHandlers: [(PFQuery, Event<T>) -> Void] = Array<(PFQuery<PFObject>, Event<T>) -> Void>()
+    fileprivate var subscribeHandlers: [(PFQuery) -> Void] = Array<(PFQuery<PFObject>) -> Void>()
+    fileprivate var unsubscribeHandlers: [(PFQuery) -> Void] = Array<(PFQuery<PFObject>) -> Void>()
 
     /**
      Creates a new subscription that can be used to handle updates.
@@ -129,7 +129,7 @@ open class Subscription<T>: SubscriptionHandling where T: PFObject {
 
      - returns: The same subscription, for easy chaining
      */
-    open func handleError(_ handler: (PFQuery, ErrorType) -> Void) -> Subscription {
+    open func handleError(_ handler: @escaping (PFQuery<PFObject>, Error) -> Void) -> Subscription {
         errorHandlers.append(handler)
         return self
     }
@@ -141,7 +141,7 @@ open class Subscription<T>: SubscriptionHandling where T: PFObject {
 
      - returns: The same subscription, for easy chaining.
      */
-    open func handleEvent(_ handler: (PFQuery, Event<T>) -> Void) -> Subscription {
+    open func handleEvent(_ handler: @escaping (PFQuery<PFObject>, Event<T>) -> Void) -> Subscription {
         eventHandlers.append(handler)
         return self
     }
@@ -153,7 +153,7 @@ open class Subscription<T>: SubscriptionHandling where T: PFObject {
 
      - returns: The same subscription, for easy chaining.
      */
-    open func handleSubscribe(_ handler: (PFQuery) -> Void) -> Subscription {
+    open func handleSubscribe(_ handler: @escaping (PFQuery<PFObject>) -> Void) -> Subscription {
         subscribeHandlers.append(handler)
         return self
     }
@@ -165,7 +165,7 @@ open class Subscription<T>: SubscriptionHandling where T: PFObject {
 
      - returns: The same subscription, for easy chaining.
      */
-    open func handleUnsubscribe(_ handler: (PFQuery) -> Void) -> Subscription {
+    open func handleUnsubscribe(_ handler: @escaping (PFQuery<PFObject>) -> Void) -> Subscription {
         unsubscribeHandlers.append(handler)
         return self
     }
@@ -176,19 +176,19 @@ open class Subscription<T>: SubscriptionHandling where T: PFObject {
     // ---------------
     public typealias PFObjectSubclass = T
 
-    open func didReceive(_ event: Event<PFObjectSubclass>, forQuery query: PFQuery, inClient client: Client) {
+    open func didReceive(_ event: Event<PFObjectSubclass>, forQuery query: PFQuery<PFObject>, inClient client: Client) {
         eventHandlers.forEach { $0(query, event) }
     }
 
-    open func didEncounter(_ error: Error, forQuery query: PFQuery, inClient client: Client) {
+    open func didEncounter(_ error: Error, forQuery query: PFQuery<PFObject>, inClient client: Client) {
         errorHandlers.forEach { $0(query, error) }
     }
 
-    open func didSubscribe(toQuery query: PFQuery, inClient client: Client) {
+    open func didSubscribe(toQuery query: PFQuery<PFObject>, inClient client: Client) {
         subscribeHandlers.forEach { $0(query) }
     }
 
-    open func didUnsubscribe(fromQuery query: PFQuery, inClient client: Client) {
+    open func didUnsubscribe(fromQuery query: PFQuery<PFObject>, inClient client: Client) {
         unsubscribeHandlers.forEach { $0(query) }
     }
 }
@@ -210,11 +210,11 @@ extension Subscription {
      */
     public func handle<E: Error>(
         _ errorType: E.Type = E.self,
-        _ handler: (PFQuery, E) -> Void
+        _ handler: @escaping (PFQuery<PFObject>, E) -> Void
         ) -> Subscription {
             errorHandlers.append { query, error in
                 if let error = error as? E {
-                    handler(query, error)
+                    handler(query , error)
                 }
             }
             return self
@@ -235,14 +235,14 @@ extension Subscription {
      - returns: The same subscription, for easy chaining
 
      */
-    public func handle(_ eventType: @escaping (T) -> Event<T>, _ handler: (PFQuery, T) -> Void) -> Subscription {
+    public func handle(_ eventType: @escaping (T) -> Event<T>, _ handler: @escaping (PFQuery<PFObject>, T) -> Void) -> Subscription {
         return handleEvent { query, event in
             switch event {
-            case .Entered(let obj) where eventType(obj) == event: handler(query, obj)
-            case .Left(let obj)  where eventType(obj) == event: handler(query, obj)
-            case .Created(let obj) where eventType(obj) == event: handler(query, obj)
-            case .Updated(let obj) where eventType(obj) == event: handler(query, obj)
-            case .Deleted(let obj) where eventType(obj) == event: handler(query, obj)
+            case .entered(let obj) where eventType(obj) == event: handler(query, obj)
+            case .left(let obj)  where eventType(obj) == event: handler(query, obj)
+            case .created(let obj) where eventType(obj) == event: handler(query, obj)
+            case .updated(let obj) where eventType(obj) == event: handler(query, obj)
+            case .deleted(let obj) where eventType(obj) == event: handler(query, obj)
             default: return
             }
         }
