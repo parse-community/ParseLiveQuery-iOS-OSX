@@ -14,37 +14,36 @@ import ParseLiveQuery
 Message.registerSubclass()
 Room.registerSubclass()
 
-Parse.initializeWithConfiguration(ParseClientConfiguration {
+Parse.initialize(with: ParseClientConfiguration {
     $0.applicationId = "myAppId"
+    $0.clientKey = "myClientKey"
     $0.server = "http://localhost:1337/parse"
     })
 
 let liveQueryClient = ParseLiveQuery.Client()
 
 class ChatRoomManager {
-    private var currentChatRoom: Room?
-    private var subscription: Subscription<Message>?
+    fileprivate var currentChatRoom: Room?
+    fileprivate var subscription: Subscription<Message>?
 
     var connected: Bool { return currentChatRoom != nil }
-    var messagesQuery: PFQuery {
+    var messagesQuery: PFQuery<PFObject> {
         return (Message.query()?
             .whereKey("roomName", equalTo: currentChatRoom!.name!)
-            .orderByAscending("createdAt"))!
+            .order(byAscending: "createdAt"))!
     }
 
-    func connectToChatRoom(room: String) {
+    func connectToChatRoom(_ room: String) {
         if connected {
             disconnectFromChatRoom()
         }
 
-        Room.query()?.whereKey("name", equalTo: room).getFirstObjectInBackground().continueWithBlock { task in
-            self.currentChatRoom = task.result as? Room
+        Room.query()?.whereKey("name", equalTo: room).getFirstObjectInBackground() { task, error in
+            self.currentChatRoom = task as? Room
             print("Connected to room \(self.currentChatRoom?.name ?? "null")")
 
             self.printPriorMessages()
             self.subscribeToUpdates()
-
-            return nil
         }
     }
 
@@ -52,9 +51,9 @@ class ChatRoomManager {
         liveQueryClient.unsubscribe(messagesQuery, handler: subscription!)
     }
 
-    func sendMessage(msg: String) {
+    func sendMessage(_ msg: String) {
         let message = Message()
-        message.author = PFUser.currentUser()
+        message.author = PFUser.current()
         message.authorName = message.author?.username
         message.message = msg
         message.room = currentChatRoom
@@ -64,44 +63,42 @@ class ChatRoomManager {
     }
 
     func printPriorMessages() {
-        messagesQuery.findObjectsInBackground().continueWithBlock() { task in
-            (task.result as? [Message])?.forEach(self.printMessage)
-
-            return nil
+        messagesQuery.findObjectsInBackground() { task, error in
+            (task as? [Message])?.forEach(self.printMessage)
         }
     }
 
     func subscribeToUpdates() {
-        subscription = liveQueryClient
-            .subscribe(messagesQuery)
-            .handle(Event.Created) { _, message in
-                self.printMessage(message)
+        subscription = liveQueryClient.subscribe(messagesQuery).handle(Event.created)  { _, message in
+            self.printMessage(message)
         }
     }
 
-    private func printMessage(message: Message) {
-        let createdAt = message.createdAt ?? NSDate()
+    fileprivate func printMessage(_ message: Message) {
+        let createdAt = message.createdAt ?? Date()
 
         print("\(createdAt) \(message.authorName ?? "unknown"): \(message.message ?? "")")
     }
 }
 
 class InputManager {
-    let stdinChannel = dispatch_io_create(DISPATCH_IO_STREAM, STDIN_FILENO, dispatch_get_main_queue()) { _ in }
+    let stdinChannel = DispatchIO(type: .stream, fileDescriptor: STDIN_FILENO, queue: .main, cleanupHandler: { _ in })
     let chatManager: ChatRoomManager
 
     init(chatManager: ChatRoomManager) {
         self.chatManager = chatManager
 
-        dispatch_io_set_low_water(stdinChannel, 1)
-        dispatch_io_read(stdinChannel, 0, Int.max, dispatch_get_main_queue(), handleInput)
+        stdinChannel.setLimit(lowWater: 1)
+        stdinChannel.read(offset: 0, length: Int.max, queue: DispatchQueue.main, ioHandler: handleInput)
     }
 
-    private func handleInput(done: Bool, data: dispatch_data_t?, error: Int32) {
+    fileprivate func handleInput(_ done: Bool, data: DispatchData?, error: Int32) {
         guard
-            let data = data as? NSData,
-            let inputString = String(data: data, encoding: NSUTF8StringEncoding)?
-                .stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) else {
+            let stringC: String? = data?.withUnsafeBytes(body: {(b: UnsafePointer<UInt8>) -> String? in
+                return String(cString: b)
+            }) ,
+            let inputString = stringC?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) else {
+                    NSLog("something went wrong")
                     return
         }
 
@@ -117,15 +114,18 @@ print("Enter username: ")
 
 let username = readLine()!
 let password = "Enter password for \(username): ".withCString {
-    String(UTF8String: getpass($0))!
+    String(validatingUTF8: getpass($0))!
 }
 
 let chatManager = ChatRoomManager()
 let inputManager = InputManager(chatManager: chatManager)
 
-PFUser.logInWithUsernameInBackground(username, password: password).continueWithBlock { task in
-    print("Enter chat room to connect to: ")
-    return nil
-}
+PFUser.logInWithUsername(inBackground: username, password: password, block: { task, error in
+    if error == nil {
+        print("Enter chat room to connect to: ")
+    } else {
+        NSLog("Loging error: \(error)")
+    }
+})
 
-dispatch_main()
+dispatchMain()
