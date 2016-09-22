@@ -18,7 +18,7 @@ import BoltsSwift
  */
 public protocol SubscriptionHandling: AnyObject {
     /// The type of the PFObject subclass that this handler uses.
-    associatedtype PFGenericObject: PFObject
+    associatedtype PFObjectSubclass: PFObject
 
     /**
      Tells the handler that an event has been received from the live query server.
@@ -27,7 +27,7 @@ public protocol SubscriptionHandling: AnyObject {
      - parameter query: The query that the event occurred on.
      - parameter client: The live query client which received this event.
      */
-    func didReceive(_ event: Event<PFGenericObject>, forQuery query: PFQuery<PFGenericObject>, inClient client: Client)
+    func didReceive(_ event: Event<PFObjectSubclass>, forQuery query: PFQuery<PFObjectSubclass>, inClient client: Client)
 
     /**
      Tells the handler that an error has been received from the live query server.
@@ -36,7 +36,7 @@ public protocol SubscriptionHandling: AnyObject {
      - parameter query: The query that the error occurred on.
      - parameter client: The live query client which received this error.
      */
-    func didEncounter(_ error: Error, forQuery query: PFQuery<PFGenericObject>, inClient client: Client)
+    func didEncounter(_ error: Error, forQuery query: PFQuery<PFObjectSubclass>, inClient client: Client)
 
     /**
      Tells the handler that a query has been successfully registered with the server.
@@ -46,7 +46,7 @@ public protocol SubscriptionHandling: AnyObject {
      - parameter query: The query that has been subscribed.
      - parameter client: The live query client which subscribed this query.
      */
-    func didSubscribe(toQuery query: PFQuery<PFGenericObject>, inClient client: Client)
+    func didSubscribe(toQuery query: PFQuery<PFObjectSubclass>, inClient client: Client)
 
     /**
      Tells the handler that a query has been successfully deregistered from the server.
@@ -56,7 +56,7 @@ public protocol SubscriptionHandling: AnyObject {
      - parameter query: The query that has been unsubscribed.
      - parameter client: The live query client which unsubscribed this query.
      */
-    func didUnsubscribe(fromQuery query: PFQuery<PFGenericObject>, inClient client: Client)
+    func didUnsubscribe(fromQuery query: PFQuery<PFObjectSubclass>, inClient client: Client)
 }
 
 /**

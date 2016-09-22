@@ -58,7 +58,7 @@ extension Client {
         let query: PFQuery<PFObject>
         let requestId: RequestId
 
-        init<T>(query: PFQuery<T.PFGenericObject>, requestId: RequestId, handler: T) where T:SubscriptionHandling {
+        init<T>(query: PFQuery<T.PFObjectSubclass>, requestId: RequestId, handler: T) where T:SubscriptionHandling {
             self.query = query as! PFQuery<PFObject>
             self.requestId = requestId
 
