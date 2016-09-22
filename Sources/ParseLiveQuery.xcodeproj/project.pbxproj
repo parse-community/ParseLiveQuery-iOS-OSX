@@ -180,12 +180,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F5903CEF1BD999C500C3EFFE /* Build configuration list for PBXNativeTarget "ParseLiveQuery-OSX" */;
 			buildPhases = (
+				42957978F8F9CAAE6BE3FE9C /* [CP] Check Pods Manifest.lock */,
 				432EB76C64066D923373DC45 /* [CP] Check Pods Manifest.lock */,
 				F5903CE51BD999C500C3EFFE /* Sources */,
 				F5903CE61BD999C500C3EFFE /* Frameworks */,
 				F5903CE71BD999C500C3EFFE /* Headers */,
 				F5903CE81BD999C500C3EFFE /* Resources */,
 				458C6F69E79D3F67465FC4DB /* [CP] Copy Pods Resources */,
+				8D6D42D741753A8DA3FEBB44 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -200,12 +202,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F5A9BFC71BE0248D00E78326 /* Build configuration list for PBXNativeTarget "ParseLiveQuery-iOS" */;
 			buildPhases = (
+				12BD489D413AD268FF85A8FA /* [CP] Check Pods Manifest.lock */,
 				0779A1A9A8C094A6EC98CD51 /* [CP] Check Pods Manifest.lock */,
 				F5A9BFBA1BE0248D00E78326 /* Sources */,
 				F5A9BFC01BE0248D00E78326 /* Frameworks */,
 				F5A9BFC31BE0248D00E78326 /* Headers */,
 				F5A9BFC51BE0248D00E78326 /* Resources */,
 				89E3C0C052352147C9B80227 /* [CP] Copy Pods Resources */,
+				23E82A71A220B624E9EEDD3B /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -286,6 +290,51 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		12BD489D413AD268FF85A8FA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		23E82A71A220B624E9EEDD3B /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-ParseLiveQuery-iOS/Pods-ParseLiveQuery-iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		42957978F8F9CAAE6BE3FE9C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		432EB76C64066D923373DC45 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -329,6 +378,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-ParseLiveQuery-iOS/Pods-ParseLiveQuery-iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8D6D42D741753A8DA3FEBB44 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-ParseLiveQuery-OSX/Pods-ParseLiveQuery-OSX-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

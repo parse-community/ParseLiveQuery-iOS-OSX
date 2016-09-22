@@ -1,4 +1,4 @@
-github "BoltsFramework/Bolts-Swift"
-github "facebook/SocketRocket" "0.4.2"
-github "ParsePlatform/Parse-SDK-iOS-OSX"
+github "BoltsFramework/Bolts-Swift" == 1.3.0
+github "facebook/SocketRocket" "master"
+github "ParsePlatform/Parse-SDK-iOS-OSX" == 1.14.2
 

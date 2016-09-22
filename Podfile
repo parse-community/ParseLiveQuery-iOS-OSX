@@ -8,7 +8,7 @@ def commonPods
 end
 
 post_install do |installer|
-  # Disable bitcode for now. Specifically needed for HockeySDK and ARAnalytics.
+  # Force Swift version for Xcode 8
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
       config.build_settings['SWIFT_VERSION'] = '3.0'
