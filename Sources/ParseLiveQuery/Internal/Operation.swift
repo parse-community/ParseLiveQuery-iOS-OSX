@@ -11,41 +11,41 @@ import Foundation
 import Parse
 
 enum ClientOperation {
-    case Connect(applicationId: String, sessionToken: String)
-    case Subscribe(requestId: Client.RequestId, query: PFQuery)
-    case Unsubscribe(requestId: Client.RequestId)
+    case connect(applicationId: String, sessionToken: String)
+    case subscribe(requestId: Client.RequestId, query: PFQuery<PFObject>)
+    case unsubscribe(requestId: Client.RequestId)
 
-    var JSONObjectRepresentation: [String : AnyObject] {
+    var JSONObjectRepresentation: [String : Any] {
         switch self {
-        case .Connect(let applicationId, let sessionToken):
+        case .connect(let applicationId, let sessionToken):
             return [ "op": "connect", "applicationId": applicationId, "sessionToken": sessionToken ]
 
-        case .Subscribe(let requestId, let query):
+        case .subscribe(let requestId, let query):
             return [ "op": "subscribe", "requestId": requestId.value, "query": Dictionary<String, AnyObject>(query: query) ]
 
-        case .Unsubscribe(let requestId):
+        case .unsubscribe(let requestId):
             return [ "op": "unsubscribe", "requestId": requestId.value ]
         }
     }
 }
 
 enum ServerResponse {
-    case Redirect(url: String)
-    case Connected()
+    case redirect(url: String)
+    case connected()
 
-    case Subscribed(requestId: Client.RequestId)
-    case Unsubscribed(requestId: Client.RequestId)
+    case subscribed(requestId: Client.RequestId)
+    case unsubscribed(requestId: Client.RequestId)
 
-    case Enter(requestId: Client.RequestId, object: [String : AnyObject])
-    case Leave(requestId: Client.RequestId, object: [String : AnyObject])
-    case Update(requestId: Client.RequestId, object: [String : AnyObject])
-    case Create(requestId: Client.RequestId, object: [String : AnyObject])
-    case Delete(requestId: Client.RequestId, object: [String : AnyObject])
+    case enter(requestId: Client.RequestId, object: [String : AnyObject])
+    case leave(requestId: Client.RequestId, object: [String : AnyObject])
+    case update(requestId: Client.RequestId, object: [String : AnyObject])
+    case create(requestId: Client.RequestId, object: [String : AnyObject])
+    case delete(requestId: Client.RequestId, object: [String : AnyObject])
 
-    case Error(requestId: Client.RequestId?, code: Int, error: String, reconnect: Bool)
+    case error(requestId: Client.RequestId?, code: Int, error: String, reconnect: Bool)
 
     init(json: [String : AnyObject]) throws {
-        func jsonValue<T>(json: [String:AnyObject], _ key: String) throws -> T {
+        func jsonValue<T>(_ json: [String:AnyObject], _ key: String) throws -> T {
             guard let value =  json[key] as? T
                 else {
                     throw LiveQueryErrors.InvalidJSONError(json: json, expectedKey: key)
@@ -53,13 +53,13 @@ enum ServerResponse {
             return value
         }
 
-        func jsonRequestId(json: [String:AnyObject]) throws -> Client.RequestId {
+        func jsonRequestId(_ json: [String:AnyObject]) throws -> Client.RequestId {
             let requestId: Int = try jsonValue(json, "requestId")
             return Client.RequestId(value: requestId)
         }
 
         func subscriptionEvent(
-            json: [String:AnyObject],
+            _ json: [String:AnyObject],
             _ eventType: (Client.RequestId, [String : AnyObject]) -> ServerResponse
             ) throws -> ServerResponse {
                 return eventType(try jsonRequestId(json), try jsonValue(json, "object"))
@@ -68,24 +68,24 @@ enum ServerResponse {
         let rawOperation: String = try jsonValue(json, "op")
         switch rawOperation {
         case "connected":
-            self = .Connected()
+            self = .connected()
 
         case "redirect":
-            self = .Redirect(url: try jsonValue(json, "url"))
+            self = .redirect(url: try jsonValue(json, "url"))
 
         case "subscribed":
-            self = .Subscribed(requestId: try jsonRequestId(json))
+            self = .subscribed(requestId: try jsonRequestId(json))
         case "unsubscribed":
-            self = .Unsubscribed(requestId: try jsonRequestId(json))
+            self = .unsubscribed(requestId: try jsonRequestId(json))
 
-        case "enter": self = try subscriptionEvent(json, ServerResponse.Enter)
-        case "leave": self = try subscriptionEvent(json, ServerResponse.Leave)
-        case "update": self = try subscriptionEvent(json, ServerResponse.Update)
-        case "create": self = try subscriptionEvent(json, ServerResponse.Create)
-        case "delete": self = try subscriptionEvent(json, ServerResponse.Delete)
+        case "enter": self = try subscriptionEvent(json, ServerResponse.enter)
+        case "leave": self = try subscriptionEvent(json, ServerResponse.leave)
+        case "update": self = try subscriptionEvent(json, ServerResponse.update)
+        case "create": self = try subscriptionEvent(json, ServerResponse.create)
+        case "delete": self = try subscriptionEvent(json, ServerResponse.delete)
 
         case "error":
-            self = .Error(
+            self = .error(
                 requestId: try? jsonRequestId(json),
                 code: try jsonValue(json, "code"),
                 error: try jsonValue(json, "error"),

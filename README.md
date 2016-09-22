@@ -1,6 +1,7 @@
 # Parse LiveQuery Client for iOS/OSX
 
 [![Platforms][platforms-svg]][platforms-link]
+[![Carthage compatible][carthage-svg]][carthage-link]
 
 [![Podspec][podspec-svg]][podspec-link]
 [![License][license-svg]][license-link]
@@ -79,3 +80,7 @@ We want to make contributing to this project as easy and transparent as possible
 
  [platforms-svg]: http://img.shields.io/cocoapods/p/ParseLiveQuery.svg?style=flat
  [platforms-link]: https://github.com/ParsePlatform/ParseLiveQuery-iOS-OSX
+
+ [carthage-svg]:https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat
+ [carthage-link]:https://github.com/Carthage/Carthage
+

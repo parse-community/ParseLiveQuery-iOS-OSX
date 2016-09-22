@@ -12,7 +12,7 @@ import Parse
 import SocketRocket
 import BoltsSwift
 
-private func parseObject<T: PFObject>(objectDictionary: [String:AnyObject]) throws -> T {
+private func parseObject<T: PFObject>(_ objectDictionary: [String:AnyObject]) throws -> T {
     guard let parseClassName = objectDictionary["className"] as? String else {
         throw LiveQueryErrors.InvalidJSONError(json: objectDictionary, expectedKey: "parseClassName")
     }
@@ -24,7 +24,7 @@ private func parseObject<T: PFObject>(objectDictionary: [String:AnyObject]) thro
 
     // Map of strings to closures to determine if the key is valid. Allows for more advanced checking of
     // classnames and such.
-    let invalidKeys: [String:Void->Bool] = [
+    let invalidKeys: [String:(Void)->Bool] = [
         "objectId": { true },
         "parseClassName": { true },
         "sessionToken": { parseClassName == "_User" }
@@ -45,22 +45,21 @@ private func parseObject<T: PFObject>(objectDictionary: [String:AnyObject]) thro
 extension Client {
     class SubscriptionRecord {
         weak var subscriptionHandler: AnyObject?
-
         // HandlerClosure captures the generic type info passed into the constructor of SubscriptionRecord,
         // and 'unwraps' it so that it can be used with just a 'PFObject' instance.
         // Technically, this should be a compiler no-op, as no witness tables should be used as 'PFObject' currently inherits from NSObject.
         // Should we make PFObject ever a native swift class without the backing Objective-C runtime however,
         // this becomes extremely important to have, and makes a ton more sense than just unsafeBitCast-ing everywhere.
         var eventHandlerClosure: (Event<PFObject>, Client) -> Void
-        var errorHandlerClosure: (ErrorType, Client) -> Void
-        var subscribeHandlerClosure: Client -> Void
-        var unsubscribeHandlerClosure: Client -> Void
+        var errorHandlerClosure: (Error, Client) -> Void
+        var subscribeHandlerClosure: (Client) -> Void
+        var unsubscribeHandlerClosure: (Client) -> Void
 
-        let query: PFQuery
+        let query: PFQuery<PFObject>
         let requestId: RequestId
 
-        init<T: SubscriptionHandling>(query: PFQuery, requestId: RequestId, handler: T) {
-            self.query = query
+        init<T>(query: PFQuery<T.PFObjectSubclass>, requestId: RequestId, handler: T) where T:SubscriptionHandling {
+            self.query = query as! PFQuery<PFObject>
             self.requestId = requestId
 
             subscriptionHandler = handler
@@ -105,7 +104,8 @@ extension Client {
             }
         }
     }
-
+}
+extension Client {
     // An opaque placeholder structed used to ensure that we type-safely create request IDs and don't shoot ourself in
     // the foot with array indexes.
     struct RequestId: Equatable {
@@ -126,29 +126,7 @@ func == (first: Client.RequestId, second: Client.RequestId) -> Bool {
 // ---------------
 
 extension Client: SRWebSocketDelegate {
-    public func webSocketDidOpen(webSocket: SRWebSocket!) {
-        // TODO: Add support for session token and user authetication.
-        self.sendOperationAsync(.Connect(applicationId: applicationId, sessionToken: ""))
-    }
-
-    public func webSocket(webSocket: SRWebSocket!, didFailWithError error: NSError!) {
-        print("Error: \(error)")
-
-        if !userDisconnected {
-            reconnect()
-        }
-    }
-
-    public func webSocket(webSocket: SRWebSocket!, didCloseWithCode code: Int, reason: String!, wasClean: Bool) {
-        print("code: \(code) reason: \(reason)")
-
-        // TODO: Better retry logic, unless `disconnect()` was explicitly called
-        if !userDisconnected {
-            reconnect()
-        }
-    }
-
-    public func webSocket(webSocket: SRWebSocket!, didReceiveMessage message: AnyObject?) {
+    public func webSocket(_ webSocket: SRWebSocket!, didReceiveMessage message: Any!) {
         guard let messageString = message as? String else {
             fatalError("Socket got into inconsistent state and received \(message) instead.")
         }
@@ -158,6 +136,28 @@ extension Client: SRWebSocketDelegate {
             }
         }
     }
+
+    public func webSocketDidOpen(_ webSocket: SRWebSocket!) {
+        // TODO: Add support for session token and user authetication.
+        _ = self.sendOperationAsync(.connect(applicationId: applicationId, sessionToken: ""))
+    }
+
+    public func webSocket(_ webSocket: SRWebSocket!, didFailWithError error: Error!) {
+        print("Error: \(error)")
+
+        if !userDisconnected {
+            reconnect()
+        }
+    }
+
+    public func webSocket(_ webSocket: SRWebSocket!, didCloseWithCode code: Int, reason: String!, wasClean: Bool) {
+        print("code: \(code) reason: \(reason)")
+
+        // TODO: Better retry logic, unless `disconnect()` was explicitly called
+        if !userDisconnected {
+            reconnect()
+        }
+    }
 }
 
 // -------------------
@@ -165,27 +165,27 @@ extension Client: SRWebSocketDelegate {
 // -------------------
 
 extension Event {
-    init(serverResponse: ServerResponse, inout requestId: Client.RequestId) throws {
+    init(serverResponse: ServerResponse, requestId: inout Client.RequestId) throws {
         switch serverResponse {
-        case .Enter(let reqId, let object):
+        case .enter(let reqId, let object):
             requestId = reqId
-            self = .Entered(try parseObject(object))
+            self = .entered(try parseObject(object))
 
-        case .Leave(let reqId, let object):
+        case .leave(let reqId, let object):
             requestId = reqId
-            self = .Left(try parseObject(object))
+            self = .left(try parseObject(object))
 
-        case .Create(let reqId, let object):
+        case .create(let reqId, let object):
             requestId = reqId
-            self = .Created(try parseObject(object))
+            self = .created(try parseObject(object))
 
-        case .Update(let reqId, let object):
+        case .update(let reqId, let object):
             requestId = reqId
-            self = .Updated(try parseObject(object))
+            self = .updated(try parseObject(object))
 
-        case .Delete(let reqId, let object):
+        case .delete(let reqId, let object):
             requestId = reqId
-            self = .Deleted(try parseObject(object))
+            self = .deleted(try parseObject(object))
 
         default: fatalError("Invalid state reached")
         }
@@ -193,73 +193,72 @@ extension Event {
 }
 
 extension Client {
-    private func subscriptionRecord(requestId: RequestId) -> SubscriptionRecord? {
+    fileprivate func subscriptionRecord(_ requestId: RequestId) -> SubscriptionRecord? {
         guard
-            let recordIndex = self.subscriptions.indexOf({ $0.requestId == requestId }),
-            let record: SubscriptionRecord = self.subscriptions[recordIndex]
-            where record.subscriptionHandler != nil else {
+            let recordIndex = self.subscriptions.index(where: { $0.requestId == requestId }) else {
                 return nil
         }
-
-        return record
+        let record = self.subscriptions[recordIndex]
+        return record.subscriptionHandler != nil ? record : nil
     }
 
-    func sendOperationAsync(operation: ClientOperation) -> Task<Void> {
-        return Task(.Queue(queue)) {
+    func sendOperationAsync(_ operation: ClientOperation) -> Task<Void> {
+        return Task(.queue(queue)) {
             let jsonEncoded = operation.JSONObjectRepresentation
-            let jsonData = try NSJSONSerialization.dataWithJSONObject(jsonEncoded, options: NSJSONWritingOptions(rawValue: 0))
-            let jsonString = String(data: jsonData, encoding: NSUTF8StringEncoding)
+            let jsonData = try JSONSerialization.data(withJSONObject: jsonEncoded, options: JSONSerialization.WritingOptions(rawValue: 0))
+            let jsonString = String(data: jsonData, encoding: String.Encoding.utf8)
 
             self.socket?.send(jsonString)
         }
     }
 
-    func handleOperationAsync(string: String) -> Task<Void> {
-        return Task(.Queue(queue)) {
+    func handleOperationAsync(_ string: String) -> Task<Void> {
+        return Task(.queue(queue)) {
             guard
-                let jsonData = string.dataUsingEncoding(NSUTF8StringEncoding),
-                let jsonDecoded = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions(rawValue: 0))
+                let jsonData = string.data(using: String.Encoding.utf8),
+                let jsonDecoded = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions(rawValue: 0))
                     as? [String:AnyObject],
-                let response: ServerResponse = try ServerResponse(json: jsonDecoded)
+                let response: ServerResponse = try? ServerResponse(json: jsonDecoded)
                 else {
                     throw LiveQueryErrors.InvalidResponseError(response: string)
             }
 
+
+
             switch response {
-            case .Connected:
+            case .connected:
                 self.subscriptions.forEach {
-                    self.sendOperationAsync(.Subscribe(requestId: $0.requestId, query: $0.query))
+                    _ = self.sendOperationAsync(.subscribe(requestId: $0.requestId, query: $0.query))
                 }
 
-            case .Redirect:
+            case .redirect:
                 // TODO: Handle redirect.
                 break
 
-            case .Subscribed(let requestId):
+            case .subscribed(let requestId):
                 self.subscriptionRecord(requestId)?.subscribeHandlerClosure(self)
 
-            case .Unsubscribed(let requestId):
+            case .unsubscribed(let requestId):
                 guard
-                    let recordIndex = self.subscriptions.indexOf({ $0.requestId == requestId }),
-                    let record: SubscriptionRecord = self.subscriptions[recordIndex] else {
+                    let recordIndex = self.subscriptions.index(where: { $0.requestId == requestId })
+                     else {
                         break
                 }
-
+                let record: SubscriptionRecord = self.subscriptions[recordIndex]
                 record.unsubscribeHandlerClosure(self)
-                self.subscriptions.removeAtIndex(recordIndex)
+                self.subscriptions.remove(at: recordIndex)
 
-            case .Create, .Delete, .Enter, .Leave, .Update:
+            case .create, .delete, .enter, .leave, .update:
+                var requestId: RequestId = RequestId(value: 0)
                 guard
-                    var requestId: RequestId = RequestId(value: 0),
-                    let event: Event<PFObject> = try Event(serverResponse: response, requestId: &requestId),
+                    let event: Event<PFObject> = try? Event(serverResponse: response, requestId: &requestId),
                     let record = self.subscriptionRecord(requestId)
                     else {
                         break
                 }
-
                 record.eventHandlerClosure(event, self)
 
-            case .Error(let requestId, let code, let error, let reconnect):
+            case .error(let requestId, let code, let error, let reconnect):
                 let error = LiveQueryErrors.ServerReportedError(code: code, error: error, reconnect: reconnect)
                 if let requestId = requestId {
                     self.subscriptionRecord(requestId)?.errorHandlerClosure(error, self)
