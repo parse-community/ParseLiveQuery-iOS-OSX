@@ -139,10 +139,10 @@ extension Client {
 
      - returns: Your subscription handler, for easy chaining.
     */
-    public func subscribe<T, U>(
-        _ query: PFQuery<T>,
-        handler: U
-        ) -> U where T: PFObject, U: SubscriptionHandling, U.PFObjectSubclass == T {
+    public func subscribe<T>(
+        _ query: PFQuery<T.PFObjectSubclass>,
+        handler: T
+        ) -> T where T: SubscriptionHandling {
         let subscriptionRecord = SubscriptionRecord(
             query: query,
             requestId: requestIdGenerator(),
@@ -179,7 +179,7 @@ extension Client {
      - parameter query:   The query to unsubscribe from.
      - parameter handler: The specific handler to unsubscribe from.
      */
-    public func unsubscribe<T, U>(_ query: PFQuery<T>, handler: U) where T: PFObject, U: SubscriptionHandling, U.PFObjectSubclass == T {
+    public func unsubscribe<T>(_ query: PFQuery<T.PFObjectSubclass>, handler: T) where T: SubscriptionHandling {
         unsubscribe { $0.query == query && $0.subscriptionHandler === handler }
     }
 
