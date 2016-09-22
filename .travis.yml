@@ -13,6 +13,7 @@ env:
     - TEST_TYPE=OSXDemoSwift
     - TEST_TYPE=OSXDemoObjC
     - TEST_TYPE=CocoaPods
+    - TEST_TYPE=Carthage
 install:
 - |
   bundle install
@@ -36,6 +37,8 @@ script:
       xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo-ObjC -configuration Debug | xcpretty -c
     elif [ "$TEST_TYPE" = CocoaPods ]; then
       pod lib lint ParseLiveQuery.podspec
+    elif [ "$TEST_TYPE" = Carthage ]; then
+      carthage build --no-skip-current --platform iOS
     fi
 after_success:
 - |

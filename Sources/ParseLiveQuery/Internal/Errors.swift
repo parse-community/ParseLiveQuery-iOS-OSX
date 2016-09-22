@@ -11,12 +11,12 @@
  Namespace struct for all errors reported by the Live Query SDK.
  */
 public struct LiveQueryErrors {
-    private init() {}
+    fileprivate init() {}
 
     /**
      An error that is reported when the server returns a response that cannot be parsed.
      */
-    public struct InvalidResponseError: ErrorType {
+    public struct InvalidResponseError: Error {
         /// Response string of the error.
         public let response: String
     }
@@ -24,13 +24,13 @@ public struct LiveQueryErrors {
     /**
      An error that is reported when the server does not accept a query we've sent to it.
      */
-    public struct InvalidQueryError: ErrorType {
+    public struct InvalidQueryError: Error {
     }
 
     /**
      An error that is reported when the server returns valid JSON, but it doesn't match the format we expect.
      */
-    public struct InvalidJSONError: ErrorType {
+    public struct InvalidJSONError: Error {
         /// JSON used for matching.
         public let json: [String:AnyObject]
         /// Key that was expected to match.
@@ -40,7 +40,7 @@ public struct LiveQueryErrors {
     /**
      An error that is reported when the live query server encounters an internal error.
      */
-    public struct ServerReportedError: ErrorType {
+    public struct ServerReportedError: Error {
         /// Error code reported by the server.
         public let code: Int
         /// String error reported by the server.

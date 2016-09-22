@@ -1,21 +1,31 @@
 PODS:
-  - Bolts-Swift (1.2.0)
+  - Bolts-Swift (1.3.0)
   - Bolts/Tasks (1.8.4)
   - Parse (1.14.2):
     - Bolts/Tasks (~> 1.8)
   - SocketRocket (0.5.1)
 
 DEPENDENCIES:
-  - Bolts-Swift
+  - Bolts-Swift (from `https://github.com/BoltsFramework/Bolts-Swift.git`, tag `1.3.0`)
   - Parse
   - SocketRocket
 
+EXTERNAL SOURCES:
+  Bolts-Swift:
+    :git: https://github.com/BoltsFramework/Bolts-Swift.git
+    :tag: 1.3.0
+
+CHECKOUT OPTIONS:
+  Bolts-Swift:
+    :git: https://github.com/BoltsFramework/Bolts-Swift.git
+    :tag: 1.3.0
+
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
-  Bolts-Swift: ac4e7d26719ed0f73aa85b9310da1648105fbde3
+  Bolts-Swift: fa98d1b59fc1acea9b21a21306dcdca1c85e3737
   Parse: 4335d65f40cb3d43190d723144bbe1afb9c38230
   SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
 
-PODFILE CHECKSUM: f78cfa7c25dd713e93d9018d0086646c1d4623bc
+PODFILE CHECKSUM: 6e85eacd328c6d22732f2290677ff90162634615
 
 COCOAPODS: 1.0.1

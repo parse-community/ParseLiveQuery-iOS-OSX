@@ -13,20 +13,20 @@ import Parse
 /**
  NOTE: This is super hacky, and we need a better answer for this.
  */
-extension Dictionary where Key: StringLiteralConvertible, Value: AnyObject {
-    init(query: PFQuery) {
+extension Dictionary where Key: ExpressibleByStringLiteral, Value: AnyObject {
+    init<T>(query: PFQuery<T>) where T: PFObject {
         self.init()
-        let queryState = query.valueForKey("state")
-        if let className = queryState?.valueForKey("parseClassName") {
+        let queryState = query.value(forKey: "state") as AnyObject?
+        if let className = queryState?.value(forKey: "parseClassName") {
             self["className"] = className as? Value
         }
-        if let conditions: [String:AnyObject] = queryState?.valueForKey("conditions") as? [String:AnyObject] {
+        if let conditions: [String:AnyObject] = queryState?.value(forKey: "conditions") as? [String:AnyObject] {
             self["where"] = conditions.encodedQueryDictionary as? Value
         }
     }
 }
 
-extension Dictionary where Key: StringLiteralConvertible, Value: AnyObject {
+extension Dictionary where Key: ExpressibleByStringLiteral, Value: AnyObject {
     var encodedQueryDictionary: Dictionary {
         var encodedQueryDictionary = Dictionary()
         for (key, val) in self {
@@ -43,7 +43,7 @@ extension Dictionary where Key: StringLiteralConvertible, Value: AnyObject {
 }
 
 extension PFGeoPoint {
-    var encodedDictionary: [String:AnyObject] {
+    var encodedDictionary: [String:Any] {
         return ["__type": "GeoPoint",
                 "latitude": latitude,
                 "longitude": longitude]

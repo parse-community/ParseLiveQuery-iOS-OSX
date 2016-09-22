@@ -18,7 +18,7 @@ import BoltsSwift
  */
 public protocol SubscriptionHandling: AnyObject {
     /// The type of the PFObject subclass that this handler uses.
-    associatedtype PFObjectSubclass: PFObject
+    associatedtype PFGenericObject: PFObject
 
     /**
      Tells the handler that an event has been received from the live query server.
@@ -27,7 +27,7 @@ public protocol SubscriptionHandling: AnyObject {
      - parameter query: The query that the event occurred on.
      - parameter client: The live query client which received this event.
      */
-    func didReceive(event: Event<PFObjectSubclass>, forQuery query: PFQuery, inClient client: Client)
+    func didReceive(_ event: Event<PFGenericObject>, forQuery query: PFQuery<PFGenericObject>, inClient client: Client)
 
     /**
      Tells the handler that an error has been received from the live query server.
@@ -36,7 +36,7 @@ public protocol SubscriptionHandling: AnyObject {
      - parameter query: The query that the error occurred on.
      - parameter client: The live query client which received this error.
      */
-    func didEncounter(error: ErrorType, forQuery query: PFQuery, inClient client: Client)
+    func didEncounter(_ error: Error, forQuery query: PFQuery<PFGenericObject>, inClient client: Client)
 
     /**
      Tells the handler that a query has been successfully registered with the server.
@@ -46,7 +46,7 @@ public protocol SubscriptionHandling: AnyObject {
      - parameter query: The query that has been subscribed.
      - parameter client: The live query client which subscribed this query.
      */
-    func didSubscribe(toQuery query: PFQuery, inClient client: Client)
+    func didSubscribe(toQuery query: PFQuery<PFGenericObject>, inClient client: Client)
 
     /**
      Tells the handler that a query has been successfully deregistered from the server.
@@ -56,7 +56,7 @@ public protocol SubscriptionHandling: AnyObject {
      - parameter query: The query that has been unsubscribed.
      - parameter client: The live query client which unsubscribed this query.
      */
-    func didUnsubscribe(fromQuery query: PFQuery, inClient client: Client)
+    func didUnsubscribe(fromQuery query: PFQuery<PFGenericObject>, inClient client: Client)
 }
 
 /**
@@ -68,29 +68,29 @@ public protocol SubscriptionHandling: AnyObject {
  - Updated: The object has been updated, and is still a part of the query.
  - Deleted: The object has been deleted, and is no longer included in the query.
  */
-public enum Event<T where T: PFObject> {
+public enum Event<T> where T: PFObject {
     /// The object has been updated, and is now included in the query
-    case Entered(T)
+    case entered(T)
 
     /// The object has been updated, and is no longer included in the query
-    case Left(T)
+    case left(T)
 
     /// The object has been created, and is a part of the query
-    case Created(T)
+    case created(T)
 
     /// The object has been updated, and is still a part of the query
-    case Updated(T)
+    case updated(T)
 
     /// The object has been deleted, and is no longer included in the query
-    case Deleted(T)
+    case deleted(T)
 
-    init<V where V: PFObject>(event: Event<V>) {
+    init<V>(event: Event<V>) where V: PFObject {
         switch event {
-        case .Entered(let value as T): self = .Entered(value)
-        case .Left(let value as T):    self = .Left(value)
-        case .Created(let value as T): self = .Created(value)
-        case .Updated(let value as T): self = .Updated(value)
-        case .Deleted(let value as T): self = .Deleted(value)
+        case .entered(let value as T): self = .entered(value)
+        case .left(let value as T):    self = .left(value)
+        case .created(let value as T): self = .created(value)
+        case .updated(let value as T): self = .updated(value)
+        case .deleted(let value as T): self = .deleted(value)
         default: fatalError()
         }
     }
@@ -98,11 +98,11 @@ public enum Event<T where T: PFObject> {
 
 private func == <T: PFObject>(lhs: Event<T>, rhs: Event<T>) -> Bool {
     switch (lhs, rhs) {
-    case (.Entered(let obj1), .Entered(let obj2)): return obj1 == obj2
-    case (.Left(let obj1), .Left(let obj2)):       return obj1 == obj2
-    case (.Created(let obj1), .Created(let obj2)): return obj1 == obj2
-    case (.Updated(let obj1), .Updated(let obj2)): return obj1 == obj2
-    case (.Deleted(let obj1), .Deleted(let obj2)): return obj1 == obj2
+    case (.entered(let obj1), .entered(let obj2)): return obj1 == obj2
+    case (.left(let obj1), .left(let obj2)):       return obj1 == obj2
+    case (.created(let obj1), .created(let obj2)): return obj1 == obj2
+    case (.updated(let obj1), .updated(let obj2)): return obj1 == obj2
+    case (.deleted(let obj1), .deleted(let obj2)): return obj1 == obj2
     default: return false
     }
 }
@@ -110,11 +110,11 @@ private func == <T: PFObject>(lhs: Event<T>, rhs: Event<T>) -> Bool {
 /**
  A default implementation of the SubscriptionHandling protocol, using closures for callbacks.
  */
-public class Subscription<T where T: PFObject>: SubscriptionHandling {
-    private var errorHandlers: [(PFQuery, ErrorType) -> Void] = []
-    private var eventHandlers: [(PFQuery, Event<T>) -> Void] = []
-    private var subscribeHandlers: [PFQuery -> Void] = []
-    private var unsubscribeHandlers: [PFQuery -> Void] = []
+open class Subscription<T>: SubscriptionHandling where T: PFObject {
+    fileprivate var errorHandlers: [(PFQuery<T>, Error) -> Void] = []
+    fileprivate var eventHandlers: [(PFQuery<T>, Event<T>) -> Void] = []
+    fileprivate var subscribeHandlers: [(PFQuery<T>) -> Void] = []
+    fileprivate var unsubscribeHandlers: [(PFQuery<T>) -> Void] = []
 
     /**
      Creates a new subscription that can be used to handle updates.
@@ -129,7 +129,7 @@ public class Subscription<T where T: PFObject>: SubscriptionHandling {
 
      - returns: The same subscription, for easy chaining
      */
-    public func handleError(handler: (PFQuery, ErrorType) -> Void) -> Subscription {
+    open func handleError(_ handler: @escaping (PFQuery<T>, Error) -> Void) -> Subscription {
         errorHandlers.append(handler)
         return self
     }
@@ -141,7 +141,7 @@ public class Subscription<T where T: PFObject>: SubscriptionHandling {
 
      - returns: The same subscription, for easy chaining.
      */
-    public func handleEvent(handler: (PFQuery, Event<T>) -> Void) -> Subscription {
+    open func handleEvent(_ handler: @escaping (PFQuery<T>, Event<T>) -> Void) -> Subscription {
         eventHandlers.append(handler)
         return self
     }
@@ -153,7 +153,7 @@ public class Subscription<T where T: PFObject>: SubscriptionHandling {
 
      - returns: The same subscription, for easy chaining.
      */
-    public func handleSubscribe(handler: PFQuery -> Void) -> Subscription {
+    open func handleSubscribe(_ handler: @escaping (PFQuery<T>) -> Void) -> Subscription {
         subscribeHandlers.append(handler)
         return self
     }
@@ -165,7 +165,7 @@ public class Subscription<T where T: PFObject>: SubscriptionHandling {
 
      - returns: The same subscription, for easy chaining.
      */
-    public func handleUnsubscribe(handler: PFQuery -> Void) -> Subscription {
+    open func handleUnsubscribe(_ handler: @escaping (PFQuery<T>) -> Void) -> Subscription {
         unsubscribeHandlers.append(handler)
         return self
     }
@@ -176,19 +176,19 @@ public class Subscription<T where T: PFObject>: SubscriptionHandling {
     // ---------------
     public typealias PFObjectSubclass = T
 
-    public func didReceive(event: Event<PFObjectSubclass>, forQuery query: PFQuery, inClient client: Client) {
+    open func didReceive(_ event: Event<PFObjectSubclass>, forQuery query: PFQuery<T>, inClient client: Client) {
         eventHandlers.forEach { $0(query, event) }
     }
 
-    public func didEncounter(error: ErrorType, forQuery query: PFQuery, inClient client: Client) {
+    open func didEncounter(_ error: Error, forQuery query: PFQuery<T>, inClient client: Client) {
         errorHandlers.forEach { $0(query, error) }
     }
 
-    public func didSubscribe(toQuery query: PFQuery, inClient client: Client) {
+    open func didSubscribe(toQuery query: PFQuery<T>, inClient client: Client) {
         subscribeHandlers.forEach { $0(query) }
     }
 
-    public func didUnsubscribe(fromQuery query: PFQuery, inClient client: Client) {
+    open func didUnsubscribe(fromQuery query: PFQuery<T>, inClient client: Client) {
         unsubscribeHandlers.forEach { $0(query) }
     }
 }
@@ -208,9 +208,9 @@ extension Subscription {
 
      - returns: The same subscription, for easy chaining
      */
-    public func handle<E: ErrorType>(
-        errorType: E.Type = E.self,
-        _ handler: (PFQuery, E) -> Void
+    public func handle<E: Error>(
+        _ errorType: E.Type = E.self,
+        _ handler: @escaping (PFQuery<T>, E) -> Void
         ) -> Subscription {
             errorHandlers.append { query, error in
                 if let error = error as? E {
@@ -235,14 +235,14 @@ extension Subscription {
      - returns: The same subscription, for easy chaining
 
      */
-    public func handle(eventType: T -> Event<T>, _ handler: (PFQuery, T) -> Void) -> Subscription {
+    public func handle(_ eventType: @escaping (T) -> Event<T>, _ handler: @escaping (PFQuery<T>, T) -> Void) -> Subscription {
         return handleEvent { query, event in
             switch event {
-            case .Entered(let obj) where eventType(obj) == event: handler(query, obj)
-            case .Left(let obj)  where eventType(obj) == event: handler(query, obj)
-            case .Created(let obj) where eventType(obj) == event: handler(query, obj)
-            case .Updated(let obj) where eventType(obj) == event: handler(query, obj)
-            case .Deleted(let obj) where eventType(obj) == event: handler(query, obj)
+            case .entered(let obj) where eventType(obj) == event: handler(query, obj)
+            case .left(let obj)  where eventType(obj) == event: handler(query, obj)
+            case .created(let obj) where eventType(obj) == event: handler(query, obj)
+            case .updated(let obj) where eventType(obj) == event: handler(query, obj)
+            case .deleted(let obj) where eventType(obj) == event: handler(query, obj)
             default: return
             }
         }
