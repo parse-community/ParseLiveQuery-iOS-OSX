@@ -11,6 +11,10 @@
 		0632EDD51CA1A6DB00DD3CB8 /* Parse+LiveQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0632EDD31CA1A6DB00DD3CB8 /* Parse+LiveQuery.swift */; };
 		4A819D9D1D937866009C0F61 /* ObjCCompat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D58B51C8E33D9009F8D6C /* ObjCCompat.swift */; };
 		4A819D9E1D93786A009C0F61 /* ObjCCompat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D58B51C8E33D9009F8D6C /* ObjCCompat.swift */; };
+		4AEAE5761DAFC808005F9FFB /* PFDecoder_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AEAE5701DAFC3AF005F9FFB /* PFDecoder_internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		4AEAE5771DAFC808005F9FFB /* ParseLiveQuery-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AEAE5731DAFC488005F9FFB /* ParseLiveQuery-Bridging-Header.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		4AEAE5781DAFC809005F9FFB /* PFDecoder_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AEAE5701DAFC3AF005F9FFB /* PFDecoder_internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		4AEAE5791DAFC809005F9FFB /* ParseLiveQuery-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AEAE5731DAFC488005F9FFB /* ParseLiveQuery-Bridging-Header.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		629DC3BE90DA87A7857677D2 /* Pods_ParseLiveQuery_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2643D85A7565FC20EE144C /* Pods_ParseLiveQuery_iOS.framework */; };
 		DE7126BDB27E5DDB1C21490A /* Pods_ParseLiveQuery_OSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF5A55E51D52E372CD28FF08 /* Pods_ParseLiveQuery_OSX.framework */; };
 		F534A5B21BDAFE0200CBD11A /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = F534A5B11BDAFE0200CBD11A /* Subscription.swift */; };
@@ -167,6 +171,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AEAE5791DAFC809005F9FFB /* ParseLiveQuery-Bridging-Header.h in Headers */,
+				4AEAE5781DAFC809005F9FFB /* PFDecoder_internal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,6 +180,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AEAE5771DAFC808005F9FFB /* ParseLiveQuery-Bridging-Header.h in Headers */,
+				4AEAE5761DAFC808005F9FFB /* PFDecoder_internal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
