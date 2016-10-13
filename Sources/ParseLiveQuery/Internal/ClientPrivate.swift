@@ -13,29 +13,18 @@ import SocketRocket
 import BoltsSwift
 
 private func parseObject<T: PFObject>(_ objectDictionary: [String:AnyObject]) throws -> T {
-    guard let parseClassName = objectDictionary["className"] as? String else {
+    guard let _ = objectDictionary["className"] as? String else {
         throw LiveQueryErrors.InvalidJSONError(json: objectDictionary, expectedKey: "parseClassName")
     }
-    guard let objectId = objectDictionary["objectId"] as? String else {
+    guard let _ = objectDictionary["objectId"] as? String else {
         throw LiveQueryErrors.InvalidJSONError(json: objectDictionary, expectedKey: "objectId")
     }
 
-    let parseObject = T(withoutDataWithClassName: parseClassName, objectId: objectId)
-
-    // Map of strings to closures to determine if the key is valid. Allows for more advanced checking of
-    // classnames and such.
-    let invalidKeys: [String:(Void)->Bool] = [
-        "objectId": { true },
-        "parseClassName": { true },
-        "sessionToken": { parseClassName == "_User" }
-    ]
-
-    objectDictionary.filter { key, _ in
-        return !(invalidKeys[key].map { $0() } ?? false)
-    }.forEach { key, value in
-        parseObject[key] = value
+    guard let object =  PFDecoder.object().decode(objectDictionary) as? T else {
+        throw LiveQueryErrors.InvalidJSONObject(json: objectDictionary, details: "cannot decode json into \(T.self)")
     }
-    return parseObject
+
+    return object
 }
 
 // ---------------

@@ -38,6 +38,16 @@ public struct LiveQueryErrors {
     }
 
     /**
+     An error that is reported when the server returns valid JSON, but it doesn't match the format we expect.
+     */
+    public struct InvalidJSONObject: Error {
+        /// JSON used for matching.
+        public let json: [String:AnyObject]
+        /// Details about the error
+        public let details: String
+    }
+
+    /**
      An error that is reported when the live query server encounters an internal error.
      */
     public struct ServerReportedError: Error {
