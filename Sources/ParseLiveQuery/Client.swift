@@ -163,6 +163,31 @@ extension Client {
         return handler
     }
 
+    public func update<T>(
+        _ fromQuery: PFQuery<T>,
+        toQuery query: PFQuery<T>,
+        subclassType: T.Type = T.self
+        ) where T: PFObject  {
+        update(toQuery: query) { $0.query == fromQuery }
+    }
+
+    public func update<T>(
+        _ subscription: Subscription<T>,
+        toQuery query: PFQuery<T>) where T: PFObject {
+        update(toQuery: query) {
+            $0.subscriptionHandler === subscription
+        }
+    }
+
+    func update<T>(
+        toQuery query: PFQuery<T>,
+        matching matcher: @escaping (SubscriptionRecord) -> Bool
+        ) where T: PFObject {
+        subscriptions(matching: matcher).forEach {
+            _ = sendOperationAsync(.update(requestId: $0.requestId, query: query as! PFQuery<PFObject>))
+        }
+    }
+
     /**
      Unsubscribes all current subscriptions for a given query.
 
@@ -184,10 +209,14 @@ extension Client {
     }
 
     func unsubscribe(matching matcher: @escaping (SubscriptionRecord) -> Bool) {
-        subscriptions.filter {
-            matcher($0)
-            }.forEach {
+        subscriptions(matching: matcher).forEach {
                 _ = sendOperationAsync(.unsubscribe(requestId: $0.requestId))
+        }
+    }
+
+    func subscriptions(matching matcher: @escaping (SubscriptionRecord) -> Bool)  -> [SubscriptionRecord] {
+        return subscriptions.filter {
+            matcher($0)
         }
     }
     

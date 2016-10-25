@@ -13,6 +13,7 @@ import Parse
 enum ClientOperation {
     case connect(applicationId: String, sessionToken: String)
     case subscribe(requestId: Client.RequestId, query: PFQuery<PFObject>)
+    case update(requestId: Client.RequestId, query: PFQuery<PFObject>)
     case unsubscribe(requestId: Client.RequestId)
 
     var JSONObjectRepresentation: [String : Any] {
@@ -22,6 +23,9 @@ enum ClientOperation {
 
         case .subscribe(let requestId, let query):
             return [ "op": "subscribe", "requestId": requestId.value, "query": Dictionary<String, AnyObject>(query: query) ]
+
+        case .update(let requestId, let query):
+            return [ "op": "update", "requestId": requestId.value, "query": Dictionary<String, AnyObject>(query: query) ]
 
         case .unsubscribe(let requestId):
             return [ "op": "unsubscribe", "requestId": requestId.value ]
