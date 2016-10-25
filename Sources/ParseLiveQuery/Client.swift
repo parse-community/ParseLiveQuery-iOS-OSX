@@ -184,6 +184,7 @@ extension Client {
         matching matcher: @escaping (SubscriptionRecord) -> Bool
         ) where T: PFObject {
         subscriptions(matching: matcher).forEach {
+            $0.query = query as! PFQuery<PFObject>
             _ = sendOperationAsync(.update(requestId: $0.requestId, query: query as! PFQuery<PFObject>))
         }
     }

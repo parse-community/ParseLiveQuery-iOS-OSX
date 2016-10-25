@@ -55,7 +55,7 @@ extension Client {
         var subscribeHandlerClosure: (Client) -> Void
         var unsubscribeHandlerClosure: (Client) -> Void
 
-        let query: PFQuery<PFObject>
+        var query: PFQuery<PFObject>
         let requestId: RequestId
 
         init<T>(query: PFQuery<T.PFObjectSubclass>, requestId: RequestId, handler: T) where T:SubscriptionHandling {
