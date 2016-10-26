@@ -152,7 +152,7 @@ extension Client {
         
         if socket?.readyState == .OPEN {
             _ = sendOperationAsync(.subscribe(requestId: subscriptionRecord.requestId, query: query as! PFQuery<PFObject>,
-            sessionToken: PFUser.currentUser()?.sessionToken))
+            sessionToken: PFUser.current()?.sessionToken))
         } else if socket == nil || socket?.readyState != .CONNECTING {
             if !userDisconnected {
                 reconnect()
