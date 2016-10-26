@@ -23,7 +23,7 @@ open class Client: NSObject {
     let clientKey: String?
 
     var socket: SRWebSocket?
-    var userDisconnected = false
+    public var userDisconnected = false
 
     // This allows us to easily plug in another request ID generation scheme, or more easily change the request id type
     // if needed (technically this could be a string).
@@ -151,7 +151,8 @@ extension Client {
         subscriptions.append(subscriptionRecord)
         
         if socket?.readyState == .OPEN {
-            _ = sendOperationAsync(.subscribe(requestId: subscriptionRecord.requestId, query: query as! PFQuery<PFObject>))
+            _ = sendOperationAsync(.subscribe(requestId: subscriptionRecord.requestId, query: query as! PFQuery<PFObject>,
+            sessionToken: PFUser.current()?.sessionToken))
         } else if socket == nil || socket?.readyState != .CONNECTING {
             if !userDisconnected {
                 reconnect()
