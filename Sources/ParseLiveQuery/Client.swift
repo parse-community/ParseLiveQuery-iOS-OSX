@@ -163,29 +163,23 @@ extension Client {
         return handler
     }
 
-    public func update<T>(
-        _ fromQuery: PFQuery<T>,
-        toQuery query: PFQuery<T>,
-        subclassType: T.Type = T.self
-        ) where T: PFObject  {
-        update(toQuery: query) { $0.query == fromQuery }
-    }
+    /**
+     Updates an existing subscription with a new query.
+     Upon completing the registration, the subscribe handler will be called with the new query
 
+     - parameter handler: The specific handler to update.
+     - parameter query:   The new query for that handler.
+     */
     public func update<T>(
-        _ subscription: Subscription<T>,
-        toQuery query: PFQuery<T>) where T: PFObject {
-        update(toQuery: query) {
-            $0.subscriptionHandler === subscription
-        }
-    }
-
-    func update<T>(
-        toQuery query: PFQuery<T>,
-        matching matcher: @escaping (SubscriptionRecord) -> Bool
-        ) where T: PFObject {
-        subscriptions(matching: matcher).forEach {
-            $0.query = query as! PFQuery<PFObject>
-            _ = sendOperationAsync(.update(requestId: $0.requestId, query: query as! PFQuery<PFObject>))
+        _ handler: T,
+        toQuery query: PFQuery<T.PFObjectSubclass>
+        ) where T: SubscriptionHandling {
+        subscriptions = subscriptions.map {
+            if $0.subscriptionHandler === handler {
+                _ = sendOperationAsync(.update(requestId: $0.requestId, query: query as! PFQuery<PFObject>))
+                return SubscriptionRecord(query: query, requestId: $0.requestId, handler: $0.subscriptionHandler as! T)
+            }
+            return $0
         }
     }
 
@@ -210,17 +204,12 @@ extension Client {
     }
 
     func unsubscribe(matching matcher: @escaping (SubscriptionRecord) -> Bool) {
-        subscriptions(matching: matcher).forEach {
-                _ = sendOperationAsync(.unsubscribe(requestId: $0.requestId))
-        }
-    }
-
-    func subscriptions(matching matcher: @escaping (SubscriptionRecord) -> Bool)  -> [SubscriptionRecord] {
-        return subscriptions.filter {
+        subscriptions.filter {
             matcher($0)
+        }.forEach {
+            _ = sendOperationAsync(.unsubscribe(requestId: $0.requestId))
         }
     }
-    
 }
 
 extension Client {
