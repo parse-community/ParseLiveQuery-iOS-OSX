@@ -18,9 +18,6 @@
       location = "group:Carthage/Checkouts/Bolts-Swift/BoltsSwift.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Carthage/Checkouts/Parse-SDK-iOS-OSX/Parse.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:Carthage/Checkouts/SocketRocket/SocketRocket.xcodeproj">
    </FileRef>
 </Workspace>
