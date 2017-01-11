@@ -225,7 +225,7 @@ extension Client {
         socket = {
             let socket: SRWebSocket = SRWebSocket(url: host)
             socket.delegate = self
-            socket.setDelegateDispatchQueue(queue)
+            socket.delegateDispatchQueue = queue
             socket.open()
             userDisconnected = false
             return socket
