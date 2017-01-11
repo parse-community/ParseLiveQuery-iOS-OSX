@@ -126,7 +126,7 @@ func == (first: Client.RequestId, second: Client.RequestId) -> Bool {
 // ---------------
 
 extension Client: SRWebSocketDelegate {
-    public func webSocket(_ webSocket: SRWebSocket!, didReceiveMessage message: Any!) {
+    public func webSocket(_ webSocket: SRWebSocket, didReceiveMessage message: Any) {
         guard let messageString = message as? String else {
             fatalError("Socket got into inconsistent state and received \(message) instead.")
         }
@@ -137,12 +137,12 @@ extension Client: SRWebSocketDelegate {
         }
     }
 
-    public func webSocketDidOpen(_ webSocket: SRWebSocket!) {
+    public func webSocketDidOpen(_ webSocket: SRWebSocket) {
         let sessionToken = PFUser.current()?.sessionToken ?? ""
         _ = self.sendOperationAsync(.connect(applicationId: applicationId, sessionToken: sessionToken))
     }
 
-    public func webSocket(_ webSocket: SRWebSocket!, didFailWithError error: Error!) {
+    public func webSocket(_ webSocket: SRWebSocket, didFailWithError error: Error) {
         print("Error: \(error)")
 
         if !userDisconnected {
@@ -150,7 +150,7 @@ extension Client: SRWebSocketDelegate {
         }
     }
 
-    public func webSocket(_ webSocket: SRWebSocket!, didCloseWithCode code: Int, reason: String!, wasClean: Bool) {
+    public func webSocket(_ webSocket: SRWebSocket, didCloseWithCode code: Int, reason: String?, wasClean: Bool) {
         print("code: \(code) reason: \(reason)")
 
         // TODO: Better retry logic, unless `disconnect()` was explicitly called
@@ -208,7 +208,7 @@ extension Client {
             let jsonData = try JSONSerialization.data(withJSONObject: jsonEncoded, options: JSONSerialization.WritingOptions(rawValue: 0))
             let jsonString = String(data: jsonData, encoding: String.Encoding.utf8)
 
-            self.socket?.send(jsonString)
+            try? self.socket?.send(string:jsonString!)
         }
     }
 
