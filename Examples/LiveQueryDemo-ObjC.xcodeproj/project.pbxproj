@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8F68026DAC07EBB6ABECA553 /* Pods_LiveQueryDemo_ObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8FE714A9B78962AE71BE6E5 /* Pods_LiveQueryDemo_ObjC.framework */; };
 		F509D5461CA9E5B8007B15B0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F519CBB41CA9CA04005295C0 /* main.m */; };
 		F509D5471CA9E5B8007B15B0 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = F519CBBC1CA9CA2B005295C0 /* Message.m */; };
 		F509D5481CA9E5B8007B15B0 /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = F519CBBF1CA9CA34005295C0 /* Room.m */; };
@@ -61,7 +60,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F570348B1CAC837800EB3067 /* ParseLiveQuery.framework in Frameworks */,
-				8F68026DAC07EBB6ABECA553 /* Pods_LiveQueryDemo_ObjC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,15 +133,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F509D5431CA9E597007B15B0 /* Build configuration list for PBXNativeTarget "LiveQueryDemo-ObjC" */;
 			buildPhases = (
-				208FAA4977FAE6125655600F /* [CP] Check Pods Manifest.lock */,
-				87DA45B46CF98727F2E13351 /* [CP] Check Pods Manifest.lock */,
 				F509D52E1CA9E597007B15B0 /* Sources */,
 				F509D52F1CA9E597007B15B0 /* Frameworks */,
 				F509D5301CA9E597007B15B0 /* Resources */,
-				EA41B3F790AE39BE08641EBB /* [CP] Embed Pods Frameworks */,
-				A8851B9B8AD727FB055366F2 /* [CP] Copy Pods Resources */,
-				AEF3C7E9E62737C95CCEDF15 /* 📦 Embed Pods Frameworks */,
-				6527F5DEB5EFD1866B2614D7 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -220,99 +212,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		208FAA4977FAE6125655600F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		6527F5DEB5EFD1866B2614D7 /* 📦 Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-LiveQueryDemo-ObjC/Pods-LiveQueryDemo-ObjC-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		87DA45B46CF98727F2E13351 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		A8851B9B8AD727FB055366F2 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-LiveQueryDemo-ObjC/Pods-LiveQueryDemo-ObjC-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AEF3C7E9E62737C95CCEDF15 /* 📦 Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-LiveQueryDemo-ObjC/Pods-LiveQueryDemo-ObjC-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EA41B3F790AE39BE08641EBB /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-LiveQueryDemo-ObjC/Pods-LiveQueryDemo-ObjC-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		F509D52E1CA9E597007B15B0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -338,7 +237,6 @@
 /* Begin XCBuildConfiguration section */
 		F509D5401CA9E597007B15B0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 46BB59B59BEB1C1B30D1528A /* Pods-LiveQueryDemo-ObjC.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -352,7 +250,6 @@
 		};
 		F509D5411CA9E597007B15B0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BBA908F914DAEEBB466454E2 /* Pods-LiveQueryDemo-ObjC.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
