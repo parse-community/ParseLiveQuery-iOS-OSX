@@ -17,6 +17,7 @@ env:
 install:
 - |
   bundle install
+  bundle exec pod repo update
 script:
 - |
     if [ "$TEST_TYPE" = iOS ]; then
