@@ -21,5 +21,5 @@ Pod::Spec.new do |s|
   
   s.dependency 'Parse', '~> 1.14.2'
   s.dependency 'Bolts-Swift', '~> 1.3'
-  s.dependency 'SocketRocket', '~> 0.5'
+  s.dependency 'SocketRocketParseLiveQuery', '~> 0.6'
 end
