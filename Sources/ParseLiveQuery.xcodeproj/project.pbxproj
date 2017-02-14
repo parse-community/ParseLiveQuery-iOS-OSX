@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		0632EDD41CA1A6DB00DD3CB8 /* Parse+LiveQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0632EDD31CA1A6DB00DD3CB8 /* Parse+LiveQuery.swift */; };
 		0632EDD51CA1A6DB00DD3CB8 /* Parse+LiveQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0632EDD31CA1A6DB00DD3CB8 /* Parse+LiveQuery.swift */; };
+		4A819D9D1D937866009C0F61 /* ObjCCompat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D58B51C8E33D9009F8D6C /* ObjCCompat.swift */; };
+		4A819D9E1D93786A009C0F61 /* ObjCCompat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D58B51C8E33D9009F8D6C /* ObjCCompat.swift */; };
 		629DC3BE90DA87A7857677D2 /* Pods_ParseLiveQuery_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2643D85A7565FC20EE144C /* Pods_ParseLiveQuery_iOS.framework */; };
 		DE7126BDB27E5DDB1C21490A /* Pods_ParseLiveQuery_OSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF5A55E51D52E372CD28FF08 /* Pods_ParseLiveQuery_OSX.framework */; };
 		F534A5B21BDAFE0200CBD11A /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = F534A5B11BDAFE0200CBD11A /* Subscription.swift */; };
 		F534A5B41BDB09CE00CBD11A /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F534A5B31BDB09CE00CBD11A /* Operation.swift */; };
-		F54D58B61C8E33D9009F8D6C /* ObjCCompat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D58B51C8E33D9009F8D6C /* ObjCCompat.swift */; };
 		F54D58B81C8E3446009F8D6C /* ClientPrivate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D58B71C8E3446009F8D6C /* ClientPrivate.swift */; };
 		F54D58BA1C8E345F009F8D6C /* BoltsHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D58B91C8E345F009F8D6C /* BoltsHelpers.swift */; };
 		F59CA92F1C8E496200329737 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59CA92E1C8E496200329737 /* Errors.swift */; };
@@ -24,7 +25,6 @@
 		F5A88F511C9B7341002F0E0D /* BoltsHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D58B91C8E345F009F8D6C /* BoltsHelpers.swift */; };
 		F5A88F521C9B7341002F0E0D /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5591BA31BD720E10072F966 /* Client.swift */; };
 		F5A88F531C9B7341002F0E0D /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = F534A5B11BDAFE0200CBD11A /* Subscription.swift */; };
-		F5A88F541C9B7341002F0E0D /* ObjCCompat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D58B51C8E33D9009F8D6C /* ObjCCompat.swift */; };
 		F5A88F551C9B7341002F0E0D /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59CA92E1C8E496200329737 /* Errors.swift */; };
 		F5A88F561C9B7341002F0E0D /* PFQuery+Subscribe.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A88F491C9B6EBA002F0E0D /* PFQuery+Subscribe.swift */; };
 		F5D965351BD99DA200C3AAFC /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5591BA31BD720E10072F966 /* Client.swift */; };
@@ -180,12 +180,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F5903CEF1BD999C500C3EFFE /* Build configuration list for PBXNativeTarget "ParseLiveQuery-OSX" */;
 			buildPhases = (
+				42957978F8F9CAAE6BE3FE9C /* [CP] Check Pods Manifest.lock */,
 				432EB76C64066D923373DC45 /* [CP] Check Pods Manifest.lock */,
 				F5903CE51BD999C500C3EFFE /* Sources */,
 				F5903CE61BD999C500C3EFFE /* Frameworks */,
 				F5903CE71BD999C500C3EFFE /* Headers */,
 				F5903CE81BD999C500C3EFFE /* Resources */,
 				458C6F69E79D3F67465FC4DB /* [CP] Copy Pods Resources */,
+				8D6D42D741753A8DA3FEBB44 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -200,12 +202,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F5A9BFC71BE0248D00E78326 /* Build configuration list for PBXNativeTarget "ParseLiveQuery-iOS" */;
 			buildPhases = (
+				12BD489D413AD268FF85A8FA /* [CP] Check Pods Manifest.lock */,
 				0779A1A9A8C094A6EC98CD51 /* [CP] Check Pods Manifest.lock */,
 				F5A9BFBA1BE0248D00E78326 /* Sources */,
 				F5A9BFC01BE0248D00E78326 /* Frameworks */,
 				F5A9BFC31BE0248D00E78326 /* Headers */,
 				F5A9BFC51BE0248D00E78326 /* Resources */,
 				89E3C0C052352147C9B80227 /* [CP] Copy Pods Resources */,
+				23E82A71A220B624E9EEDD3B /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -222,11 +226,15 @@
 		F5256FC51BD71F9A0052FB8A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Parse;
 				TargetAttributes = {
 					F5903CE91BD999C500C3EFFE = {
 						CreatedOnToolsVersion = 7.1;
+						LastSwiftMigration = 0800;
+					};
+					F5A9BFB61BE0248D00E78326 = {
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -282,6 +290,51 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		12BD489D413AD268FF85A8FA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		23E82A71A220B624E9EEDD3B /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-ParseLiveQuery-iOS/Pods-ParseLiveQuery-iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		42957978F8F9CAAE6BE3FE9C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		432EB76C64066D923373DC45 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -327,6 +380,21 @@
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-ParseLiveQuery-iOS/Pods-ParseLiveQuery-iOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		8D6D42D741753A8DA3FEBB44 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-ParseLiveQuery-OSX/Pods-ParseLiveQuery-OSX-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -337,13 +405,13 @@
 				F54D58B81C8E3446009F8D6C /* ClientPrivate.swift in Sources */,
 				F5D965351BD99DA200C3AAFC /* Client.swift in Sources */,
 				0632EDD51CA1A6DB00DD3CB8 /* Parse+LiveQuery.swift in Sources */,
-				F54D58B61C8E33D9009F8D6C /* ObjCCompat.swift in Sources */,
 				F54D58BA1C8E345F009F8D6C /* BoltsHelpers.swift in Sources */,
 				F5D965381BD99DA200C3AAFC /* QueryEncoder.swift in Sources */,
 				F534A5B21BDAFE0200CBD11A /* Subscription.swift in Sources */,
 				F59CA92F1C8E496200329737 /* Errors.swift in Sources */,
 				F534A5B41BDB09CE00CBD11A /* Operation.swift in Sources */,
 				F5A88F4A1C9B6EBA002F0E0D /* PFQuery+Subscribe.swift in Sources */,
+				4A819D9E1D93786A009C0F61 /* ObjCCompat.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,7 +419,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F5A88F541C9B7341002F0E0D /* ObjCCompat.swift in Sources */,
 				F5A88F531C9B7341002F0E0D /* Subscription.swift in Sources */,
 				0632EDD41CA1A6DB00DD3CB8 /* Parse+LiveQuery.swift in Sources */,
 				F5A88F511C9B7341002F0E0D /* BoltsHelpers.swift in Sources */,
@@ -361,6 +428,7 @@
 				F5A88F521C9B7341002F0E0D /* Client.swift in Sources */,
 				F5A88F4F1C9B7341002F0E0D /* Operation.swift in Sources */,
 				F5A88F561C9B7341002F0E0D /* PFQuery+Subscribe.swift in Sources */,
+				4A819D9D1D937866009C0F61 /* ObjCCompat.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,7 +439,24 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
@@ -382,8 +467,26 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
@@ -391,6 +494,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 89BFA3478A42D22F84D9F19C /* Pods-ParseLiveQuery-OSX.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGNING_REQUIRED = NO;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -402,12 +506,13 @@
 				INFOPLIST_FILE = ParseLiveQuery/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.parse.livequery.osx;
 				PRODUCT_NAME = ParseLiveQuery;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -415,6 +520,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9A79B9CA1B493BADC66AE15A /* Pods-ParseLiveQuery-OSX.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGNING_REQUIRED = NO;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -426,11 +532,12 @@
 				INFOPLIST_FILE = ParseLiveQuery/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.parse.livequery.osx;
 				PRODUCT_NAME = ParseLiveQuery;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -438,6 +545,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FC3C8121FAAE363257898195 /* Pods-ParseLiveQuery-iOS.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGNING_REQUIRED = NO;
 				DEFINES_MODULE = YES;
@@ -453,7 +561,9 @@
 				PRODUCT_NAME = ParseLiveQuery;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -462,6 +572,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7A40A16386D0D6B38F8B2F07 /* Pods-ParseLiveQuery-iOS.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGNING_REQUIRED = NO;
 				DEFINES_MODULE = YES;
@@ -477,6 +588,8 @@
 				PRODUCT_NAME = ParseLiveQuery;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
