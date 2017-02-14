@@ -13,12 +13,8 @@ Pod::Spec.new do |s|
   s.platform = :ios, :osx, :tvos
 
   s.ios.deployment_target = '8.0'
-<<<<<<< HEAD
   s.tvos.deployment_target = '9.0'
-  s.osx.deployment_target = '10.9'
-=======
   s.osx.deployment_target = '10.10'
->>>>>>> ParsePlatform/master
   
   s.source_files = 'Sources/ParseLiveQuery/**/*.swift'
   s.module_name = 'ParseLiveQuery'
