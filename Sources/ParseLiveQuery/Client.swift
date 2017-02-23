@@ -165,6 +165,26 @@ extension Client {
     }
 
     /**
+     Updates an existing subscription with a new query.
+     Upon completing the registration, the subscribe handler will be called with the new query
+
+     - parameter handler: The specific handler to update.
+     - parameter query:   The new query for that handler.
+     */
+    public func update<T>(
+        _ handler: T,
+        toQuery query: PFQuery<T.PFObjectSubclass>
+        ) where T: SubscriptionHandling {
+        subscriptions = subscriptions.map {
+            if $0.subscriptionHandler === handler {
+                _ = sendOperationAsync(.update(requestId: $0.requestId, query: query as! PFQuery<PFObject>))
+                return SubscriptionRecord(query: query, requestId: $0.requestId, handler: $0.subscriptionHandler as! T)
+            }
+            return $0
+        }
+    }
+
+    /**
      Unsubscribes all current subscriptions for a given query.
 
      - parameter query: The query to unsubscribe from.
@@ -187,11 +207,10 @@ extension Client {
     func unsubscribe(matching matcher: @escaping (SubscriptionRecord) -> Bool) {
         subscriptions.filter {
             matcher($0)
-            }.forEach {
-                _ = sendOperationAsync(.unsubscribe(requestId: $0.requestId))
+        }.forEach {
+            _ = sendOperationAsync(.unsubscribe(requestId: $0.requestId))
         }
     }
-    
 }
 
 extension Client {
