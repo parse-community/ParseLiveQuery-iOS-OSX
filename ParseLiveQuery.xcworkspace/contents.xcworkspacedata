@@ -1,24 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
-   <Group
-      location = "container:"
-      name = "Sources">
-      <FileRef
-         location = "group:Sources/ParseLiveQuery.xcodeproj">
-      </FileRef>
-   </Group>
+   <FileRef
+      location = "group:Sources/ParseLiveQuery.xcodeproj">
+   </FileRef>
    <Group
       location = "container:"
       name = "Examples">
       <FileRef
-         location = "group:Examples/LiveQueryDemo.xcodeproj">
+         location = "group:Examples/LiveQueryDemo-ObjC.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Examples/LiveQueryDemo-ObjC.xcodeproj">
+         location = "group:Examples/LiveQueryDemo.xcodeproj">
       </FileRef>
    </Group>
    <FileRef
-      location = "group:Pods/Pods.xcodeproj">
+      location = "group:Carthage/Checkouts/Bolts-Swift/BoltsSwift.xcodeproj">
    </FileRef>
 </Workspace>
