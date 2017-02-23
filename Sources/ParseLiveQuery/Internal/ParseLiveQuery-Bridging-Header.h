@@ -7,3 +7,4 @@
 //
 
 #import "PFDecoder_internal.h"
+#import "PFEncoder_internal.h"
