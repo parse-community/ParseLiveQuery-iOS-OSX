@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.tvos.deployment_target = '9.0'
   s.osx.deployment_target = '10.10'
   
-  s.source_files = 'Sources/ParseLiveQuery/**/*.swift'
+  s.source_files = 'Sources/ParseLiveQuery/**/*.{swift,h}'
   s.module_name = 'ParseLiveQuery'
   
   s.dependency 'Parse', '~> 1.14.2'
