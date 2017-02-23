@@ -28,9 +28,7 @@
 		09A31C851E25C5100037C3BC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A31C841E25C5100037C3BC /* Parse.framework */; };
 		09C9FCE31E25D07B00369AA6 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09C9FCE11E25C9BA00369AA6 /* Bolts.framework */; };
 		09C9FCE41E25D08400369AA6 /* BoltsSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A31C7E1E25C2000037C3BC /* BoltsSwift.framework */; };
-		09C9FCE51E25D08D00369AA6 /* SocketRocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A31C821E25C2890037C3BC /* SocketRocket.framework */; };
 		09D80FD11E26BC7800AC7A2D /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A31C7A1E25C18E0037C3BC /* Parse.framework */; };
-		09D80FD41E26BCF500AC7A2D /* SocketRocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A31C861E25C5710037C3BC /* SocketRocket.framework */; };
 		09D80FD51E26BD7900AC7A2D /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09C9FCDF1E25C99400369AA6 /* Bolts.framework */; };
 		09D80FD61E26BD9100AC7A2D /* BoltsSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A31C8A1E25C5C60037C3BC /* BoltsSwift.framework */; };
 		09D80FD81E26BF0500AC7A2D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 09D80FD71E26BF0500AC7A2D /* libsqlite3.tbd */; };
@@ -128,54 +126,61 @@
 			remoteGlobalIDString = 81C582E11C3B0A98000063C6;
 			remoteInfo = "Parse-iOS-Dynamic";
 		};
-		09301A291E270795003C22EF /* PBXContainerItemProxy */ = {
+		4A1A996A1E5E8DBB0047B84B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 09301A181E270795003C22EF /* SocketRocket.xcodeproj */;
+			containerPortal = 4A1A99611E5E8DBB0047B84B /* Starscream.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 81D6478D1D2CA78800690609;
-			remoteInfo = "SocketRocket-iOS";
+			remoteGlobalIDString = 6B3E79E619D48B7F006071F7;
+			remoteInfo = "Starscream iOS";
 		};
-		09301A2B1E270795003C22EF /* PBXContainerItemProxy */ = {
+		4A1A996C1E5E8DBB0047B84B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 09301A181E270795003C22EF /* SocketRocket.xcodeproj */;
+			containerPortal = 4A1A99611E5E8DBB0047B84B /* Starscream.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 2D4227621BB4358C000C1A6C;
-			remoteInfo = "SocketRocket-iOS-Dynamic";
+			remoteGlobalIDString = 6B3E79F119D48B7F006071F7;
+			remoteInfo = "Starscream iOSTests";
 		};
-		09301A2D1E270795003C22EF /* PBXContainerItemProxy */ = {
+		4A1A996E1E5E8DBB0047B84B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 09301A181E270795003C22EF /* SocketRocket.xcodeproj */;
+			containerPortal = 4A1A99611E5E8DBB0047B84B /* Starscream.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = F668C880153E91210044DBAC;
-			remoteInfo = "SocketRocket-macOS";
+			remoteGlobalIDString = D9C3E35F19E48FF1009FC285;
+			remoteInfo = "Starscream OSX";
 		};
-		09301A2F1E270795003C22EF /* PBXContainerItemProxy */ = {
+		4A1A99701E5E8DBB0047B84B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 09301A181E270795003C22EF /* SocketRocket.xcodeproj */;
+			containerPortal = 4A1A99611E5E8DBB0047B84B /* Starscream.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 3345DC901C52ACD70083CCB8;
-			remoteInfo = "SocketRocket-tvOS";
+			remoteGlobalIDString = D9C3E36919E48FF1009FC285;
+			remoteInfo = "Starscream OSXTests";
 		};
-		09301A311E270795003C22EF /* PBXContainerItemProxy */ = {
+		4A1A99721E5E8DBB0047B84B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 09301A181E270795003C22EF /* SocketRocket.xcodeproj */;
+			containerPortal = 4A1A99611E5E8DBB0047B84B /* Starscream.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = F6BDA802145900D200FE3253;
-			remoteInfo = "SocketRocketTests-iOS";
+			remoteGlobalIDString = 091277971BD673A70003036D;
+			remoteInfo = "Starscream tvOS";
 		};
-		09301A331E270795003C22EF /* PBXContainerItemProxy */ = {
+		4A1A99741E5E8DBB0047B84B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 09301A181E270795003C22EF /* SocketRocket.xcodeproj */;
+			containerPortal = 4A1A99611E5E8DBB0047B84B /* Starscream.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = F62417E314D52F3C003CE997;
-			remoteInfo = TestChat;
+			remoteGlobalIDString = 091277A01BD673A70003036D;
+			remoteInfo = "Starscream tvOSTests";
 		};
-		09301A351E2707BC003C22EF /* PBXContainerItemProxy */ = {
+		4A1A99761E5E8E040047B84B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 09301A181E270795003C22EF /* SocketRocket.xcodeproj */;
+			containerPortal = 4A1A99611E5E8DBB0047B84B /* Starscream.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 2D4227611BB4358C000C1A6C;
-			remoteInfo = "SocketRocket-iOS-Dynamic";
+			remoteGlobalIDString = 6B3E79E519D48B7F006071F7;
+			remoteInfo = "Starscream iOS";
+		};
+		4A1A99781E5E8E0C0047B84B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A1A99611E5E8DBB0047B84B /* Starscream.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D9C3E35E19E48FF1009FC285;
+			remoteInfo = "Starscream OSX";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -185,7 +190,6 @@
 		4AEAE5701DAFC3AF005F9FFB /* PFDecoder_internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PFDecoder_internal.h; sourceTree = "<group>"; };
 		4AEAE5731DAFC488005F9FFB /* ParseLiveQuery-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ParseLiveQuery-Bridging-Header.h"; sourceTree = "<group>"; };
 		090FFBA71E26F14F0010EC2E /* Parse.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Parse.xcodeproj; path = "../Carthage/Checkouts/Parse-SDK-iOS-OSX/Parse.xcodeproj"; sourceTree = "<group>"; };
-		09301A181E270795003C22EF /* SocketRocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SocketRocket.xcodeproj; path = ../Carthage/Checkouts/SocketRocket/SocketRocket.xcodeproj; sourceTree = "<group>"; };
 		094AE8EF1E25ADF300F408BC /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/usr/lib/libicucore.tbd; sourceTree = DEVELOPER_DIR; };
 		094AE8F11E25AE0500F408BC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
 		094AE8F31E25AE1100F408BC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
@@ -196,9 +200,7 @@
 		094AE9051E25AF5A00F408BC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = ../../../../../../../../../../Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		09A31C7A1E25C18E0037C3BC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "../Release-iphoneos/Parse.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09A31C7E1E25C2000037C3BC /* BoltsSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BoltsSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		09A31C821E25C2890037C3BC /* SocketRocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SocketRocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		09A31C841E25C5100037C3BC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		09A31C861E25C5710037C3BC /* SocketRocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SocketRocket.framework; path = "../Release-iphoneos/SocketRocket.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09A31C8A1E25C5C60037C3BC /* BoltsSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BoltsSwift.framework; path = "../Release-iphoneos/BoltsSwift.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09C9FCDF1E25C99400369AA6 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../Release-iphoneos/Bolts.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09C9FCE11E25C9BA00369AA6 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -208,6 +210,7 @@
 		09D80FDD1E26C03E00AC7A2D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		09D80FDF1E26C04800AC7A2D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		09D80FE11E26C05200AC7A2D /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		4A1A99611E5E8DBB0047B84B /* Starscream.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Starscream.xcodeproj; path = ../Carthage/Checkouts/Starscream/Starscream.xcodeproj; sourceTree = "<group>"; };
 		F5256FD31BD71F9A0052FB8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F534A5B11BDAFE0200CBD11A /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		F534A5B31BDB09CE00CBD11A /* Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
@@ -233,7 +236,6 @@
 				094AE9021E25AF3A00F408BC /* Foundation.framework in Frameworks */,
 				09C9FCE41E25D08400369AA6 /* BoltsSwift.framework in Frameworks */,
 				094AE9061E25AF5A00F408BC /* CFNetwork.framework in Frameworks */,
-				09C9FCE51E25D08D00369AA6 /* SocketRocket.framework in Frameworks */,
 				094AE9041E25AF4300F408BC /* Security.framework in Frameworks */,
 				094AE9001E25AF3100F408BC /* libicucore.tbd in Frameworks */,
 				09A31C851E25C5100037C3BC /* Parse.framework in Frameworks */,
@@ -252,7 +254,6 @@
 				09D80FDA1E26BFAA00AC7A2D /* AudioToolbox.framework in Frameworks */,
 				09D80FD81E26BF0500AC7A2D /* libsqlite3.tbd in Frameworks */,
 				094AE8F01E25ADF300F408BC /* libicucore.tbd in Frameworks */,
-				09D80FD41E26BCF500AC7A2D /* SocketRocket.framework in Frameworks */,
 				09D80FD51E26BD7900AC7A2D /* Bolts.framework in Frameworks */,
 				09D80FD61E26BD9100AC7A2D /* BoltsSwift.framework in Frameworks */,
 				09D80FD11E26BC7800AC7A2D /* Parse.framework in Frameworks */,
@@ -278,19 +279,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		09301A191E270795003C22EF /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				09301A2A1E270795003C22EF /* SocketRocket.framework */,
-				09301A2C1E270795003C22EF /* SocketRocket.framework */,
-				09301A2E1E270795003C22EF /* SocketRocket.framework */,
-				09301A301E270795003C22EF /* SocketRocket.framework */,
-				09301A321E270795003C22EF /* SocketRocketTests-iOS.xctest */,
-				09301A341E270795003C22EF /* TestChat.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		0BD13CAB7945A6C1A2A7B613 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -304,8 +292,6 @@
 				09C9FCE11E25C9BA00369AA6 /* Bolts.framework */,
 				09A31C8A1E25C5C60037C3BC /* BoltsSwift.framework */,
 				09A31C7E1E25C2000037C3BC /* BoltsSwift.framework */,
-				09A31C861E25C5710037C3BC /* SocketRocket.framework */,
-				09A31C821E25C2890037C3BC /* SocketRocket.framework */,
 				09A31C7A1E25C18E0037C3BC /* Parse.framework */,
 				09A31C841E25C5100037C3BC /* Parse.framework */,
 				094AE9011E25AF3A00F408BC /* Foundation.framework */,
@@ -318,6 +304,19 @@
 				094AE8EF1E25ADF300F408BC /* libicucore.tbd */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4A1A99621E5E8DBB0047B84B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4A1A996B1E5E8DBB0047B84B /* Starscream.framework */,
+				4A1A996D1E5E8DBB0047B84B /* Starscream iOSTests.xctest */,
+				4A1A996F1E5E8DBB0047B84B /* Starscream.framework */,
+				4A1A99711E5E8DBB0047B84B /* Starscream OSXTests.xctest */,
+				4A1A99731E5E8DBB0047B84B /* Starscream.framework */,
+				4A1A99751E5E8DBB0047B84B /* Starscream tvOSTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		81464FC51CA31DA0000235E7 /* Resources */ = {
@@ -333,8 +332,8 @@
 			children = (
 				F5256FD01BD71F9A0052FB8A /* ParseLiveQuery */,
 				F5256FCF1BD71F9A0052FB8A /* Products */,
+				4A1A99611E5E8DBB0047B84B /* Starscream.xcodeproj */,
 				090FFBA71E26F14F0010EC2E /* Parse.xcodeproj */,
-				09301A181E270795003C22EF /* SocketRocket.xcodeproj */,
 				0BD13CAB7945A6C1A2A7B613 /* Frameworks */,
 			);
 			indentWidth = 4;
@@ -417,6 +416,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				4A1A99791E5E8E0C0047B84B /* PBXTargetDependency */,
 			);
 			name = "ParseLiveQuery-OSX";
 			productName = ParseLiveQuery;
@@ -435,7 +435,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				09301A361E2707BC003C22EF /* PBXTargetDependency */,
+				4A1A99771E5E8E040047B84B /* PBXTargetDependency */,
 				090FFBC61E26F1730010EC2E /* PBXTargetDependency */,
 			);
 			name = "ParseLiveQuery-iOS";
@@ -478,8 +478,8 @@
 					ProjectRef = 090FFBA71E26F14F0010EC2E /* Parse.xcodeproj */;
 				},
 				{
-					ProductGroup = 09301A191E270795003C22EF /* Products */;
-					ProjectRef = 09301A181E270795003C22EF /* SocketRocket.xcodeproj */;
+					ProductGroup = 4A1A99621E5E8DBB0047B84B /* Products */;
+					ProjectRef = 4A1A99611E5E8DBB0047B84B /* Starscream.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -554,46 +554,46 @@
 			remoteRef = 090FFBC31E26F14F0010EC2E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		09301A2A1E270795003C22EF /* SocketRocket.framework */ = {
+		4A1A996B1E5E8DBB0047B84B /* Starscream.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = SocketRocket.framework;
-			remoteRef = 09301A291E270795003C22EF /* PBXContainerItemProxy */;
+			path = Starscream.framework;
+			remoteRef = 4A1A996A1E5E8DBB0047B84B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		09301A2C1E270795003C22EF /* SocketRocket.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SocketRocket.framework;
-			remoteRef = 09301A2B1E270795003C22EF /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		09301A2E1E270795003C22EF /* SocketRocket.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SocketRocket.framework;
-			remoteRef = 09301A2D1E270795003C22EF /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		09301A301E270795003C22EF /* SocketRocket.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SocketRocket.framework;
-			remoteRef = 09301A2F1E270795003C22EF /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		09301A321E270795003C22EF /* SocketRocketTests-iOS.xctest */ = {
+		4A1A996D1E5E8DBB0047B84B /* Starscream iOSTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = "SocketRocketTests-iOS.xctest";
-			remoteRef = 09301A311E270795003C22EF /* PBXContainerItemProxy */;
+			path = "Starscream iOSTests.xctest";
+			remoteRef = 4A1A996C1E5E8DBB0047B84B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		09301A341E270795003C22EF /* TestChat.app */ = {
+		4A1A996F1E5E8DBB0047B84B /* Starscream.framework */ = {
 			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = TestChat.app;
-			remoteRef = 09301A331E270795003C22EF /* PBXContainerItemProxy */;
+			fileType = wrapper.framework;
+			path = Starscream.framework;
+			remoteRef = 4A1A996E1E5E8DBB0047B84B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4A1A99711E5E8DBB0047B84B /* Starscream OSXTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Starscream OSXTests.xctest";
+			remoteRef = 4A1A99701E5E8DBB0047B84B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4A1A99731E5E8DBB0047B84B /* Starscream.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Starscream.framework;
+			remoteRef = 4A1A99721E5E8DBB0047B84B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4A1A99751E5E8DBB0047B84B /* Starscream tvOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Starscream tvOSTests.xctest";
+			remoteRef = 4A1A99741E5E8DBB0047B84B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -658,10 +658,15 @@
 			name = "Parse-iOS-Dynamic";
 			targetProxy = 090FFBC51E26F1730010EC2E /* PBXContainerItemProxy */;
 		};
-		09301A361E2707BC003C22EF /* PBXTargetDependency */ = {
+		4A1A99771E5E8E040047B84B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "SocketRocket-iOS-Dynamic";
-			targetProxy = 09301A351E2707BC003C22EF /* PBXContainerItemProxy */;
+			name = "Starscream iOS";
+			targetProxy = 4A1A99761E5E8E040047B84B /* PBXContainerItemProxy */;
+		};
+		4A1A99791E5E8E0C0047B84B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Starscream OSX";
+			targetProxy = 4A1A99781E5E8E0C0047B84B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

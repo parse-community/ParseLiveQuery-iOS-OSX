@@ -4,9 +4,9 @@
 [submodule "Carthage/Checkouts/Bolts-Swift"]
 	path = Carthage/Checkouts/Bolts-Swift
 	url = https://github.com/BoltsFramework/Bolts-Swift.git
-[submodule "Carthage/Checkouts/SocketRocket"]
-	path = Carthage/Checkouts/SocketRocket
-	url = https://github.com/parse-server-modules/SocketRocket.git
 [submodule "Carthage/Checkouts/Parse-SDK-iOS-OSX"]
 	path = Carthage/Checkouts/Parse-SDK-iOS-OSX
 	url = https://github.com/ParsePlatform/Parse-SDK-iOS-OSX.git
+[submodule "Carthage/Checkouts/Starscream"]
+	path = Carthage/Checkouts/Starscream
+	url = https://github.com/daltoniam/Starscream.git

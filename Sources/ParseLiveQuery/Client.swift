@@ -10,7 +10,7 @@
 import Foundation
 import Parse
 import BoltsSwift
-import SocketRocket
+import Starscream
 
 /**
  This is the 'advanced' view of live query subscriptions. It allows you to customize your subscriptions
@@ -22,7 +22,7 @@ open class Client: NSObject {
     let applicationId: String
     let clientKey: String?
 
-    var socket: SRWebSocket?
+    var socket: WebSocket?
     public var userDisconnected = false
 
     // This allows us to easily plug in another request ID generation scheme, or more easily change the request id type
@@ -149,11 +149,11 @@ extension Client {
             handler: handler
         )
         subscriptions.append(subscriptionRecord)
-        
-        if socket?.readyState == .OPEN {
+
+        if let socket = socket, socket.isConnected == true {
             _ = sendOperationAsync(.subscribe(requestId: subscriptionRecord.requestId, query: query as! PFQuery<PFObject>,
             sessionToken: PFUser.current()?.sessionToken))
-        } else if socket == nil || socket?.readyState != .CONNECTING {
+        } else {
             if !userDisconnected {
                 reconnect()
             } else {
@@ -221,12 +221,12 @@ extension Client {
      you use the client, and should usually only be called when an error occurs.
      */
     public func reconnect() {
-        socket?.close()
+        socket?.disconnect()
         socket = {
-            let socket: SRWebSocket = SRWebSocket(url: host)
+            let socket = WebSocket(url: host)
             socket.delegate = self
-            socket.delegateDispatchQueue = queue
-            socket.open()
+            socket.callbackQueue = queue
+            socket.connect()
             userDisconnected = false
             return socket
         }()
@@ -243,7 +243,7 @@ extension Client {
             else {
                 return
         }
-        socket.close()
+        socket.disconnect()
         self.socket = nil
         userDisconnected = true
     }
