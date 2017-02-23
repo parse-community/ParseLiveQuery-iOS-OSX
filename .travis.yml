@@ -17,7 +17,6 @@ env:
 install:
 - |
   bundle install
-  bundle exec pod repo update
 script:
 - |
     if [ "$TEST_TYPE" = iOS ]; then
@@ -35,8 +34,8 @@ script:
       xcodebuild clean -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo-ObjC | xcpretty -c
       xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo-ObjC -configuration Debug | xcpretty -c
     elif [ "$TEST_TYPE" = CocoaPods ]; then
-      # SocketRocket produces warnings on xcode8
-      pod lib lint ParseLiveQuery.podspec --allow-warnings
+      bundle exec pod repo update 2>&1 || exit 1
+      pod lib lint ParseLiveQuery.podspec 
     elif [ "$TEST_TYPE" = Carthage ]; then
       carthage build --no-skip-current
     fi
