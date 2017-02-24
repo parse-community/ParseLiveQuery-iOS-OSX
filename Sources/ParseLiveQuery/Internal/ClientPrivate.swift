@@ -9,7 +9,7 @@
 
 import Foundation
 import Parse
-import SocketRocket
+import Starscream
 import BoltsSwift
 
 private func parseObject<T: PFObject>(_ objectDictionary: [String:AnyObject]) throws -> T {
@@ -114,32 +114,35 @@ func == (first: Client.RequestId, second: Client.RequestId) -> Bool {
 // MARK: Web Socket
 // ---------------
 
-extension Client: SRWebSocketDelegate {
-    public func webSocket(_ webSocket: SRWebSocket!, didReceiveMessage message: Any!) {
-        guard let messageString = message as? String else {
-            fatalError("Socket got into inconsistent state and received \(message) instead.")
-        }
-        handleOperationAsync(messageString).continueWith { task in
+extension Client: WebSocketDelegate {
+
+    public func websocketDidReceiveData(socket: WebSocket, data: Data) {
+        print("Received binary data but we don't handle it...")
+    }
+
+    public func websocketDidReceiveMessage(socket: WebSocket, text: String) {
+        handleOperationAsync(text).continueWith { task in
             if let error = task.error {
                 print("Error: \(error)")
             }
         }
     }
 
-    public func webSocketDidOpen(_ webSocket: SRWebSocket!) {
+    public func websocketDidConnect(socket: WebSocket) {
         let sessionToken = PFUser.current()?.sessionToken ?? ""
         _ = self.sendOperationAsync(.connect(applicationId: applicationId, sessionToken: sessionToken))
     }
 
-    public func webSocket(_ webSocket: SRWebSocket!, didFailWithError error: Error!) {
-        print("Error: \(error)")
+    public func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
+        print("error: \(error)")
 
+        // TODO: Better retry logic, unless `disconnect()` was explicitly called
         if !userDisconnected {
             reconnect()
         }
     }
 
-    public func webSocket(_ webSocket: SRWebSocket!, didCloseWithCode code: Int, reason: String!, wasClean: Bool) {
+    public func webSocket(_ webSocket: WebSocket, didCloseWithCode code: Int, reason: String?, wasClean: Bool) {
         print("code: \(code) reason: \(reason)")
 
         // TODO: Better retry logic, unless `disconnect()` was explicitly called
@@ -196,8 +199,7 @@ extension Client {
             let jsonEncoded = operation.JSONObjectRepresentation
             let jsonData = try JSONSerialization.data(withJSONObject: jsonEncoded, options: JSONSerialization.WritingOptions(rawValue: 0))
             let jsonString = String(data: jsonData, encoding: String.Encoding.utf8)
-
-            self.socket?.send(jsonString)
+            self.socket?.write(string: jsonString!)
         }
     }
 

@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
   s.name             = 'ParseLiveQuery'
-  s.version          = '1.1.0'
+  s.version          = '2.0.0'
   s.license          =  { :type => 'BSD' }
   s.summary          = 'Allows for subscriptions to queries in conjunction with parse-server.'
   s.homepage         = 'https://github.com/ParsePlatform/parse-server'
-  s.authors          = { 'Richard Ross' => 'richardross@fb.com', 'Nikita Lutsenko' => 'nlutsenko@me.com' }
+  s.authors          = { 'Richard Ross' => 'richardross@fb.com', 'Nikita Lutsenko' => 'nlutsenko@me.com', 'Florent Vilmart' => 'florent@flovilmart.com' }
   
   s.source       = { :git => 'https://github.com/ParsePlatform/ParseLiveQuery-iOS-OSX.git', :tag => s.version.to_s }
 
@@ -21,5 +21,5 @@ Pod::Spec.new do |s|
   
   s.dependency 'Parse', '~> 1.14.2'
   s.dependency 'Bolts-Swift', '~> 1.3'
-  s.dependency 'SocketRocket', '~> 0.5'
+  s.dependency 'Starscream', '2.0.3'
 end
