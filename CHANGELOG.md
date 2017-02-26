@@ -6,7 +6,7 @@
 
 **Deprecates usage of SocketRocket in favour of Starscream**
 
-- Adds support for sessionToken and user authentication, thanks to [Andrew Gordeev](https:/Ã//github.com/andrew8)
+- Adds support for sessionToken and user authentication, thanks to [Andrew Gordeev](https://github.com/andrew8712)
 - Adds support for tvOS, thanks to [Kurt (kajensen)](https://github.com/kajensen)
 - Adds support for updating subscription, thanks to [Florent Vilmart](https://github.com/flovilmart)
 - Fixes for object decoding
