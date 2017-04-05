@@ -63,6 +63,10 @@ You are not limited to a single Live Query Client - you can create your own inst
 
 We want to make contributing to this project as easy and transparent as possible. Please refer to the [Contribution Guidelines][contributing].
 
+-----
+
+As of April 5, 2017, Parse, LLC has transferred this code to the parse-community organization, and will no longer be contributing to or distributing this code. 
+
  [releases]: https://github.com/ParsePlatform/ParseLiveQuery-iOS-OSX/releases
  [contributing]: https://github.com/ParsePlatform/ParseLiveQuery-iOS-OSX/blob/master/CONTRIBUTING.md
 
