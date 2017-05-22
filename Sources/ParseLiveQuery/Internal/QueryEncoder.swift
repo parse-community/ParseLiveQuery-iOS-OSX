@@ -36,6 +36,8 @@ extension Dictionary where Key: ExpressibleByStringLiteral, Value: AnyObject {
                 encodedQueryDictionary[key] = geoPoint.encodedDictionary as? Value
             } else if let object = val as? PFObject {
                 encodedQueryDictionary[key] = PFPointerObjectEncoder.object().encode(object) as? Value
+            } else if let date = val as? Date {
+                encodedQueryDictionary[key] = date.encodedString as? Value
             } else {
                 encodedQueryDictionary[key] = val
             }
@@ -49,5 +51,22 @@ extension PFGeoPoint {
         return ["__type": "GeoPoint",
                 "latitude": latitude,
                 "longitude": longitude]
+    }
+}
+
+fileprivate extension Formatter {
+    fileprivate static let iso8601: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: .iso8601)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
+        return formatter
+    }()
+}
+
+fileprivate extension Date {
+    fileprivate var encodedString: String {
+        return Formatter.iso8601.string(from: self)
     }
 }
