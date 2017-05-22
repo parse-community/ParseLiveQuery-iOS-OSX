@@ -7,7 +7,12 @@ osx_image: xcode8
 cache:
   - cocoapods
 install: bundle install
-
+stage: distribution
+env: TEST_TYPE=CocoaPods
+script: 
+- | 
+    bundle exec pod repo update 2>&1 || exit 1
+    pod lib lint ParseLiveQuery.podspec 
 jobs:
   include:
     - stage: test
@@ -24,26 +29,20 @@ jobs:
           set -o pipefail
           xcodebuild build -workspace ParseLiveQuery.xcworkspace -sdk macosx -scheme ParseLiveQuery-OSX -configuration Debug GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c
       after_success: bash <(curl -s https://codecov.io/bash)
-    - stage: test
+    - stage: demo
       env: TEST_TYPE=OSXDemoSwift
       script: 
       - | 
           set -o pipefail
           xcodebuild clean -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo | xcpretty -c
           xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo -configuration Debug | xcpretty -c
-    - stage: test
+    - stage: demo
       env: TEST_TYPE=OSXDemoObjC
       script: 
       - | 
           set -o pipefail
           xcodebuild clean -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo-ObjC | xcpretty -c
-          xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo-ObjC -configuration Debug | xcpretty -c
-    - stage: test
-      env: TEST_TYPE=CocoaPods
-      script: 
-      - | 
-          bundle exec pod repo update 2>&1 || exit 1
-          pod lib lint ParseLiveQuery.podspec 
-    - stage: test
+          xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo-ObjC -configuration Debug | xcpretty -c 
+    - stage: distribution
       env: TEST_TYPE=Carthage
       script: carthage build --no-skip-current
