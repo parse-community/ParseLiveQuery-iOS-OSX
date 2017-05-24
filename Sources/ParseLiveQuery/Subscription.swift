@@ -129,7 +129,7 @@ open class Subscription<T>: SubscriptionHandling where T: PFObject {
 
      - returns: The same subscription, for easy chaining
      */
-    open func handleError(_ handler: @escaping (PFQuery<T>, Error) -> Void) -> Subscription {
+    @discardableResult open func handleError(_ handler: @escaping (PFQuery<T>, Error) -> Void) -> Subscription {
         errorHandlers.append(handler)
         return self
     }
@@ -141,7 +141,7 @@ open class Subscription<T>: SubscriptionHandling where T: PFObject {
 
      - returns: The same subscription, for easy chaining.
      */
-    open func handleEvent(_ handler: @escaping (PFQuery<T>, Event<T>) -> Void) -> Subscription {
+    @discardableResult open func handleEvent(_ handler: @escaping (PFQuery<T>, Event<T>) -> Void) -> Subscription {
         eventHandlers.append(handler)
         return self
     }
@@ -153,7 +153,7 @@ open class Subscription<T>: SubscriptionHandling where T: PFObject {
 
      - returns: The same subscription, for easy chaining.
      */
-    open func handleSubscribe(_ handler: @escaping (PFQuery<T>) -> Void) -> Subscription {
+    @discardableResult open func handleSubscribe(_ handler: @escaping (PFQuery<T>) -> Void) -> Subscription {
         subscribeHandlers.append(handler)
         return self
     }
@@ -165,7 +165,7 @@ open class Subscription<T>: SubscriptionHandling where T: PFObject {
 
      - returns: The same subscription, for easy chaining.
      */
-    open func handleUnsubscribe(_ handler: @escaping (PFQuery<T>) -> Void) -> Subscription {
+    @discardableResult open func handleUnsubscribe(_ handler: @escaping (PFQuery<T>) -> Void) -> Subscription {
         unsubscribeHandlers.append(handler)
         return self
     }
@@ -208,7 +208,7 @@ extension Subscription {
 
      - returns: The same subscription, for easy chaining
      */
-    public func handle<E: Error>(
+    @discardableResult public func handle<E: Error>(
         _ errorType: E.Type = E.self,
         _ handler: @escaping (PFQuery<T>, E) -> Void
         ) -> Subscription {
@@ -235,7 +235,7 @@ extension Subscription {
      - returns: The same subscription, for easy chaining
 
      */
-    public func handle(_ eventType: @escaping (T) -> Event<T>, _ handler: @escaping (PFQuery<T>, T) -> Void) -> Subscription {
+    @discardableResult public func handle(_ eventType: @escaping (T) -> Event<T>, _ handler: @escaping (PFQuery<T>, T) -> Void) -> Subscription {
         return handleEvent { query, event in
             switch event {
             case .entered(let obj) where eventType(obj) == event: handler(query, obj)
