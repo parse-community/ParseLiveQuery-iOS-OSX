@@ -34,7 +34,7 @@ You can install the LiveQuery client via including it in your Podfile:
 The LiveQuery client interface is based around the concept of `Subscription`s. You can register any `PFQuery` for live updates from the associated live query server, by simply calling `subscribe()` on a query:
 ```swift
 let myQuery = Message.query()!.where(....)
-let subscription: Subscription<Message> = myQuery.subscribe()
+let subscription: Subscription<Message> = Client.shared.subscribe(myQuery)
 ```
 
 Where `Message` is a registered subclass of PFObject.
