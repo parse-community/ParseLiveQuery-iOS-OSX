@@ -28,6 +28,16 @@ You can install the LiveQuery client via including it in your Podfile:
 
     pod 'ParseLiveQuery'
 
+### Carthage
+
+You can install the LiveQuery client via including it in your Cartfile:
+
+    github "parse-community/ParseLiveQuery-iOS-OSX" "master"
+
+#### Important
+
+The latest version of Starscream contains a swiftmodule to export CZLib and CommonCrypto. If you are using another package that redefines this two modules you have to comment out the Starscream's export.
+
 
 ## Use Client
 
@@ -65,7 +75,7 @@ We want to make contributing to this project as easy and transparent as possible
 
 -----
 
-As of April 5, 2017, Parse, LLC has transferred this code to the parse-community organization, and will no longer be contributing to or distributing this code. 
+As of April 5, 2017, Parse, LLC has transferred this code to the parse-community organization, and will no longer be contributing to or distributing this code.
 
  [releases]: https://github.com/parse-community/ParseLiveQuery-iOS-OSX/releases
  [contributing]: https://github.com/parse-community/ParseLiveQuery-iOS-OSX/blob/master/CONTRIBUTING.md
@@ -87,4 +97,3 @@ As of April 5, 2017, Parse, LLC has transferred this code to the parse-community
 
  [carthage-svg]:https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat
  [carthage-link]:https://github.com/Carthage/Carthage
-
