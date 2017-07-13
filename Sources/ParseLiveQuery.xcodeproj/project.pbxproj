@@ -9,14 +9,6 @@
 /* Begin PBXBuildFile section */
 		0632EDD41CA1A6DB00DD3CB8 /* Parse+LiveQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0632EDD31CA1A6DB00DD3CB8 /* Parse+LiveQuery.swift */; };
 		0632EDD51CA1A6DB00DD3CB8 /* Parse+LiveQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0632EDD31CA1A6DB00DD3CB8 /* Parse+LiveQuery.swift */; };
-		3B68E5B71DECC32300038DDD /* PFEncoder_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B68E5B61DECC32300038DDD /* PFEncoder_internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		3B68E5B81DECC32300038DDD /* PFEncoder_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B68E5B61DECC32300038DDD /* PFEncoder_internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		4A819D9D1D937866009C0F61 /* ObjCCompat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D58B51C8E33D9009F8D6C /* ObjCCompat.swift */; };
-		4A819D9E1D93786A009C0F61 /* ObjCCompat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D58B51C8E33D9009F8D6C /* ObjCCompat.swift */; };
-		4AEAE5761DAFC808005F9FFB /* PFDecoder_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AEAE5701DAFC3AF005F9FFB /* PFDecoder_internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		4AEAE5771DAFC808005F9FFB /* ParseLiveQuery-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AEAE5731DAFC488005F9FFB /* ParseLiveQuery-Bridging-Header.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		4AEAE5781DAFC809005F9FFB /* PFDecoder_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AEAE5701DAFC3AF005F9FFB /* PFDecoder_internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		4AEAE5791DAFC809005F9FFB /* ParseLiveQuery-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AEAE5731DAFC488005F9FFB /* ParseLiveQuery-Bridging-Header.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		094AE8F01E25ADF300F408BC /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 094AE8EF1E25ADF300F408BC /* libicucore.tbd */; };
 		094AE8F21E25AE0500F408BC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 094AE8F11E25AE0500F408BC /* CFNetwork.framework */; };
 		094AE8F41E25AE1100F408BC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 094AE8F31E25AE1100F408BC /* Security.framework */; };
@@ -37,6 +29,8 @@
 		09D80FDE1E26C03E00AC7A2D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09D80FDD1E26C03E00AC7A2D /* SystemConfiguration.framework */; };
 		09D80FE01E26C04800AC7A2D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09D80FDF1E26C04800AC7A2D /* AudioToolbox.framework */; };
 		09D80FE21E26C05200AC7A2D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 09D80FE11E26C05200AC7A2D /* libsqlite3.tbd */; };
+		4A819D9D1D937866009C0F61 /* ObjCCompat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D58B51C8E33D9009F8D6C /* ObjCCompat.swift */; };
+		4A819D9E1D93786A009C0F61 /* ObjCCompat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D58B51C8E33D9009F8D6C /* ObjCCompat.swift */; };
 		F534A5B21BDAFE0200CBD11A /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = F534A5B11BDAFE0200CBD11A /* Subscription.swift */; };
 		F534A5B41BDB09CE00CBD11A /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F534A5B31BDB09CE00CBD11A /* Operation.swift */; };
 		F54D58B81C8E3446009F8D6C /* ClientPrivate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D58B71C8E3446009F8D6C /* ClientPrivate.swift */; };
@@ -186,9 +180,6 @@
 
 /* Begin PBXFileReference section */
 		0632EDD31CA1A6DB00DD3CB8 /* Parse+LiveQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Parse+LiveQuery.swift"; sourceTree = "<group>"; };
-		3B68E5B61DECC32300038DDD /* PFEncoder_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFEncoder_internal.h; sourceTree = "<group>"; };
-		4AEAE5701DAFC3AF005F9FFB /* PFDecoder_internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PFDecoder_internal.h; sourceTree = "<group>"; };
-		4AEAE5731DAFC488005F9FFB /* ParseLiveQuery-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ParseLiveQuery-Bridging-Header.h"; sourceTree = "<group>"; };
 		090FFBA71E26F14F0010EC2E /* Parse.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Parse.xcodeproj; path = "../Carthage/Checkouts/Parse-SDK-iOS-OSX/Parse.xcodeproj"; sourceTree = "<group>"; };
 		094AE8EF1E25ADF300F408BC /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/usr/lib/libicucore.tbd; sourceTree = DEVELOPER_DIR; };
 		094AE8F11E25AE0500F408BC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
@@ -371,9 +362,6 @@
 				F534A5B31BDB09CE00CBD11A /* Operation.swift */,
 				F54D58B71C8E3446009F8D6C /* ClientPrivate.swift */,
 				F54D58B91C8E345F009F8D6C /* BoltsHelpers.swift */,
-				4AEAE5701DAFC3AF005F9FFB /* PFDecoder_internal.h */,
-				3B68E5B61DECC32300038DDD /* PFEncoder_internal.h */,
-				4AEAE5731DAFC488005F9FFB /* ParseLiveQuery-Bridging-Header.h */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
@@ -385,9 +373,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4AEAE5791DAFC809005F9FFB /* ParseLiveQuery-Bridging-Header.h in Headers */,
-				4AEAE5781DAFC809005F9FFB /* PFDecoder_internal.h in Headers */,
-				3B68E5B81DECC32300038DDD /* PFEncoder_internal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,9 +380,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4AEAE5771DAFC808005F9FFB /* ParseLiveQuery-Bridging-Header.h in Headers */,
-				4AEAE5761DAFC808005F9FFB /* PFDecoder_internal.h in Headers */,
-				3B68E5B71DECC32300038DDD /* PFEncoder_internal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -696,7 +678,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "${SWIFT_MODULE_NAME}/Internal/${SWIFT_MODULE_NAME}-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -723,7 +704,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				SWIFT_OBJC_BRIDGING_HEADER = "${SWIFT_MODULE_NAME}/Internal/${SWIFT_MODULE_NAME}-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
@@ -744,6 +724,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.parse.livequery.osx;
 				PRODUCT_NAME = ParseLiveQuery;
 				SDKROOT = macosx;
@@ -769,6 +750,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.parse.livequery.osx;
 				PRODUCT_NAME = ParseLiveQuery;
 				SDKROOT = macosx;
@@ -793,6 +775,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.parse.livequery.ios;
 				PRODUCT_NAME = ParseLiveQuery;
 				SDKROOT = iphoneos;
@@ -820,6 +803,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.parse.livequery.ios;
 				PRODUCT_NAME = ParseLiveQuery;
 				SDKROOT = iphoneos;

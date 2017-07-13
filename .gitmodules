@@ -6,7 +6,7 @@
 	url = https://github.com/BoltsFramework/Bolts-Swift.git
 [submodule "Carthage/Checkouts/Parse-SDK-iOS-OSX"]
 	path = Carthage/Checkouts/Parse-SDK-iOS-OSX
-	url = https://github.com/ParsePlatform/Parse-SDK-iOS-OSX.git
+	url = https://github.com/parse-community/Parse-SDK-iOS-OSX.git
 [submodule "Carthage/Checkouts/Starscream"]
 	path = Carthage/Checkouts/Starscream
 	url = https://github.com/daltoniam/Starscream.git
