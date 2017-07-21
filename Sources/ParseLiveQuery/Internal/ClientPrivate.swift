@@ -121,8 +121,8 @@ extension Client: WebSocketDelegate {
     }
 
     public func websocketDidReceiveMessage(socket: WebSocket, text: String) {
-        handleOperationAsync(text).continueWith { task in
-            if let error = task.error, shouldPrintWebSocketLog {
+        handleOperationAsync(text).continueWith { [weak self] task in
+            if let error = task.error, self?.shouldPrintWebSocketLog == true {
                 print("Error: \(error)")
             }
         }
