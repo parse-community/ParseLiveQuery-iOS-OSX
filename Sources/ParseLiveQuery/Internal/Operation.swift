@@ -19,7 +19,7 @@ enum ClientOperation {
     var JSONObjectRepresentation: [String : Any] {
         switch self {
         case .connect(let applicationId, let sessionToken, let clientKey):
-            return [ "op": "connect", "applicationId": applicationId, "sessionToken": sessionToken, clientKey: clientKey ]
+            return [ "op": "connect", "applicationId": applicationId, "sessionToken": sessionToken, "clientKey" : clientKey ]
 
         case .subscribe(let requestId, let query, let sessionToken):
             var result: [String: Any] =  [ "op": "subscribe", "requestId": requestId.value, "query": Dictionary<String, AnyObject>(query: query) ]
