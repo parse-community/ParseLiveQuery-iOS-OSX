@@ -130,7 +130,7 @@ extension Client: WebSocketDelegate {
 
     public func websocketDidConnect(socket: WebSocket) {
         let sessionToken = PFUser.current()?.sessionToken ?? ""
-        _ = self.sendOperationAsync(.connect(applicationId: applicationId, sessionToken: sessionToken))
+        _ = self.sendOperationAsync(.connect(applicationId: applicationId, sessionToken: sessionToken, clientKey: clientKey))
     }
 
     public func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
