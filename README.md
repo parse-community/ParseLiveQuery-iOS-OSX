@@ -41,7 +41,7 @@ Where `Message` is a registered subclass of PFObject.
 
 Once you've subscribed to a query, you can `handle` events on them, like so:
 ```swift
-subscription.handleEvent { query, event in
+subscription.handle { query, event in
     // Handle event
 }
 ```
