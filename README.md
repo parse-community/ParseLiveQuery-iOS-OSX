@@ -41,16 +41,18 @@ Where `Message` is a registered subclass of PFObject.
 
 Once you've subscribed to a query, you can `handle` events on them, like so:
 ```swift
-subscription.handleEvent { query, event in
+subscription.handleEvent({ query, event in
     // Handle event
-}
+})
 ```
 
 You can also handle a single type of event, if that's all you're interested in:
 ```swift
-subscription.handle(Event.Created) { query, object in
-    // Called whenever an object was created
-}
+subscription.handle({ msg in
+                       return Event.created(msg) 
+                    }, { query, object in
+                    // Called whenever an object was created
+                   })
 ```
 
 Handling errors is and other events is similar, take a look at the `Subscription` class for more information.
