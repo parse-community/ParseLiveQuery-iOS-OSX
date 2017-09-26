@@ -52,7 +52,7 @@ subscription.handle({ (msg) -> Event<Message> in
                        return Event.created(msg) 
                     }, { query, object in
                     // Called whenever an object was created
-                   }
+                   })
 ```
 
 Handling errors is and other events is similar, take a look at the `Subscription` class for more information.
