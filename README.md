@@ -48,9 +48,11 @@ subscription.handleEvent { query, event in
 
 You can also handle a single type of event, if that's all you're interested in:
 ```swift
-subscription.handle(Event.Created) { query, object in
-    // Called whenever an object was created
-}
+subscription.handle({ (msg) -> Event<Message> in
+                       return Event.created(msg) 
+                    }, { query, object in
+                    // Called whenever an object was created
+                   }
 ```
 
 Handling errors is and other events is similar, take a look at the `Subscription` class for more information.
