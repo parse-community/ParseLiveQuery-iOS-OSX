@@ -3,8 +3,9 @@ Pod::Spec.new do |s|
   s.version          = '2.2.1'
   s.license          =  { :type => 'BSD' }
   s.summary          = 'Allows for subscriptions to queries in conjunction with parse-server.'
-  s.homepage         = 'https://github.com/ParsePlatform/parse-server'
-  s.authors          = { 'Richard Ross' => 'richardross@fb.com', 'Nikita Lutsenko' => 'nlutsenko@me.com', 'Florent Vilmart' => 'florent@flovilmart.com' }
+  s.homepage         = 'http://parseplatform.org'
+  s.social_media_url = 'https://twitter.com/ParsePlatform'
+  s.authors          = { 'Parse Community' => 'info@parseplatform.org', 'Richard Ross' => 'richardross@fb.com', 'Nikita Lutsenko' => 'nlutsenko@me.com', 'Florent Vilmart' => 'florent@flovilmart.com' }
   
   s.source       = { :git => 'https://github.com/ParsePlatform/ParseLiveQuery-iOS-OSX.git', :tag => s.version.to_s }
 
