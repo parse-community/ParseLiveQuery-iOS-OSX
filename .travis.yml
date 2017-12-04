@@ -43,10 +43,10 @@ jobs:
       env: Carthage
       script: carthage build --no-skip-current
     - stage: distribution
-        env: CocoaPods
-        script: 
-        - bundle exec pod repo update 2>&1 || exit 1
-        - pod lib lint ParseLiveQuery.podspec 
+      env: CocoaPods
+      script: 
+      - bundle exec pod repo update 2>&1 || exit 1
+      - pod lib lint ParseLiveQuery.podspec 
     - stage: docs
       env: 
       before_script: skip
