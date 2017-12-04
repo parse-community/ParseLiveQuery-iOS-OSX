@@ -46,7 +46,7 @@ jobs:
     - stage: distribution
       env: CocoaPods
       script: 
-      - bundle exec pod repo update 2>&1 || exit 1
+      - bundle exec pod repo update --silent
       - pod lib lint ParseLiveQuery.podspec 
       deploy:
         provider: script
