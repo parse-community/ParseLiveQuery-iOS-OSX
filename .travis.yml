@@ -53,6 +53,7 @@ jobs:
       env: 
       before_script: skip
       after_script: skip
+      after_success: skip
       script: bundle exec jazzy
       deploy:
         - provider: pages
