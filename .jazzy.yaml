@@ -1,0 +1,3 @@
+module: "ParseLiveQuery"
+xcodebuild_arguments: ["-scheme","ParseLiveQuery-iOS"]
+theme: "fullwidth"
