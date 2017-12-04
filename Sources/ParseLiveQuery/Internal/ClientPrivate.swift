@@ -117,12 +117,12 @@ func == (first: Client.RequestId, second: Client.RequestId) -> Bool {
 extension Client: WebSocketDelegate {
 
     public func websocketDidReceiveData(socket: WebSocket, data: Data) {
-        print("Received binary data but we don't handle it...")
+        if shouldPrintWebSocketLog { print("Received binary data but we don't handle it...") }
     }
 
     public func websocketDidReceiveMessage(socket: WebSocket, text: String) {
-        handleOperationAsync(text).continueWith { task in
-            if let error = task.error {
+        handleOperationAsync(text).continueWith { [weak self] task in
+            if let error = task.error, self?.shouldPrintWebSocketLog == true {
                 print("Error: \(error)")
             }
         }
@@ -134,7 +134,7 @@ extension Client: WebSocketDelegate {
     }
 
     public func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
-        print("error: \(error)")
+        if shouldPrintWebSocketLog { print("error: \(String(describing: error))") }
 
         // TODO: Better retry logic, unless `disconnect()` was explicitly called
         if !userDisconnected {
@@ -143,7 +143,7 @@ extension Client: WebSocketDelegate {
     }
 
     public func webSocket(_ webSocket: WebSocket, didCloseWithCode code: Int, reason: String?, wasClean: Bool) {
-        print("code: \(code) reason: \(reason)")
+        if shouldPrintWebSocketLog { print("code: \(code) reason: \(String(describing: reason))") }
 
         // TODO: Better retry logic, unless `disconnect()` was explicitly called
         if !userDisconnected {

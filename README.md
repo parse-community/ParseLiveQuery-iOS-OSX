@@ -54,6 +54,11 @@ subscription.handle(Event.created) { query, object in
 }
 ```
 
+By default, it will print the logs from WebSocket / WebSocketDelegate. You can turn it off:
+```swift
+Client.shared.shouldPrintWebSocketLog = false
+```
+
 Handling errors is and other events is similar, take a look at the `Subscription` class for more information.
 
 ## Advanced Usage
@@ -66,7 +71,7 @@ We want to make contributing to this project as easy and transparent as possible
 
 -----
 
-As of April 5, 2017, Parse, LLC has transferred this code to the parse-community organization, and will no longer be contributing to or distributing this code. 
+As of April 5, 2017, Parse, LLC has transferred this code to the parse-community organization, and will no longer be contributing to or distributing this code.
 
  [releases]: https://github.com/parse-community/ParseLiveQuery-iOS-OSX/releases
  [contributing]: https://github.com/parse-community/ParseLiveQuery-iOS-OSX/blob/master/CONTRIBUTING.md
@@ -88,4 +93,3 @@ As of April 5, 2017, Parse, LLC has transferred this code to the parse-community
 
  [carthage-svg]:https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat
  [carthage-link]:https://github.com/Carthage/Carthage
-
