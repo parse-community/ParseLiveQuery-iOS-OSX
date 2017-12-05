@@ -1,5 +1,11 @@
 # ParseLiveQuery-iOS-OSX Changelog
 
+# 2.2.2
+
+- Adds ability to set the clientKey on the connect message, thanks to [bryandel](https://github.com/bryandel)
+- Adds ability to silence the logs, thanks to [ananfang](https://github.com/ananfang)
+- Ensures that `wss` URL's are properly handled, thanks to [Joe Szymanski](https://github.com/JoeSzymanski)
+
 # 2.0.0
 
 - Full carthage support, thanks to [David Starke](https://github.com/dstarke)
