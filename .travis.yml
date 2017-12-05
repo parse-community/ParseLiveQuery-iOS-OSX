@@ -1,46 +1,67 @@
 branches:
   only:
     - master
+    - /^v?[0-9]+\.[0-9]+\.[0-9]+(-.*)?$/
 language: objective-c
 os: osx
-osx_image: xcode8
+osx_image: xcode8.3
 cache:
   - cocoapods
-env:
-  matrix:
-    - TEST_TYPE=iOS
-    - TEST_TYPE=OSX
-    - TEST_TYPE=OSXDemoSwift
-    - TEST_TYPE=OSXDemoObjC
-    - TEST_TYPE=CocoaPods
-    - TEST_TYPE=Carthage
-install:
-- |
-  bundle install
-script:
-- |
-    if [ "$TEST_TYPE" = iOS ]; then
-      set -o pipefail
-      xcodebuild build -workspace ParseLiveQuery.xcworkspace -sdk iphonesimulator -scheme ParseLiveQuery-iOS -configuration Debug -destination "platform=iOS Simulator,name=iPhone 4s" -destination "platform=iOS Simulator,name=iPhone 6 Plus" GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c
-    elif [ "$TEST_TYPE" = OSX ]; then
-      set -o pipefail
-      xcodebuild build -workspace ParseLiveQuery.xcworkspace -sdk macosx -scheme ParseLiveQuery-OSX -configuration Debug GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c
-    elif [ "$TEST_TYPE" = OSXDemoSwift ]; then
-      set -o pipefail
-      xcodebuild clean -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo | xcpretty -c
-      xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo -configuration Debug | xcpretty -c
-    elif [ "$TEST_TYPE" = OSXDemoObjC ]; then
-      set -o pipefail
-      xcodebuild clean -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo-ObjC | xcpretty -c
-      xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo-ObjC -configuration Debug | xcpretty -c
-    elif [ "$TEST_TYPE" = CocoaPods ]; then
-      bundle exec pod repo update 2>&1 > /dev/null || exit 1
-      pod lib lint ParseLiveQuery.podspec 
-    elif [ "$TEST_TYPE" = Carthage ]; then
-      carthage build --no-skip-current
-    fi
-after_success:
-- |
-    if [ "$TEST_TYPE" = iOS ] || [ "$TEST_TYPE" = OSX ]; then
-      bash <(curl -s https://codecov.io/bash)
-    fi
+
+install:  bundle install
+
+jobs:
+  include:
+    - stage: test
+      env: iOS
+      script: 
+      - | 
+          set -o pipefail
+          xcodebuild build -workspace ParseLiveQuery.xcworkspace -sdk iphonesimulator -scheme ParseLiveQuery-iOS -configuration Debug -destination "platform=iOS Simulator,name=iPhone 4s" -destination "platform=iOS Simulator,name=iPhone 6 Plus" GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c
+      after_success: bash <(curl -s https://codecov.io/bash)
+    - stage: test
+      env: OSX
+      script: 
+      - | 
+          set -o pipefail
+          xcodebuild build -workspace ParseLiveQuery.xcworkspace -sdk macosx -scheme ParseLiveQuery-OSX -configuration Debug GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c
+      after_success: bash <(curl -s https://codecov.io/bash)
+    - stage: demo
+      env: OSX-Swift
+      script: 
+      - | 
+          set -o pipefail
+          xcodebuild clean -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo | xcpretty -c
+          xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo -configuration Debug | xcpretty -c
+    - stage: demo
+      env: OSX-ObjC
+      script: 
+      - | 
+          set -o pipefail
+          xcodebuild clean -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo-ObjC | xcpretty -c
+          xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo-ObjC -configuration Debug | xcpretty -c 
+    - stage: distribution
+      env: Carthage
+      script: carthage build --no-skip-current
+    - stage: distribution
+      env: CocoaPods
+      script: 
+      - bundle exec pod repo update --silent
+      - pod lib lint ParseLiveQuery.podspec 
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script: ./publish.sh
+        on:
+          tags: true
+          all_branches: true
+    - stage: distribution
+      env: Docs
+      script: bundle exec jazzy
+      deploy:
+        provider: pages
+        skip_cleanup: true
+        github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
+        local_dir: docs/
+        on:
+          all_branches: true

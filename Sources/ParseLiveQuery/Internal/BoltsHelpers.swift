@@ -18,7 +18,7 @@ func objcTask<T>(_ task: Task<T>) -> BFTask<T> where T: AnyObject {
         if task.cancelled {
             taskCompletionSource.trySetCancelled()
         } else if task.faulted {
-            let error = task.error as? NSError ?? NSError(domain: unknownDomain, code: -1, userInfo: nil)
+            let error = (task.error as NSError?) ?? NSError(domain: unknownDomain, code: -1, userInfo: nil)
             taskCompletionSource.trySetError(error)
         } else {
             taskCompletionSource.trySetResult(task.result)
