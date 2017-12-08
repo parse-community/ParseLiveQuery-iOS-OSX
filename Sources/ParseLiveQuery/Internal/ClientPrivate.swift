@@ -117,13 +117,13 @@ func == (first: Client.RequestId, second: Client.RequestId) -> Bool {
 extension Client: WebSocketDelegate {
 
     public func websocketDidReceiveData(socket: WebSocket, data: Data) {
-        if shouldPrintWebSocketLog { print("Received binary data but we don't handle it...") }
+        if shouldPrintWebSocketLog { NSLog("ParseLiveQuery: Received binary data but we don't handle it...") }
     }
 
     public func websocketDidReceiveMessage(socket: WebSocket, text: String) {
         handleOperationAsync(text).continueWith { [weak self] task in
             if let error = task.error, self?.shouldPrintWebSocketLog == true {
-                print("Error: \(error)")
+                if shouldPrintWebSocketLog { NSLog("ParseLiveQuery: Error processing message: \(error)") }
             }
         }
     }
@@ -134,7 +134,7 @@ extension Client: WebSocketDelegate {
     }
 
     public func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
-        if shouldPrintWebSocketLog { print("error: \(String(describing: error))") }
+        if shouldPrintWebSocketLog { NSLog("ParseLiveQuery: WebSocket did disconnect with error: \(String(describing: error))") }
 
         // TODO: Better retry logic, unless `disconnect()` was explicitly called
         if !userDisconnected {
@@ -143,7 +143,7 @@ extension Client: WebSocketDelegate {
     }
 
     public func webSocket(_ webSocket: WebSocket, didCloseWithCode code: Int, reason: String?, wasClean: Bool) {
-        if shouldPrintWebSocketLog { print("code: \(code) reason: \(String(describing: reason))") }
+        if shouldPrintWebSocketLog { NSLog("ParseLiveQuery: WebSocket did close with code: \(code) reason: \(String(describing: reason))") }
 
         // TODO: Better retry logic, unless `disconnect()` was explicitly called
         if !userDisconnected {
@@ -199,12 +199,14 @@ extension Client {
             let jsonEncoded = operation.JSONObjectRepresentation
             let jsonData = try JSONSerialization.data(withJSONObject: jsonEncoded, options: JSONSerialization.WritingOptions(rawValue: 0))
             let jsonString = String(data: jsonData, encoding: String.Encoding.utf8)
+            if shouldPrintWebSocketTrace { NSLog("ParseLiveQuery: Sending message: \(jsonString!)") }
             self.socket?.write(string: jsonString!)
         }
     }
 
     func handleOperationAsync(_ string: String) -> Task<Void> {
         return Task(.queue(queue)) {
+            if shouldPrintWebSocketTrace { NSLog("ParseLiveQuery: Received message: \(jsonString!)") }
             guard
                 let jsonData = string.data(using: String.Encoding.utf8),
                 let jsonDecoded = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions(rawValue: 0))

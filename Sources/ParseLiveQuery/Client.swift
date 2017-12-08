@@ -24,6 +24,7 @@ open class Client: NSObject {
 
     var socket: WebSocket?
     public var shouldPrintWebSocketLog = true
+    public var shouldPrintWebSocketTrace = false
     public var userDisconnected = false
 
     // This allows us to easily plug in another request ID generation scheme, or more easily change the request id type
@@ -158,7 +159,7 @@ extension Client {
             if !userDisconnected {
                 reconnect()
             } else {
-                debugPrint("Warning: The client was explicitly disconnected! You must explicitly call .reconnect() in order to process your subscriptions.")
+                NSLog("ParseLiveQuery: Warning: The client was explicitly disconnected! You must explicitly call .reconnect() in order to process your subscriptions.")
             }
         }
         
