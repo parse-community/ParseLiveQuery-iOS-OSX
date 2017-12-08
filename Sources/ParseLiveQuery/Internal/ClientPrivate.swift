@@ -123,7 +123,7 @@ extension Client: WebSocketDelegate {
     public func websocketDidReceiveMessage(socket: WebSocket, text: String) {
         handleOperationAsync(text).continueWith { [weak self] task in
             if let error = task.error, self?.shouldPrintWebSocketLog == true {
-                if shouldPrintWebSocketLog { NSLog("ParseLiveQuery: Error processing message: \(error)") }
+                NSLog("ParseLiveQuery: Error processing message: \(error)")
             }
         }
     }
@@ -199,14 +199,14 @@ extension Client {
             let jsonEncoded = operation.JSONObjectRepresentation
             let jsonData = try JSONSerialization.data(withJSONObject: jsonEncoded, options: JSONSerialization.WritingOptions(rawValue: 0))
             let jsonString = String(data: jsonData, encoding: String.Encoding.utf8)
-            if shouldPrintWebSocketTrace { NSLog("ParseLiveQuery: Sending message: \(jsonString!)") }
+            if self.shouldPrintWebSocketTrace { NSLog("ParseLiveQuery: Sending message: \(jsonString!)") }
             self.socket?.write(string: jsonString!)
         }
     }
 
     func handleOperationAsync(_ string: String) -> Task<Void> {
         return Task(.queue(queue)) {
-            if shouldPrintWebSocketTrace { NSLog("ParseLiveQuery: Received message: \(jsonString!)") }
+            if self.shouldPrintWebSocketTrace { NSLog("ParseLiveQuery: Received message: \(string)") }
             guard
                 let jsonData = string.data(using: String.Encoding.utf8),
                 let jsonDecoded = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions(rawValue: 0))
@@ -215,8 +215,6 @@ extension Client {
                 else {
                     throw LiveQueryErrors.InvalidResponseError(response: string)
             }
-
-
 
             switch response {
             case .connected:
