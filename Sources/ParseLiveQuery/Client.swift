@@ -207,11 +207,15 @@ extension Client {
     }
 
     func unsubscribe(matching matcher: @escaping (SubscriptionRecord) -> Bool) {
-        subscriptions.filter {
-            matcher($0)
-        }.forEach {
-            _ = sendOperationAsync(.unsubscribe(requestId: $0.requestId))
+        var temp = [SubscriptionRecord]()
+        subscriptions.forEach {
+            if matcher($0) {
+                _ = sendOperationAsync(.unsubscribe(requestId: $0.requestId))
+            } else {
+                temp.append($0)
+            }
         }
+        subscriptions = temp
     }
 }
 
