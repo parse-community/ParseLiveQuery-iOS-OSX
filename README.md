@@ -59,6 +59,11 @@ By default, it will print the logs from WebSocket / WebSocketDelegate. You can t
 Client.shared.shouldPrintWebSocketLog = false
 ```
 
+You can also enable socket trace messages for all sent and received strings. By default, these trace messages are disabled.
+```swift
+Client.shared.shouldPrintWebSocketTrace = true
+```
+
 Handling errors is and other events is similar, take a look at the `Subscription` class for more information.
 
 ## Advanced Usage
