@@ -9,6 +9,7 @@ jobs:
     # Specify the Xcode version to use
     macos:
       xcode: "8.3.3"
+    shell: /bin/bash --login -eo pipefail
 
     steps:
       - checkout
@@ -17,7 +18,7 @@ jobs:
       - run:
           name: Bundle Install
           command: |
-            sudo gem install bundler;
+            gem install bundler;
             bundle install;
 
       # Build the app and run tests
