@@ -19,9 +19,9 @@ func objcTask<T>(_ task: Task<T>) -> BFTask<T> where T: AnyObject {
             taskCompletionSource.trySetCancelled()
         } else if task.faulted {
             let error = (task.error as NSError?) ?? NSError(domain: unknownDomain, code: -1, userInfo: nil)
-            taskCompletionSource.trySetError(error)
+            taskCompletionSource.trySet(error: error)
         } else {
-            taskCompletionSource.trySetResult(task.result)
+            taskCompletionSource.trySet(result: task.result)
         }
     }
     return taskCompletionSource.task
@@ -29,7 +29,7 @@ func objcTask<T>(_ task: Task<T>) -> BFTask<T> where T: AnyObject {
 
 func swiftTask(_ task: BFTask<AnyObject>) -> Task<AnyObject> {
     let taskCompletionSource = TaskCompletionSource<AnyObject>()
-    task.continue({ task in
+    task.continueWith(block: { task in
         if task.isCancelled {
             taskCompletionSource.tryCancel()
         } else if let error = task.error , task.isFaulted {
