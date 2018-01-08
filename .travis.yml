@@ -7,47 +7,13 @@ os: osx
 osx_image: xcode8.3
 cache:
   - cocoapods
-
+florentvilmart@me.com
 install:  bundle install
 
 jobs:
   include:
-    - stage: test
-      env: iOS
-      script: 
-      - | 
-          set -o pipefail
-          xcodebuild build -workspace ParseLiveQuery.xcworkspace -sdk iphonesimulator -scheme ParseLiveQuery-iOS -configuration Debug -destination "platform=iOS Simulator,name=iPhone 4s" -destination "platform=iOS Simulator,name=iPhone 6 Plus" GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c
-      after_success: bash <(curl -s https://codecov.io/bash)
-    - stage: test
-      env: OSX
-      script: 
-      - | 
-          set -o pipefail
-          xcodebuild build -workspace ParseLiveQuery.xcworkspace -sdk macosx -scheme ParseLiveQuery-OSX -configuration Debug GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c
-      after_success: bash <(curl -s https://codecov.io/bash)
-    - stage: demo
-      env: OSX-Swift
-      script: 
-      - | 
-          set -o pipefail
-          xcodebuild clean -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo | xcpretty -c
-          xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo -configuration Debug | xcpretty -c
-    - stage: demo
-      env: OSX-ObjC
-      script: 
-      - | 
-          set -o pipefail
-          xcodebuild clean -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo-ObjC | xcpretty -c
-          xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo-ObjC -configuration Debug | xcpretty -c 
-    - stage: distribution
-      env: Carthage
-      script: carthage build --no-skip-current
     - stage: distribution
       env: CocoaPods
-      script: 
-      - bundle exec pod repo update --silent
-      - pod lib lint ParseLiveQuery.podspec 
       deploy:
         provider: script
         skip_cleanup: true
