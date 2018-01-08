@@ -17,7 +17,7 @@ jobs:
       - run:
           name: Bundle Install
           command: |
-            gem install bundler;
+            sudo gem install bundler;
             bundle install;
 
       # Build the app and run tests
