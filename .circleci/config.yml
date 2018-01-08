@@ -13,10 +13,12 @@ jobs:
     steps:
       - checkout
 
-      # Install CocoaPods
+      # Install gems
       - run:
-          name: Install CocoaPods
-          command: pod install
+          name: Bundle Install
+          command: |
+            gem install bundler;
+            bundle install;
 
       # Build the app and run tests
       - run:
