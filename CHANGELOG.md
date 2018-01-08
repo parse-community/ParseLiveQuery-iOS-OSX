@@ -1,5 +1,12 @@
 # ParseLiveQuery-iOS-OSX Changelog
 
+# 2.2.3
+
+- Bumps Parse SDK to 1.15.4 and Bolts to 1.9.0, thanks to [marcgovi](https://github.com/marcgovi)
+- Updates logging strategy for websockets, thanks to [Joe Szymanski](https://github.com/JoeSzymanski)
+- Ensures unsubscribed queries are removed from subscriptions list, thanks to [Joe Szymanski](https://github.com/JoeSzymanski)
+- Do not attempt to reconnect if a connection is already in progress, thanks to [Joe Szymanski](https://github.com/JoeSzymanski)
+
 # 2.2.2
 
 - Adds ability to set the clientKey on the connect message, thanks to [bryandel](https://github.com/bryandel)

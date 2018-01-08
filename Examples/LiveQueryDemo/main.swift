@@ -37,7 +37,8 @@ class ChatRoomManager {
             disconnectFromChatRoom()
         }
 
-        Room.query()?.whereKey("name", equalTo: room).getFirstObjectInBackground().continue({ task in
+        Room.query()?.whereKey("name", equalTo: room).getFirstObjectInBackground()
+            .continueOnSuccessWith(block: { task -> Any? in
             self.currentChatRoom = task.result as? Room
             print("Connected to room \(self.currentChatRoom?.name ?? "null")")
 
@@ -64,7 +65,8 @@ class ChatRoomManager {
     }
 
     func printPriorMessages() {
-        messagesQuery.findObjectsInBackground().continue({ task in
+        messagesQuery.findObjectsInBackground()
+            .continueOnSuccessWith(block: { task -> Any? in
             (task.result as? [Message])?.forEach(self.printMessage)
 
             return nil
@@ -123,7 +125,8 @@ let password = "Enter password for \(username): ".withCString {
 let chatManager = ChatRoomManager()
 let inputManager = InputManager(chatManager: chatManager)
 
-PFUser.logInWithUsername(inBackground: username, password: password).continue({ task in
+PFUser.logInWithUsername(inBackground: username, password: password)
+    .continueOnSuccessWith(block: { task -> Any? in
     print("Enter chat room to connect to: ")
     return nil
 })
