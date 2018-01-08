@@ -28,30 +28,26 @@ jobs:
       - run:
           name: iOS Tests
           command: |
-            set -o pipefail;
             xcodebuild build -workspace ParseLiveQuery.xcworkspace -sdk iphonesimulator -scheme ParseLiveQuery-iOS -configuration Debug -destination "platform=iOS Simulator,name=iPhone 4s" -destination "platform=iOS Simulator,name=iPhone 6 Plus" GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c;
       - run:
           name: MacOS Tests
           command: |
-            set -o pipefail;
             xcodebuild build -workspace ParseLiveQuery.xcworkspace -sdk macosx -scheme ParseLiveQuery-OSX -configuration Debug GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c;
       - run:
           name: Swift Demo
           script: 
           command: |
-            set -o pipefail;
             xcodebuild clean -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo | xcpretty -c;
             xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo -configuration Debug | xcpretty -c;
       - run:
           name: Obj-C Demo
           script: 
           command: |
-            set -o pipefail;
             xcodebuild clean -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo-ObjC | xcpretty -c;
             xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo-ObjC -configuration Debug | xcpretty -c;
       - run:
           name: Carthage
-          command: carthage build --no-skip-current
+          command: carthage build --no-skip-current --platform macos,ios
       - run:
           name: CocoaPods
           command: |
