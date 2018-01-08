@@ -1,0 +1,57 @@
+# iOS CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/ios-migrating-from-1-2/ for more details
+#
+version: 2
+jobs:
+  build:
+
+    # Specify the Xcode version to use
+    macos:
+      xcode: "8.3.3"
+
+    steps:
+      - checkout
+
+      # Install CocoaPods
+      - run:
+          name: Install CocoaPods
+          command: pod install
+
+      # Build the app and run tests
+      - run:
+          name: iOS Tests
+          command:
+          - | 
+            set -o pipefail
+            xcodebuild build -workspace ParseLiveQuery.xcworkspace -sdk iphonesimulator -scheme ParseLiveQuery-iOS -configuration Debug -destination "platform=iOS Simulator,name=iPhone 4s" -destination "platform=iOS Simulator,name=iPhone 6 Plus" GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c
+      - run:
+          name: MacOS Tests
+          command:
+          - | 
+            set -o pipefail
+            xcodebuild build -workspace ParseLiveQuery.xcworkspace -sdk macosx -scheme ParseLiveQuery-OSX -configuration Debug GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c
+      - run:
+          name: Swift Demo
+          script: 
+          command:
+          - | 
+            set -o pipefail
+            xcodebuild clean -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo | xcpretty -c
+            xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo -configuration Debug | xcpretty -c
+      - run:
+          name: Obj-C Demo
+          script: 
+          command:
+          - | 
+            set -o pipefail
+            xcodebuild clean -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo-ObjC | xcpretty -c
+            xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo-ObjC -configuration Debug | xcpretty -c 
+      - run:
+          name: Carthage
+          command: carthage build --no-skip-current
+      - run:
+          name: CocoaPods
+          command: 
+          - bundle exec pod repo update --silent
+          - pod lib lint ParseLiveQuery.podspec 
