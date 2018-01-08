@@ -15,7 +15,7 @@ jobs:
       - checkout
       - run:
           name: Git Submodules
-          command: git submodule update --init
+          command: git submodule update --init --recursive
 
       # Install gems
       - run:
