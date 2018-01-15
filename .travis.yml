@@ -7,7 +7,6 @@ os: osx
 osx_image: xcode8.3
 cache:
   - cocoapods
-florentvilmart@me.com
 install:  bundle install
 
 jobs:
