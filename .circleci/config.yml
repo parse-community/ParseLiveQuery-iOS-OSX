@@ -1,0 +1,76 @@
+defaults: &defaults
+    macos:
+      xcode: "8.3.3"
+    shell: /bin/bash --login -eo pipefail
+aliases:
+  - &prepare
+    | 
+      git submodule update --init --recursive
+      gem install bundler
+      bundle install
+  - &filter-only-master
+    branches:
+      only:
+        - master
+
+version: 2
+jobs:
+  ios:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *prepare
+      - run: xcodebuild build -workspace ParseLiveQuery.xcworkspace -sdk iphonesimulator -scheme ParseLiveQuery-iOS -configuration Debug -destination "platform=iOS Simulator,name=iPhone 6 Plus" GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c;
+      - run: bash <(curl -s https://codecov.io/bash)
+      - store_test_results:
+          path: build/reports
+  macos:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *prepare
+      - run: xcodebuild build -workspace ParseLiveQuery.xcworkspace -sdk macosx -scheme ParseLiveQuery-OSX -configuration Debug GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c;
+      - run: bash <(curl -s https://codecov.io/bash)
+      - store_test_results:
+          path: build/reports
+  demo:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *prepare
+      - run: |
+          xcodebuild clean -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo | xcpretty -c;
+          xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo -configuration Debug | xcpretty -c;
+      - run: |
+          xcodebuild clean -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo-ObjC | xcpretty -c;
+          xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo-ObjC -configuration Debug | xcpretty -c;
+  carthage:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *prepare
+      - run: carthage build --no-skip-current --platform macos,ios
+  cocoapods:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *prepare
+      - run:  |
+          bundle exec pod repo update --silent;
+          pod lib lint ParseLiveQuery.podspec;
+
+workflows:
+  version: 2
+  pr:
+    jobs:
+      - ios
+      - macos
+      - demo
+  nightly:
+    jobs:
+      - cocoapods
+      - carthage
+    triggers:
+      - schedule:
+          cron: "0 1 * * *"
+          filters: *filter-only-master

@@ -7,6 +7,7 @@
 [![License][license-svg]][license-link]
 
 [![Build Status][build-status-svg]][build-status-link]
+[![Build Status][circleci-status-svg]][circleci-status-link]
 
 `PFQuery` is one of the key concepts for Parse. It allows you to retrieve `PFObject`s by specifying some conditions, making it easy to build apps such as a dashboard, a todo list or even some strategy games. However, `PFQuery` is based on a pull model, which is not suitable for apps that need real-time support.
 
@@ -83,6 +84,9 @@ As of April 5, 2017, Parse, LLC has transferred this code to the parse-community
 
  [build-status-svg]: https://img.shields.io/travis/parse-community/ParseLiveQuery-iOS-OSX/master.svg
  [build-status-link]: https://travis-ci.org/parse-community/ParseLiveQuery-iOS-OSX/branches
+
+ [circleci-status-svg]: https://circleci.com/gh/parse-community/ParseLiveQuery-iOS-OSX.svg?style=shield
+ [circleci-status-link]: https://circleci.com/build-insights/gh/parse-community/ParseLiveQuery-iOS-OSX/master
 
  [coverage-status-svg]: https://img.shields.io/codecov/c/github/parse-community/ParseLiveQuery-iOS-OSX/master.svg
  [coverage-status-link]: https://codecov.io/github/parse-community/ParseLiveQuery-iOS-OSX?branch=master
