@@ -14,7 +14,7 @@ import Parse
  NOTE: This is super hacky, and we need a better answer for this.
  */
 extension Dictionary where Key: ExpressibleByStringLiteral, Value: AnyObject {
-    init<T>(query: PFQuery<T>) where T: PFObject {
+    init<T>(query: PFQuery<T>) {
         self.init()
         let queryState = query.value(forKey: "state") as AnyObject?
         if let className = queryState?.value(forKey: "parseClassName") {

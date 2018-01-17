@@ -130,7 +130,7 @@ extension Client {
     public func subscribe<T>(
         _ query: PFQuery<T>,
         subclassType: T.Type = T.self
-        ) -> Subscription<T> where T: PFObject {
+        ) -> Subscription<T> {
         return subscribe(query, handler: Subscription<T>())
     }
 

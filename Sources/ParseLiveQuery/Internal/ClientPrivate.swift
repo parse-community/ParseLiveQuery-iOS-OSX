@@ -116,11 +116,11 @@ func == (first: Client.RequestId, second: Client.RequestId) -> Bool {
 
 extension Client: WebSocketDelegate {
 
-    public func websocketDidReceiveData(socket: WebSocket, data: Data) {
+    public func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
         if shouldPrintWebSocketLog { NSLog("ParseLiveQuery: Received binary data but we don't handle it...") }
     }
 
-    public func websocketDidReceiveMessage(socket: WebSocket, text: String) {
+    public func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         handleOperationAsync(text).continueWith { [weak self] task in
             if let error = task.error, self?.shouldPrintWebSocketLog == true {
                 NSLog("ParseLiveQuery: Error processing message: \(error)")
@@ -128,25 +128,15 @@ extension Client: WebSocketDelegate {
         }
     }
 
-    public func websocketDidConnect(socket: WebSocket) {
+    public func websocketDidConnect(socket: WebSocketClient) {
         isConnecting = false
         let sessionToken = PFUser.current()?.sessionToken ?? ""
         _ = self.sendOperationAsync(.connect(applicationId: applicationId, sessionToken: sessionToken, clientKey: clientKey))
     }
 
-    public func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
+    public func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         isConnecting = false
         if shouldPrintWebSocketLog { NSLog("ParseLiveQuery: WebSocket did disconnect with error: \(String(describing: error))") }
-
-        // TODO: Better retry logic, unless `disconnect()` was explicitly called
-        if !userDisconnected {
-            reconnect()
-        }
-    }
-
-    public func webSocket(_ webSocket: WebSocket, didCloseWithCode code: Int, reason: String?, wasClean: Bool) {
-        isConnecting = false
-        if shouldPrintWebSocketLog { NSLog("ParseLiveQuery: WebSocket did close with code: \(code) reason: \(String(describing: reason))") }
 
         // TODO: Better retry logic, unless `disconnect()` was explicitly called
         if !userDisconnected {
