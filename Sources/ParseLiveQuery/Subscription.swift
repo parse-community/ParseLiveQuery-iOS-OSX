@@ -84,7 +84,7 @@ public enum Event<T> where T: PFObject {
     /// The object has been deleted, and is no longer included in the query
     case deleted(T)
 
-    init<V>(event: Event<V>) where V: PFObject {
+    init<V>(event: Event<V>) {
         switch event {
         case .entered(let value as T): self = .entered(value)
         case .left(let value as T):    self = .left(value)
@@ -96,7 +96,7 @@ public enum Event<T> where T: PFObject {
     }
 }
 
-private func == <T: PFObject>(lhs: Event<T>, rhs: Event<T>) -> Bool {
+private func == <T>(lhs: Event<T>, rhs: Event<T>) -> Bool {
     switch (lhs, rhs) {
     case (.entered(let obj1), .entered(let obj2)): return obj1 == obj2
     case (.left(let obj1), .left(let obj2)):       return obj1 == obj2
