@@ -1,5 +1,11 @@
 # ParseLiveQuery-iOS-OSX Changelog
 
+# 2.3.0
+
+- Bumps Parse SDK to 1.16.0
+- Bumps Starscream to 3.0.4
+- Fixes warnings in Swift 4
+
 # 2.2.3
 
 - Bumps Parse SDK to 1.15.4 and Bolts to 1.9.0, thanks to [marcgovi](https://github.com/marcgovi)

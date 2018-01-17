@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'ParseLiveQuery'
-  s.version          = '2.2.4'
+  s.version          = '2.3.0'
   s.license          =  { :type => 'BSD' }
   s.summary          = 'Allows for subscriptions to queries in conjunction with parse-server.'
   s.homepage         = 'http://parseplatform.org'
@@ -21,6 +21,6 @@ Pod::Spec.new do |s|
   s.module_name = 'ParseLiveQuery'
   
   s.dependency 'Parse', '~> 1.16.0'
-  s.dependency 'Bolts-Swift', '~> 1.9'
+  s.dependency 'Bolts-Swift', '~> 1.3.0'
   s.dependency 'Starscream', '~> 3.0.4'
 end
