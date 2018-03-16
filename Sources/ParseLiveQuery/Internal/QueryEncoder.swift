@@ -35,7 +35,7 @@ extension Dictionary where Key: ExpressibleByStringLiteral, Value: AnyObject {
             } else if let geoPoint = val as? PFGeoPoint {
                 encodedQueryDictionary[key] = geoPoint.encodedDictionary as? Value
             } else if let object = val as? PFObject {
-                encodedQueryDictionary[key] = PFPointerObjectEncoder.object().encode(object) as? Value
+                encodedQueryDictionary[key] = (try? PFPointerObjectEncoder.object().encode(object)) as? Value
             } else if let date = val as? Date {
                 encodedQueryDictionary[key] = date.encodedString as? Value
             } else {

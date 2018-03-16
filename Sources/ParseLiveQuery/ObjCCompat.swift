@@ -131,6 +131,7 @@ public struct ObjCCompat {
 
          - returns: The same subscription, for easy chaining.
          */
+        @objc(addSubscribeHandler:)
         open func addSubscribeHandler(_ handler: @escaping SubscribeHandler) -> Subscription {
             subscribeHandlers.append(handler)
             return self
@@ -143,6 +144,7 @@ public struct ObjCCompat {
 
          - returns: The same subscription, for easy chaining.
          */
+        @objc(addUnsubscribeHandler:)
         open func addUnsubscribeHandler(_ handler: @escaping SubscribeHandler) -> Subscription {
             unsubscribeHandlers.append(handler)
             return self
@@ -155,6 +157,7 @@ public struct ObjCCompat {
 
          - returns: The same subscription, for easy chaining.
          */
+        @objc(addErrorHandler:)
         open func addErrorHandler(_ handler: @escaping ErrorHandler) -> Subscription {
             errorHandlers.append(handler)
             return self
@@ -167,6 +170,7 @@ public struct ObjCCompat {
 
          - returns: The same subscription, for easy chaining.
          */
+        @objc(addEventHandler:)
         open func addEventHandler(_ handler: @escaping EventHandler) -> Subscription {
             eventHandlers.append(handler)
             return self
@@ -179,6 +183,7 @@ public struct ObjCCompat {
 
          - returns: The same subscription, for easy chaining.
          */
+        @objc(addEnterHandler:)
         open func addEnterHandler(_ handler: @escaping  ObjectHandler) -> Subscription {
             return addEventHandler { $1.type == .entered ? handler($0, $1.object) : () }
         }
@@ -190,6 +195,7 @@ public struct ObjCCompat {
 
          - returns: The same subscription, for easy chaining.
          */
+        @objc(addLeaveHandler:)
         open func addLeaveHandler(_ handler: @escaping ObjectHandler) -> Subscription {
             return addEventHandler { $1.type == .left ? handler($0, $1.object) : () }
         }
@@ -201,6 +207,7 @@ public struct ObjCCompat {
 
          - returns: The same subscription, for easy chaining.
          */
+        @objc(addCreateHandler:)
         open func addCreateHandler(_ handler: @escaping  ObjectHandler) -> Subscription {
             return addEventHandler { $1.type == .created ? handler($0, $1.object) : () }
         }
@@ -212,6 +219,7 @@ public struct ObjCCompat {
 
          - returns: The same subscription, for easy chaining.
          */
+        @objc(addUpdateHandler:)
         open func addUpdateHandler(_ handler: @escaping  ObjectHandler) -> Subscription {
             return addEventHandler { $1.type == .updated ? handler($0, $1.object) : () }
         }
@@ -223,6 +231,7 @@ public struct ObjCCompat {
 
          - returns: The same subscription, for easy chaining.
          */
+        @objc(addDeleteHandler:)
         open func addDeleteHandler(_ handler: @escaping  ObjectHandler) -> Subscription {
             return addEventHandler { $1.type == .deleted ? handler($0, $1.object) : () }
         }

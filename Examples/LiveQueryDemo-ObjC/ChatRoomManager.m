@@ -38,6 +38,7 @@
   self.query = [self.dataSource queryForChatRoomManager:self];
 
   __weak typeof(self) weakSelf = self;
+
   self.subscription = [[self.client subscribeToQuery:self.query] addCreateHandler:^(PFQuery *query, PFObject *message) {
     [weakSelf.delegate chatRoomManager:weakSelf didReceiveMessage:(Message *)message];
   }];
