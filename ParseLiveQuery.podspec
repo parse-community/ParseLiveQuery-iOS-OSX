@@ -12,7 +12,8 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.platform = :ios, :osx, :tvos
-  s.swift_version = '3.0'
+  s.swift_version = '4.0'
+  s.cocoapods_version = '>= 1.4'
 
   s.ios.deployment_target = '8.0'
   s.tvos.deployment_target = '9.0'
@@ -21,7 +22,7 @@ Pod::Spec.new do |s|
   s.source_files = 'Sources/ParseLiveQuery/**/*.{swift,h}'
   s.module_name = 'ParseLiveQuery'
   
-  s.dependency 'Parse', '~> 1.17.0-alpha.1'
-  s.dependency 'Bolts-Swift', '~> 1.3.0'
+  s.dependency 'Parse', '~> 1.17.0'
+  s.dependency 'Bolts-Swift', :git 'https://github.com/BoltsFramework/Bolts-Swift', :commit 'e9baa72d04521c3b25ef4fa6fef12b340953ee02'
   s.dependency 'Starscream', '~> 3.0.4'
 end

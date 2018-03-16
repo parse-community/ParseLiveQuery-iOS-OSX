@@ -16,3 +16,6 @@
 [submodule "Carthage/Checkouts/common-crypto-spm"]
 	path = Carthage/Checkouts/common-crypto-spm
 	url = https://github.com/daltoniam/common-crypto-spm.git
+[submodule "Carthage/Checkouts/facebook-ios-sdk"]
+	path = Carthage/Checkouts/facebook-ios-sdk
+	url = https://github.com/facebook/facebook-ios-sdk.git
