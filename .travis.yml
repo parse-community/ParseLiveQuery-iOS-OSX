@@ -2,7 +2,7 @@ branches:
   only:
     - master
     - /^v?[0-9]+\.[0-9]+\.[0-9]+(-.*)?$/
-language: objective-c
+language: swift
 os: osx
 osx_image: xcode10.1
 cache:
