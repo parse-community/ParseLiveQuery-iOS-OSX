@@ -5,8 +5,6 @@ branches:
 language: objective-c
 xcode_workspace: ParseLiveQuery.xcworkspace
 xcode_scheme:
-	- ParseLiveQuery-iOS
-	- ParseLiveQuery-OSX
 	- LiveQueryDemo
 	- LiveQueryDemo-ObjC
 xcode_destination:
