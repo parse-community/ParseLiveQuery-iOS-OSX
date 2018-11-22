@@ -1,3 +1,8 @@
 github "BoltsFramework/Bolts-Swift" ~> 1.4.0
+<<<<<<< HEAD
 github "ParsePlatform/Parse-SDK-iOS-OSX" ~> 1.17.0
 github "daltoniam/Starscream" ~> 3.0.4
+=======
+github "ParsePlatform/Parse-SDK-iOS-OSX" ~> 1.17.1
+github "daltoniam/Starscream" ~> 3.0.6
+>>>>>>> 20a800264df27a2c0f69172ae59ccefeab739412
