@@ -13,11 +13,11 @@ Pod::Spec.new do |s|
 
   s.platform = :ios, :osx, :tvos
   s.swift_version = '4.2'
-  s.cocoapods_version = '>= 1.4'
+  s.cocoapods_version = '>= 1.5.3'
 
   s.ios.deployment_target = '11.0'
   s.tvos.deployment_target = '11.0'
-  s.osx.deployment_target = '10.10'
+  s.osx.deployment_target = '10.11'
   
   s.source_files = 'Sources/ParseLiveQuery/**/*.{swift,h}'
   s.module_name = 'ParseLiveQuery'
