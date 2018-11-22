@@ -711,26 +711,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		7F2CF63E2184EFAF00C0D540 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n/usr/local/bin/carthage copy-frameworks\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		F5903CE51BD999C500C3EFFE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -910,11 +890,7 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = ParseLiveQuery/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-<<<<<<< HEAD
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-=======
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
->>>>>>> 20a800264df27a2c0f69172ae59ccefeab739412
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.parse.livequery.ios;
@@ -941,11 +917,7 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = ParseLiveQuery/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-<<<<<<< HEAD
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-=======
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
->>>>>>> 20a800264df27a2c0f69172ae59ccefeab739412
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.parse.livequery.ios;
