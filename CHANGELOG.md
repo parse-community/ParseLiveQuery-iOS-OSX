@@ -1,5 +1,16 @@
 # ParseLiveQuery-iOS-OSX Changelog
 
+# 2.5.0
+
+- Bumps Bolts-Swift to 1.4.0
+- Bumps Swift version to 4.2
+
+# 2.4.0
+
+- Bumps Parse SDK to 1.17.0
+- Bumps cocoapods to 1.4.0
+- Set Swift version to 3.2
+
 # 2.3.0
 
 - Bumps Parse SDK to 1.16.0
