@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.platform = :ios, :osx, :tvos
-  s.swift_version = '3.2'
+  s.swift_version = '4.2'
   s.cocoapods_version = '>= 1.4'
 
   s.ios.deployment_target = '8.0'

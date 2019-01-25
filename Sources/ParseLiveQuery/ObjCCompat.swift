@@ -97,11 +97,11 @@ public struct ObjCCompat {
     open class Event: NSObject {
         /// Type of the event.
         @objc
-        open let type: PFLiveQueryEventType
+        public let type: PFLiveQueryEventType
 
         /// Object this event is for.
         @objc
-        open let object: PFObject
+        public let object: PFObject
 
         init(type: PFLiveQueryEventType, object: PFObject) {
             self.type = type

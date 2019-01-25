@@ -13,6 +13,7 @@ jobs:
   include:
     - stage: distribution
       env: CocoaPods
+      script: bundle exec pod spec lint ParseLiveQuery.podspec --quick
       deploy:
         provider: script
         skip_cleanup: true
