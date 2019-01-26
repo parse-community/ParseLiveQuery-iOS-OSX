@@ -50,14 +50,6 @@ jobs:
       - checkout
       - run: *prepare
       - run: carthage build --no-skip-current --platform macos,ios
-  cocoapods:
-    <<: *defaults
-    steps:
-      - checkout
-      - run: *prepare
-      - run:  |
-          bundle exec pod repo update --silent;
-          pod lib lint ParseLiveQuery.podspec;
 
 workflows:
   version: 2
@@ -68,7 +60,6 @@ workflows:
       - demo
   nightly:
     jobs:
-      - cocoapods
       - carthage
     triggers:
       - schedule:
