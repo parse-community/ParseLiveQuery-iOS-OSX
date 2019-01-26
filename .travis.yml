@@ -4,7 +4,7 @@ branches:
     - /^v?[0-9]+\.[0-9]+\.[0-9]+(-.*)?$/
 language: objective-c
 os: osx
-osx_image: xcode9
+osx_image: xcode10.1
 cache:
   - cocoapods
 install:  bundle install
@@ -13,7 +13,7 @@ jobs:
   include:
     - stage: distribution
       env: CocoaPods
-      script: bundle exec pod spec lint ParseLiveQuery.podspec --quick
+      script: EXPANDED_CODE_SIGN_IDENTITY="-" EXPANDED_CODE_SIGN_IDENTITY_NAME="-" bundle exec pod lib lint --allow-warnings
       deploy:
         provider: script
         skip_cleanup: true
