@@ -49,6 +49,7 @@ open class Client: NSObject {
      - parameter applicationId: The application id to use
      - parameter clientKey:     The client key to use
      */
+    @objc(initWithServer:applicationId:clientKey:)
     public init(server: String, applicationId: String? = nil, clientKey: String? = nil) {
         guard let cmpts = URLComponents(string: server) else {
             fatalError("Server should be a valid URL.")
@@ -227,6 +228,7 @@ extension Client {
      This will disconnect and resubscribe all existing subscriptions. This is not required to be called the first time
      you use the client, and should usually only be called when an error occurs.
      */
+    @objc(reconnect)
     public func reconnect() {
         guard socket == nil || !isConnecting else { return }
         socket?.disconnect()
@@ -247,6 +249,7 @@ extension Client {
      This does not remove any subscriptions - if you `reconnect()` your existing subscriptions will be restored.
      Use this if you wish to dispose of the live query client.
      */
+    @objc(disconnect)
     public func disconnect() {
         isConnecting = false
         guard let socket = socket
