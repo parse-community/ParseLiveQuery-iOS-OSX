@@ -2,12 +2,14 @@
 
 [![Platforms][platforms-svg]][platforms-link]
 [![Carthage compatible][carthage-svg]][carthage-link]
-
 [![Podspec][podspec-svg]][podspec-link]
 [![License][license-svg]][license-link]
-
 [![Build Status][build-status-svg]][build-status-link]
 [![Build Status][circleci-status-svg]][circleci-status-link]
+[![Join The Conversation](https://img.shields.io/discourse/https/community.parseplatform.org/topics.svg)](https://community.parseplatform.org/c/parse-server)
+[![Backers on Open Collective](https://opencollective.com/parse-server/backers/badge.svg)](#backers)
+[![Sponsors on Open Collective](https://opencollective.com/parse-server/sponsors/badge.svg)](#sponsors)
+![Twitter Follow](https://img.shields.io/twitter/follow/ParsePlatform.svg?label=Follow%20us%20on%20Twitter&style=social)
 
 `PFQuery` is one of the key concepts for Parse. It allows you to retrieve `PFObject`s by specifying some conditions, making it easy to build apps such as a dashboard, a todo list or even some strategy games. However, `PFQuery` is based on a pull model, which is not suitable for apps that need real-time support.
 
