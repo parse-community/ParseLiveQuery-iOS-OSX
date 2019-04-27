@@ -37,7 +37,7 @@ extension Dictionary where Key: ExpressibleByStringLiteral, Value: AnyObject {
             } else if let object = val as? PFObject {
                 encodedQueryDictionary[key] = (try? PFPointerObjectEncoder.object().encode(object)) as? Value
             } else if let date = val as? Date {
-                encodedQueryDictionary[key] = date.encodedString as? Value
+                encodedQueryDictionary[key] = ["__type": "Date", "iso": date.encodedString] as? Value
             } else {
                 encodedQueryDictionary[key] = val
             }
