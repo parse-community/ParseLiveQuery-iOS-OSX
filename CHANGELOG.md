@@ -8,8 +8,8 @@
 
 [Full Changelog](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/compare/2.5.0...2.6.0)
 
-- Added @objc to compile with objective-c.  Thanks to [Junya Yamaguchi](https://github.com/junya100) [(#184)](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/pull/184)
-- Encode Date object with __type: Date. Thanks to [anafang](https://github.com/ananfang) [#186](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/pull/186)
+- Added `@objc` to compile with objective-c.  Thanks to [Junya Yamaguchi](https://github.com/junya100) [(#184)](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/pull/184)
+- Encode Date object with `__type: Date`. Thanks to [anafang](https://github.com/ananfang) [#186](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/pull/186)
 
 ### 2.5.0
 
