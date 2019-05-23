@@ -14,7 +14,7 @@
 ### 2.5.0
 
 - Bumps Bolts-Swift to 1.4.0
-- Bumps Swxift version to 4.2
+- Bumps Swift version to 4.2
 
 ### 2.4.0
 
