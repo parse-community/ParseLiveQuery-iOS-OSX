@@ -55,7 +55,7 @@ extension PFGeoPoint {
 }
 
 fileprivate extension Formatter {
-    fileprivate static let iso8601: DateFormatter = {
+    static let iso8601: DateFormatter = {
         let formatter = DateFormatter()
         formatter.calendar = Calendar(identifier: .iso8601)
         formatter.locale = Locale(identifier: "en_US_POSIX")
@@ -66,7 +66,7 @@ fileprivate extension Formatter {
 }
 
 fileprivate extension Date {
-    fileprivate var encodedString: String {
+    var encodedString: String {
         return Formatter.iso8601.string(from: self)
     }
 }
