@@ -4,7 +4,7 @@ defaults: &defaults
     shell: /bin/bash --login -eo pipefail
 aliases:
   - &prepare
-    | 
+    |
       git submodule update --init --recursive
       gem install bundler
       bundle install
@@ -20,7 +20,7 @@ jobs:
     steps:
       - checkout
       - run: *prepare
-      - run: xcodebuild build -workspace ParseLiveQuery.xcworkspace -sdk iphonesimulator -scheme ParseLiveQuery-iOS -configuration Debug -destination "platform=iOS Simulator,name=iPhone 6 Plus" GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c;
+      - run: xcodebuild build -workspace ParseLiveQuery.xcworkspace -sdk iphonesimulator -scheme ParseLiveQuery-iOS -configuration Debug -destination "platform=iOS Simulator,OS=12.2, name=iPhone 8 Plus" GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c;
       - run: bash <(curl -s https://codecov.io/bash)
       - store_test_results:
           path: build/reports
