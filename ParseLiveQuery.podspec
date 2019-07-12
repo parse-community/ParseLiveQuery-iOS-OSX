@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
 
   s.platform = :ios, :osx, :tvos
   s.swift_version = '5.0'
-  s.cocoapods_version = '>= 1.4'
+  s.cocoapods_version = '>= 1.7.4'
 
   s.ios.deployment_target = '8.0'
   s.tvos.deployment_target = '9.0'
