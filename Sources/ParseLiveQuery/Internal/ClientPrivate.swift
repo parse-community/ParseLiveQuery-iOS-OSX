@@ -180,7 +180,7 @@ extension Event {
 extension Client {
     fileprivate func subscriptionRecord(_ requestId: RequestId) -> SubscriptionRecord? {
         guard
-            let recordIndex = self.subscriptions.index(where: { $0.requestId == requestId }) else {
+            let recordIndex = self.subscriptions.firstIndex(where: { $0.requestId == requestId }) else {
                 return nil
         }
         let record = self.subscriptions[recordIndex]
@@ -225,7 +225,7 @@ extension Client {
 
             case .unsubscribed(let requestId):
                 guard
-                    let recordIndex = self.subscriptions.index(where: { $0.requestId == requestId })
+                    let recordIndex = self.subscriptions.firstIndex(where: { $0.requestId == requestId })
                      else {
                         break
                 }
