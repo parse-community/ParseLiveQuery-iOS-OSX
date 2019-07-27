@@ -20,9 +20,11 @@ extension Dictionary where Key: ExpressibleByStringLiteral, Value: AnyObject {
         if let className = queryState?.value(forKey: "parseClassName") {
             self["className"] = className as? Value
         }
-        if let conditions: [String:AnyObject] = queryState?.value(forKey: "conditions") as? [String:AnyObject] {
+        if let conditions = queryState?.value(forKey: "conditions") as? [String:AnyObject] {
             self["where"] = conditions.encodedQueryDictionary as? Value
-        } else { self["where"] = [:] as? Value }
+        } else {
+            self["where"] = [:] as? Value
+        }
     }
 }
 
