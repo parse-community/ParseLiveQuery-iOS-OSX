@@ -22,7 +22,7 @@ extension Dictionary where Key: ExpressibleByStringLiteral, Value: AnyObject {
         }
         if let conditions: [String:AnyObject] = queryState?.value(forKey: "conditions") as? [String:AnyObject] {
             self["where"] = conditions.encodedQueryDictionary as? Value
-        }
+        } else { self["where"] = [:] as? Value }
     }
 }
 
@@ -30,7 +30,7 @@ extension Dictionary where Key: ExpressibleByStringLiteral, Value: AnyObject {
     var encodedQueryDictionary: Dictionary {
         var encodedQueryDictionary = Dictionary()
         for (key, val) in self {
-             if let array = val as? [PFQuery] {
+            if let array = val as? [PFQuery] {
                 var queries:[Value] = []
                 for query in array {
                     let queryState = query.value(forKey: "state") as AnyObject?
@@ -39,8 +39,7 @@ extension Dictionary where Key: ExpressibleByStringLiteral, Value: AnyObject {
                     }
                 }
                 encodedQueryDictionary[key] = queries as? Value
-            }
-            else if let dict = val as? [String:AnyObject] {
+            } else if let dict = val as? [String:AnyObject] {
                 encodedQueryDictionary[key] = dict.encodedQueryDictionary as? Value
             } else if let geoPoint = val as? PFGeoPoint {
                 encodedQueryDictionary[key] = geoPoint.encodedDictionary as? Value
