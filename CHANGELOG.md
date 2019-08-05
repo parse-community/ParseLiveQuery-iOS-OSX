@@ -10,9 +10,9 @@
 
 **This will be the final release for Swift 4.2**
 
--Fix #190 thanks to [rostopira](https://github.com/rostopira)
--Bumps Parse SDK to 1.17.1
--Bumps Starscream to 3.0.5
+- Fix #190 thanks to [rostopira](https://github.com/rostopira)
+- Bumps Parse SDK to 1.17.1
+- Bumps Starscream to 3.0.5
 
 ### 2.6.0
 
