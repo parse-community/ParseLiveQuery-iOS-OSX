@@ -498,7 +498,7 @@
 			};
 			buildConfigurationList = F5256FC81BD71F9A0052FB8A /* Build configuration list for PBXProject "ParseLiveQuery" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,

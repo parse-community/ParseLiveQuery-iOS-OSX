@@ -43,7 +43,7 @@ enum ClientOperation {
 
 enum ServerResponse {
     case redirect(url: String)
-    case connected()
+    case connected
 
     case subscribed(requestId: Client.RequestId)
     case unsubscribed(requestId: Client.RequestId)
@@ -80,7 +80,7 @@ enum ServerResponse {
         let rawOperation: String = try jsonValue(json, "op")
         switch rawOperation {
         case "connected":
-            self = .connected()
+            self = .connected
 
         case "redirect":
             self = .redirect(url: try jsonValue(json, "url"))
