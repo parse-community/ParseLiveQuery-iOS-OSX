@@ -2,11 +2,20 @@
 
 ### Master
 
-[Full Changelog](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/compare/2.6.0...master)
+[Full Changelog](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/compare/2.6.1...master)
+
+### 2.6.1
+
+[Full Changelog](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/compare/2.6.0...2.6.1)
+
+**This will be the final release for Swift 4.2**
+
+-Fix #190 thanks to [rostopira](https://github.com/rostopira)
+-Bumps Parse SDK to 1.17.1
+-Bumps Starscream to 3.0.5
+
 
 ### 2.6.0
-
-[Full Changelog](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/compare/2.5.0...2.6.0)
 
 - Fixed issue where no "where" property sent when no constraints where added to a query. This is required by the LiveQuery protocol. 
 - Support for .or queries. Fixes #156, #47, and #85. Allows orQuery to be encoded without throwing. Thanks to [dblythy](https://github.com/dblythy)
