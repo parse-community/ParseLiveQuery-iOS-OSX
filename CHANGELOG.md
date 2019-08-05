@@ -14,7 +14,6 @@
 -Bumps Parse SDK to 1.17.1
 -Bumps Starscream to 3.0.5
 
-
 ### 2.6.0
 
 - Fixed issue where no "where" property sent when no constraints where added to a query. This is required by the LiveQuery protocol. 
