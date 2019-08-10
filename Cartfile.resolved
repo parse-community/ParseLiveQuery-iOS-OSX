@@ -1,0 +1,4 @@
+github "BoltsFramework/Bolts-ObjC" "1.9.0"
+github "BoltsFramework/Bolts-Swift" "e7811181243e9dfa9462ec3048cd5957519fa26f"
+github "ParsePlatform/Parse-SDK-iOS-OSX" "1.16.0"
+github "daltoniam/Starscream" "3.0.5"
