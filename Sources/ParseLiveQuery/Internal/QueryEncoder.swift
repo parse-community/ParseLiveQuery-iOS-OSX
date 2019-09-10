@@ -41,6 +41,12 @@ extension Dictionary where Key: ExpressibleByStringLiteral, Value: AnyObject {
                     }
                 }
                 encodedQueryDictionary[key] = queries as? Value
+            } else if let geoPoints = val as? [PFGeoPoint] {
+                var points:[Value] = []
+                for point in geoPoints {
+                    points.append(point.encodedDictionary as! Value)
+                }
+                encodedQueryDictionary[key] = points as? Value
             } else if let dict = val as? [String:AnyObject] {
                 encodedQueryDictionary[key] = dict.encodedQueryDictionary as? Value
             } else if let geoPoint = val as? PFGeoPoint {
