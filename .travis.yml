@@ -1,19 +1,21 @@
+language: objective-c
+os: osx
+osx_image: xcode10.2
 branches:
   only:
     - master
     - /^v?[0-9]+\.[0-9]+\.[0-9]+(-.*)?$/
-language: objective-c
-os: osx
-osx_image: xcode10.1
-cache:
-  - cocoapods
-install:  bundle install
+git:
+  submodules: false
+
+before_install:
+  - git submodule update --init --recursive
 
 jobs:
   include:
     - stage: distribution
       env: CocoaPods
-      script: EXPANDED_CODE_SIGN_IDENTITY="-" EXPANDED_CODE_SIGN_IDENTITY_NAME="-" bundle exec pod lib lint --allow-warnings
+      script: skip
       deploy:
         provider: script
         skip_cleanup: true
