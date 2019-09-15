@@ -13,7 +13,7 @@ before_install:
 
 jobs:
   include:
-    - stage: distribution
+    - stage: release
       env: CocoaPods
       script: skip
       deploy:
@@ -23,7 +23,7 @@ jobs:
         on:
           tags: true
           all_branches: true
-    - stage: distribution
+    - stage: release
       env: Docs
       script: bundle exec jazzy
       deploy:
