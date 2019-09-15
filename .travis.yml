@@ -7,8 +7,6 @@ os: osx
 osx_image: xcode11
 cache:
   - cocoapods
-before_install:
-  - git submodule update --init --recursive
 install:  bundle install
 
 jobs:
