@@ -85,6 +85,7 @@ GEM
       claide (>= 1.0.2, < 2.0)
       colored2 (~> 3.1)
       nanaimo (~> 0.2.6)
+    xcpretty (0.1.12)
 
 PLATFORMS
   ruby
@@ -92,6 +93,7 @@ PLATFORMS
 DEPENDENCIES
   cocoapods (~> 1.7.5)
   jazzy (~> 0.11.0)
+  xcpretty
 
 BUNDLED WITH
    1.17.3
