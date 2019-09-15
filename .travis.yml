@@ -7,13 +7,15 @@ branches:
     - /^v?[0-9]+\.[0-9]+\.[0-9]+(-.*)?$/
 git:
   submodules: false
-
+cache:
+  - cocoapods
 before_install:
   - git submodule update --init --recursive
+install:  bundle install
 
 jobs:
   include:
-    - stage: release
+    - stage: distribution
       env: CocoaPods
       script: skip
       deploy:
