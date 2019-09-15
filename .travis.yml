@@ -23,7 +23,7 @@ jobs:
         on:
           tags: true
           all_branches: true
-    - stage: release
+    - stage: distribution
       env: Docs
       script: bundle exec jazzy
       deploy:
