@@ -489,7 +489,7 @@
 				TargetAttributes = {
 					F5903CE91BD999C500C3EFFE = {
 						CreatedOnToolsVersion = 7.1;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1100;
 					};
 					F5A9BFB61BE0248D00E78326 = {
 						LastSwiftMigration = 1010;
@@ -848,7 +848,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -872,7 +872,7 @@
 				PRODUCT_NAME = ParseLiveQuery;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
