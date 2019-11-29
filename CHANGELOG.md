@@ -2,16 +2,16 @@
 
 ### Master
 
-[Full Changelog](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/compare/2.6.1...master)
+[Full Changelog](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/compare/2.7.0...master)
 
 ### 2.7.0
 
 [Full Changelog](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/compare/2.6.1...2.7.0)
 
-- Build compatibility with Xcode 11, iOS 13
-- Moves to Parse SDK 1.17.3
+- Build compatibility with Xcode 11 and iOS 13
+- Bump Parse SDK to v1.17.3
 - Moves to Swift 5
-- Moves Bolts-Swift dependency to version 1.5.0
+- Bump Bolts-Swift dependency to v1.5.0
 
 ### 2.6.1
 
