@@ -8,10 +8,11 @@
 
 [Full Changelog](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/compare/2.6.1...2.7.0)
 
-- Build compatibility with Xcode 11 and iOS 13
-- Bump Parse SDK to v1.17.3
-- Moves to Swift 5
-- Bump Bolts-Swift dependency to v1.5.0
+- Build compatibility with Xcode 11 and iOS 13 ([#210](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/pull/210)), thanks to [Nathan Kellert](https://github.com/noobs2ninjas) & [Darren Black](https://github.com/drdaz)
+- Bump Parse SDK to v1.17.3 ([#210](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/pull/210)), thanks to [Nathan Kellert](https://github.com/noobs2ninjas) & [Darren Black](https://github.com/drdaz)
+- Moves to Swift 5 ([#210](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/pull/210)), thanks to [Nathan Kellert](https://github.com/noobs2ninjas) & [Darren Black](https://github.com/drdaz)
+- Bump Bolts-Swift dependency to v1.5.0 ([#210](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/pull/210)), thanks to [Nathan Kellert](https://github.com/noobs2ninjas) & [Darren Black](https://github.com/drdaz)
+- Properly encode Array of GeoPoints ([#208](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/pull/208)), thanks to [Diamond Lewis](https://github.com/dplewis)
 
 ### 2.6.1
 
@@ -19,7 +20,7 @@
 
 **This will be the final release for Swift 4.2**
 
-- Fix #190 thanks to [rostopira](https://github.com/rostopira)
+- Fix #190, thanks to [rostopira](https://github.com/rostopira)
 - Bumps Parse SDK to 1.17.1
 - Bumps Starscream to 3.0.5
 
