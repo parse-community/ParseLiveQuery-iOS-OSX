@@ -218,6 +218,13 @@
 			remoteGlobalIDString = 81C582E11C3B0A98000063C6;
 			remoteInfo = "Parse-iOS-Dynamic";
 		};
+		BCC3A76423905FDF0082C2A3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A6AE30B200FB23E007CA404 /* Parse.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 97010FAB1630B18F00AB761E;
+			remoteInfo = "Parse-macOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -232,7 +239,6 @@
 		094AE9051E25AF5A00F408BC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = ../../../../../../../../../../Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		09A31C7E1E25C2000037C3BC /* BoltsSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BoltsSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		09A31C841E25C5100037C3BC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		09C9FCE11E25C9BA00369AA6 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		09D80FD71E26BF0500AC7A2D /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/usr/lib/libsqlite3.tbd; sourceTree = DEVELOPER_DIR; };
 		09D80FD91E26BFAA00AC7A2D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
 		09D80FDB1E26C02600AC7A2D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
@@ -305,7 +311,6 @@
 				09D80FDF1E26C04800AC7A2D /* AudioToolbox.framework */,
 				09D80FD71E26BF0500AC7A2D /* libsqlite3.tbd */,
 				09D80FE11E26C05200AC7A2D /* libsqlite3.tbd */,
-				09C9FCE11E25C9BA00369AA6 /* Bolts.framework */,
 				09A31C7E1E25C2000037C3BC /* BoltsSwift.framework */,
 				09A31C841E25C5100037C3BC /* Parse.framework */,
 				094AE9011E25AF3A00F408BC /* Foundation.framework */,
@@ -453,6 +458,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				BCC3A76523905FDF0082C2A3 /* PBXTargetDependency */,
 			);
 			name = "ParseLiveQuery-OSX";
 			productName = ParseLiveQuery;
@@ -752,6 +758,11 @@
 			isa = PBXTargetDependency;
 			name = "Parse-iOS-Dynamic";
 			targetProxy = 4ABA29F9205C346700ABF9CB /* PBXContainerItemProxy */;
+		};
+		BCC3A76523905FDF0082C2A3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Parse-macOS";
+			targetProxy = BCC3A76423905FDF0082C2A3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
