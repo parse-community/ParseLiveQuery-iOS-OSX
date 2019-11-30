@@ -11,7 +11,7 @@ import Parse
 
 extension Parse {
     static func validatedCurrentConfiguration() -> ParseClientConfiguration {
-        guard let configuration = Parse.currentConfiguration() else {
+        guard let configuration = Parse.currentConfiguration else {
             preconditionFailure("Parse SDK is not initialized. Call Parse.initializeWithConfiguration() before loading live query client.")
         }
         return configuration

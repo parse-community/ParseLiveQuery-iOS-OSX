@@ -9,24 +9,13 @@
 /* Begin PBXBuildFile section */
 		0632EDD41CA1A6DB00DD3CB8 /* Parse+LiveQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0632EDD31CA1A6DB00DD3CB8 /* Parse+LiveQuery.swift */; };
 		0632EDD51CA1A6DB00DD3CB8 /* Parse+LiveQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0632EDD31CA1A6DB00DD3CB8 /* Parse+LiveQuery.swift */; };
-		094AE8F01E25ADF300F408BC /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 094AE8EF1E25ADF300F408BC /* libicucore.tbd */; };
-		094AE8F21E25AE0500F408BC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 094AE8F11E25AE0500F408BC /* CFNetwork.framework */; };
-		094AE8F41E25AE1100F408BC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 094AE8F31E25AE1100F408BC /* Security.framework */; };
-		094AE8F61E25AE1C00F408BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 094AE8F51E25AE1C00F408BC /* Foundation.framework */; };
 		094AE9001E25AF3100F408BC /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 094AE8FF1E25AF3100F408BC /* libicucore.tbd */; };
 		094AE9021E25AF3A00F408BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 094AE9011E25AF3A00F408BC /* Foundation.framework */; };
 		094AE9041E25AF4300F408BC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 094AE9031E25AF4300F408BC /* Security.framework */; };
-		094AE9061E25AF5A00F408BC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 094AE9051E25AF5A00F408BC /* CFNetwork.framework */; };
-		09A31C851E25C5100037C3BC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A31C841E25C5100037C3BC /* Parse.framework */; };
-		09C9FCE41E25D08400369AA6 /* BoltsSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A31C7E1E25C2000037C3BC /* BoltsSwift.framework */; };
-		09D80FD81E26BF0500AC7A2D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 09D80FD71E26BF0500AC7A2D /* libsqlite3.tbd */; };
-		09D80FDA1E26BFAA00AC7A2D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09D80FD91E26BFAA00AC7A2D /* AudioToolbox.framework */; };
-		09D80FDC1E26C02600AC7A2D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09D80FDB1E26C02600AC7A2D /* SystemConfiguration.framework */; };
 		09D80FDE1E26C03E00AC7A2D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09D80FDD1E26C03E00AC7A2D /* SystemConfiguration.framework */; };
 		09D80FE01E26C04800AC7A2D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09D80FDF1E26C04800AC7A2D /* AudioToolbox.framework */; };
 		09D80FE21E26C05200AC7A2D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 09D80FE11E26C05200AC7A2D /* libsqlite3.tbd */; };
 		4A6AE335200FB54C007CA404 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6AE319200FB23E007CA404 /* Parse.framework */; };
-		4A6AE361200FC9C5007CA404 /* BoltsSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6AE362200FC9C5007CA404 /* BoltsSwift.framework */; };
 		4A6AE37E200FC9DF007CA404 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6AE37B200FC9C5007CA404 /* Starscream.framework */; };
 		4A6AE37F200FD00E007CA404 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6AE37B200FC9C5007CA404 /* Starscream.framework */; };
 		4A819D9D1D937866009C0F61 /* ObjCCompat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D58B51C8E33D9009F8D6C /* ObjCCompat.swift */; };
@@ -218,31 +207,90 @@
 			remoteGlobalIDString = 81C582E11C3B0A98000063C6;
 			remoteInfo = "Parse-iOS-Dynamic";
 		};
+		BC2D679E239131E500DC849E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC2D6789239131E500DC849E /* BoltsSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 87FEF3661A9085FA00C60678;
+			remoteInfo = "BoltsSwift-iOS";
+		};
+		BC2D67A0239131E500DC849E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC2D6789239131E500DC849E /* BoltsSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 87FEF3711A9085FA00C60678;
+			remoteInfo = "BoltsSwiftTests-iOS";
+		};
+		BC2D67A2239131E500DC849E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC2D6789239131E500DC849E /* BoltsSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 81CC14EC1A9BE0A100B28F86;
+			remoteInfo = "BoltsSwift-macOS";
+		};
+		BC2D67A4239131E500DC849E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC2D6789239131E500DC849E /* BoltsSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 81CC14F61A9BE0A100B28F86;
+			remoteInfo = "BoltsSwiftTests-macOS";
+		};
+		BC2D67A6239131E500DC849E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC2D6789239131E500DC849E /* BoltsSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 065894FF1C9A93B7000FDDA6;
+			remoteInfo = "BoltsSwift-tvOS";
+		};
+		BC2D67A8239131E500DC849E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC2D6789239131E500DC849E /* BoltsSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0658951B1C9A947B000FDDA6;
+			remoteInfo = "BoltsSwiftTests-tvOS";
+		};
+		BC2D67AA239131E500DC849E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC2D6789239131E500DC849E /* BoltsSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 065894E71C9A933B000FDDA6;
+			remoteInfo = "BoltsSwift-watchOS";
+		};
+		BC2D67B62391320F00DC849E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC2D6789239131E500DC849E /* BoltsSwift.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 81CC14EB1A9BE0A100B28F86;
+			remoteInfo = "BoltsSwift-macOS";
+		};
+		BC2D67B82391321700DC849E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC2D6789239131E500DC849E /* BoltsSwift.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 87FEF3651A9085FA00C60678;
+			remoteInfo = "BoltsSwift-iOS";
+		};
+		BCC3A76423905FDF0082C2A3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A6AE30B200FB23E007CA404 /* Parse.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 97010FAB1630B18F00AB761E;
+			remoteInfo = "Parse-macOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0632EDD31CA1A6DB00DD3CB8 /* Parse+LiveQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Parse+LiveQuery.swift"; sourceTree = "<group>"; };
-		094AE8EF1E25ADF300F408BC /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/usr/lib/libicucore.tbd; sourceTree = DEVELOPER_DIR; };
-		094AE8F11E25AE0500F408BC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
-		094AE8F31E25AE1100F408BC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
-		094AE8F51E25AE1C00F408BC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		094AE8FF1E25AF3100F408BC /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		094AE9011E25AF3A00F408BC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		094AE9031E25AF4300F408BC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		094AE9051E25AF5A00F408BC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = ../../../../../../../../../../Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		09A31C7E1E25C2000037C3BC /* BoltsSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BoltsSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		09A31C841E25C5100037C3BC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		09C9FCE11E25C9BA00369AA6 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		09D80FD71E26BF0500AC7A2D /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/usr/lib/libsqlite3.tbd; sourceTree = DEVELOPER_DIR; };
-		09D80FD91E26BFAA00AC7A2D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
-		09D80FDB1E26C02600AC7A2D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		09D80FDD1E26C03E00AC7A2D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		09D80FDF1E26C04800AC7A2D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		09D80FE11E26C05200AC7A2D /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		4A1A99611E5E8DBB0047B84B /* Starscream.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Starscream.xcodeproj; path = ../Carthage/Checkouts/Starscream/Starscream.xcodeproj; sourceTree = "<group>"; };
 		4A6AE30B200FB23E007CA404 /* Parse.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Parse.xcodeproj; path = "../Carthage/Checkouts/Parse-SDK-iOS-OSX/Parse/Parse.xcodeproj"; sourceTree = "<group>"; };
 		4A6AE337200FB569007CA404 /* Bolts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Bolts.xcodeproj; path = "../Carthage/Checkouts/Bolts-ObjC/Bolts.xcodeproj"; sourceTree = "<group>"; };
-		4A6AE362200FC9C5007CA404 /* BoltsSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BoltsSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC2D6789239131E500DC849E /* BoltsSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BoltsSwift.xcodeproj; path = "../Carthage/Checkouts/Bolts-Swift/BoltsSwift.xcodeproj"; sourceTree = "<group>"; };
 		F5256FD31BD71F9A0052FB8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F534A5B11BDAFE0200CBD11A /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		F534A5B31BDB09CE00CBD11A /* Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
@@ -267,11 +315,8 @@
 				09D80FE01E26C04800AC7A2D /* AudioToolbox.framework in Frameworks */,
 				09D80FDE1E26C03E00AC7A2D /* SystemConfiguration.framework in Frameworks */,
 				094AE9021E25AF3A00F408BC /* Foundation.framework in Frameworks */,
-				09C9FCE41E25D08400369AA6 /* BoltsSwift.framework in Frameworks */,
-				094AE9061E25AF5A00F408BC /* CFNetwork.framework in Frameworks */,
 				094AE9041E25AF4300F408BC /* Security.framework in Frameworks */,
 				094AE9001E25AF3100F408BC /* libicucore.tbd in Frameworks */,
-				09A31C851E25C5100037C3BC /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,15 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A6AE37F200FD00E007CA404 /* Starscream.framework in Frameworks */,
-				4A6AE361200FC9C5007CA404 /* BoltsSwift.framework in Frameworks */,
 				4A6AE335200FB54C007CA404 /* Parse.framework in Frameworks */,
-				09D80FDC1E26C02600AC7A2D /* SystemConfiguration.framework in Frameworks */,
-				094AE8F61E25AE1C00F408BC /* Foundation.framework in Frameworks */,
-				094AE8F41E25AE1100F408BC /* Security.framework in Frameworks */,
-				094AE8F21E25AE0500F408BC /* CFNetwork.framework in Frameworks */,
-				09D80FDA1E26BFAA00AC7A2D /* AudioToolbox.framework in Frameworks */,
-				09D80FD81E26BF0500AC7A2D /* libsqlite3.tbd in Frameworks */,
-				094AE8F01E25ADF300F408BC /* libicucore.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,24 +335,12 @@
 		0BD13CAB7945A6C1A2A7B613 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4A6AE362200FC9C5007CA404 /* BoltsSwift.framework */,
 				09D80FDD1E26C03E00AC7A2D /* SystemConfiguration.framework */,
-				09D80FDB1E26C02600AC7A2D /* SystemConfiguration.framework */,
-				09D80FD91E26BFAA00AC7A2D /* AudioToolbox.framework */,
 				09D80FDF1E26C04800AC7A2D /* AudioToolbox.framework */,
-				09D80FD71E26BF0500AC7A2D /* libsqlite3.tbd */,
 				09D80FE11E26C05200AC7A2D /* libsqlite3.tbd */,
-				09C9FCE11E25C9BA00369AA6 /* Bolts.framework */,
-				09A31C7E1E25C2000037C3BC /* BoltsSwift.framework */,
-				09A31C841E25C5100037C3BC /* Parse.framework */,
 				094AE9011E25AF3A00F408BC /* Foundation.framework */,
-				094AE8F51E25AE1C00F408BC /* Foundation.framework */,
 				094AE9031E25AF4300F408BC /* Security.framework */,
-				094AE8F31E25AE1100F408BC /* Security.framework */,
-				094AE9051E25AF5A00F408BC /* CFNetwork.framework */,
-				094AE8F11E25AE0500F408BC /* CFNetwork.framework */,
 				094AE8FF1E25AF3100F408BC /* libicucore.tbd */,
-				094AE8EF1E25ADF300F408BC /* libicucore.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -372,11 +397,26 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		BC2D678A239131E500DC849E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BC2D679F239131E500DC849E /* BoltsSwift.framework */,
+				BC2D67A1239131E500DC849E /* BoltsSwiftTests.xctest */,
+				BC2D67A3239131E500DC849E /* BoltsSwift.framework */,
+				BC2D67A5239131E500DC849E /* BoltsSwiftTests.xctest */,
+				BC2D67A7239131E500DC849E /* BoltsSwift.framework */,
+				BC2D67A9239131E500DC849E /* BoltsSwiftTests.xctest */,
+				BC2D67AB239131E500DC849E /* BoltsSwift.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		F5256FC41BD71F9A0052FB8A = {
 			isa = PBXGroup;
 			children = (
 				F5256FD01BD71F9A0052FB8A /* ParseLiveQuery */,
 				F5256FCF1BD71F9A0052FB8A /* Products */,
+				BC2D6789239131E500DC849E /* BoltsSwift.xcodeproj */,
 				4A6AE337200FB569007CA404 /* Bolts.xcodeproj */,
 				4A6AE30B200FB23E007CA404 /* Parse.xcodeproj */,
 				4A1A99611E5E8DBB0047B84B /* Starscream.xcodeproj */,
@@ -453,6 +493,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				BC2D67B72391320F00DC849E /* PBXTargetDependency */,
+				BCC3A76523905FDF0082C2A3 /* PBXTargetDependency */,
 			);
 			name = "ParseLiveQuery-OSX";
 			productName = ParseLiveQuery;
@@ -471,6 +513,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				BC2D67B92391321700DC849E /* PBXTargetDependency */,
 				4ABA29FA205C346700ABF9CB /* PBXTargetDependency */,
 			);
 			name = "ParseLiveQuery-iOS";
@@ -484,12 +527,12 @@
 		F5256FC51BD71F9A0052FB8A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = Parse;
 				TargetAttributes = {
 					F5903CE91BD999C500C3EFFE = {
 						CreatedOnToolsVersion = 7.1;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1100;
 					};
 					F5A9BFB61BE0248D00E78326 = {
 						LastSwiftMigration = 1010;
@@ -511,6 +554,10 @@
 				{
 					ProductGroup = 4A6AE338200FB569007CA404 /* Products */;
 					ProjectRef = 4A6AE337200FB569007CA404 /* Bolts.xcodeproj */;
+				},
+				{
+					ProductGroup = BC2D678A239131E500DC849E /* Products */;
+					ProjectRef = BC2D6789239131E500DC849E /* BoltsSwift.xcodeproj */;
 				},
 				{
 					ProductGroup = 4A6AE30C200FB23E007CA404 /* Products */;
@@ -691,6 +738,55 @@
 			remoteRef = 4A6AE37C200FC9C5007CA404 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		BC2D679F239131E500DC849E /* BoltsSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BoltsSwift.framework;
+			remoteRef = BC2D679E239131E500DC849E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BC2D67A1239131E500DC849E /* BoltsSwiftTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = BoltsSwiftTests.xctest;
+			remoteRef = BC2D67A0239131E500DC849E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BC2D67A3239131E500DC849E /* BoltsSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BoltsSwift.framework;
+			remoteRef = BC2D67A2239131E500DC849E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BC2D67A5239131E500DC849E /* BoltsSwiftTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = BoltsSwiftTests.xctest;
+			remoteRef = BC2D67A4239131E500DC849E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BC2D67A7239131E500DC849E /* BoltsSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BoltsSwift.framework;
+			remoteRef = BC2D67A6239131E500DC849E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BC2D67A9239131E500DC849E /* BoltsSwiftTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = BoltsSwiftTests.xctest;
+			remoteRef = BC2D67A8239131E500DC849E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BC2D67AB239131E500DC849E /* BoltsSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BoltsSwift.framework;
+			remoteRef = BC2D67AA239131E500DC849E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -753,6 +849,21 @@
 			name = "Parse-iOS-Dynamic";
 			targetProxy = 4ABA29F9205C346700ABF9CB /* PBXContainerItemProxy */;
 		};
+		BC2D67B72391320F00DC849E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "BoltsSwift-macOS";
+			targetProxy = BC2D67B62391320F00DC849E /* PBXContainerItemProxy */;
+		};
+		BC2D67B92391321700DC849E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "BoltsSwift-iOS";
+			targetProxy = BC2D67B82391321700DC849E /* PBXContainerItemProxy */;
+		};
+		BCC3A76523905FDF0082C2A3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Parse-macOS";
+			targetProxy = BCC3A76423905FDF0082C2A3 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -764,11 +875,13 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
@@ -785,7 +898,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.2;
@@ -800,11 +913,13 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
@@ -820,7 +935,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.2;
@@ -832,6 +947,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGNING_REQUIRED = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -842,13 +958,14 @@
 				INFOPLIST_FILE = ParseLiveQuery/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MARKETING_VERSION = 2.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.parse.livequery.osx;
 				PRODUCT_NAME = ParseLiveQuery;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -857,6 +974,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGNING_REQUIRED = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -867,12 +985,13 @@
 				INFOPLIST_FILE = ParseLiveQuery/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MARKETING_VERSION = 2.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.parse.livequery.osx;
 				PRODUCT_NAME = ParseLiveQuery;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -881,6 +1000,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGNING_REQUIRED = NO;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -892,6 +1012,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				MARKETING_VERSION = 2.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.parse.livequery.ios;
 				PRODUCT_NAME = ParseLiveQuery;
 				SDKROOT = iphoneos;
@@ -908,6 +1029,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGNING_REQUIRED = NO;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -919,6 +1041,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				MARKETING_VERSION = 2.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.parse.livequery.ios;
 				PRODUCT_NAME = ParseLiveQuery;
 				SDKROOT = iphoneos;

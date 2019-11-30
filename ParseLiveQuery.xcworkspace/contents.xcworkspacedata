@@ -14,7 +14,4 @@
          location = "group:Examples/LiveQueryDemo.xcodeproj">
       </FileRef>
    </Group>
-   <FileRef
-      location = "group:Carthage/Checkouts/Bolts-Swift/BoltsSwift.xcodeproj">
-   </FileRef>
 </Workspace>
