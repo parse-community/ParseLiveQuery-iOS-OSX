@@ -23,13 +23,11 @@
 		F534A5B21BDAFE0200CBD11A /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = F534A5B11BDAFE0200CBD11A /* Subscription.swift */; };
 		F534A5B41BDB09CE00CBD11A /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F534A5B31BDB09CE00CBD11A /* Operation.swift */; };
 		F54D58B81C8E3446009F8D6C /* ClientPrivate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D58B71C8E3446009F8D6C /* ClientPrivate.swift */; };
-		F54D58BA1C8E345F009F8D6C /* BoltsHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D58B91C8E345F009F8D6C /* BoltsHelpers.swift */; };
 		F59CA92F1C8E496200329737 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59CA92E1C8E496200329737 /* Errors.swift */; };
 		F5A88F4A1C9B6EBA002F0E0D /* PFQuery+Subscribe.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A88F491C9B6EBA002F0E0D /* PFQuery+Subscribe.swift */; };
 		F5A88F4E1C9B7341002F0E0D /* QueryEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5591BA91BD97BB70072F966 /* QueryEncoder.swift */; };
 		F5A88F4F1C9B7341002F0E0D /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F534A5B31BDB09CE00CBD11A /* Operation.swift */; };
 		F5A88F501C9B7341002F0E0D /* ClientPrivate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D58B71C8E3446009F8D6C /* ClientPrivate.swift */; };
-		F5A88F511C9B7341002F0E0D /* BoltsHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D58B91C8E345F009F8D6C /* BoltsHelpers.swift */; };
 		F5A88F521C9B7341002F0E0D /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5591BA31BD720E10072F966 /* Client.swift */; };
 		F5A88F531C9B7341002F0E0D /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = F534A5B11BDAFE0200CBD11A /* Subscription.swift */; };
 		F5A88F551C9B7341002F0E0D /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59CA92E1C8E496200329737 /* Errors.swift */; };
@@ -296,7 +294,6 @@
 		F534A5B31BDB09CE00CBD11A /* Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
 		F54D58B51C8E33D9009F8D6C /* ObjCCompat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjCCompat.swift; sourceTree = "<group>"; };
 		F54D58B71C8E3446009F8D6C /* ClientPrivate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientPrivate.swift; sourceTree = "<group>"; };
-		F54D58B91C8E345F009F8D6C /* BoltsHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoltsHelpers.swift; sourceTree = "<group>"; };
 		F5591BA31BD720E10072F966 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		F5591BA91BD97BB70072F966 /* QueryEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryEncoder.swift; sourceTree = "<group>"; };
 		F5903CEA1BD999C500C3EFFE /* ParseLiveQuery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParseLiveQuery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -456,7 +453,6 @@
 				F5591BA91BD97BB70072F966 /* QueryEncoder.swift */,
 				F534A5B31BDB09CE00CBD11A /* Operation.swift */,
 				F54D58B71C8E3446009F8D6C /* ClientPrivate.swift */,
-				F54D58B91C8E345F009F8D6C /* BoltsHelpers.swift */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
@@ -814,7 +810,6 @@
 				F54D58B81C8E3446009F8D6C /* ClientPrivate.swift in Sources */,
 				F5D965351BD99DA200C3AAFC /* Client.swift in Sources */,
 				0632EDD51CA1A6DB00DD3CB8 /* Parse+LiveQuery.swift in Sources */,
-				F54D58BA1C8E345F009F8D6C /* BoltsHelpers.swift in Sources */,
 				F5D965381BD99DA200C3AAFC /* QueryEncoder.swift in Sources */,
 				F534A5B21BDAFE0200CBD11A /* Subscription.swift in Sources */,
 				F59CA92F1C8E496200329737 /* Errors.swift in Sources */,
@@ -830,7 +825,6 @@
 			files = (
 				F5A88F531C9B7341002F0E0D /* Subscription.swift in Sources */,
 				0632EDD41CA1A6DB00DD3CB8 /* Parse+LiveQuery.swift in Sources */,
-				F5A88F511C9B7341002F0E0D /* BoltsHelpers.swift in Sources */,
 				F5A88F501C9B7341002F0E0D /* ClientPrivate.swift in Sources */,
 				F5A88F551C9B7341002F0E0D /* Errors.swift in Sources */,
 				F5A88F4E1C9B7341002F0E0D /* QueryEncoder.swift in Sources */,
