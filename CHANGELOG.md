@@ -2,7 +2,17 @@
 
 ### Master
 
-[Full Changelog](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/compare/2.7.0...master)
+[Full Changelog](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/compare/2.7.1...master)
+
+### 2.7.1
+
+[Full Changelog](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/compare/2.7.0...2.7.1)
+
+- Bump Parse SDK to v1.18.0
+([#226](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/pull/226)), thanks to [Nathan Kellert](https://github.com/noobs2ninjas)
+
+- Remove Bolts-ObjC as dependency
+([#223](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/pull/223)), thanks to [Joe Szymanski](https://github.com/JoeSzymanski)
 
 ### 2.7.0
 
