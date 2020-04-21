@@ -1,35 +1,36 @@
+language: objective-c
+os: osx
+osx_image: xcode11.2
 branches:
   only:
     - master
     - /^v?[0-9]+\.[0-9]+\.[0-9]+(-.*)?$/
-language: objective-c
-os: osx
-osx_image: xcode11
 cache:
   - cocoapods
-install:  
-  - gem install bundler
+  
+install:
   - bundle install
 
 jobs:
   include:
-    - stage: distribution
+    - stage: release
       env: CocoaPods
-      script: EXPANDED_CODE_SIGN_IDENTITY="-" EXPANDED_CODE_SIGN_IDENTITY_NAME="-" bundle exec pod lib lint --allow-warnings
+      script: bundle exec pod lib lint --allow-warnings
       deploy:
         provider: script
-        skip_cleanup: true
-        script: ./publish.sh
+        cleanup: false
+        script: bundle exec pod trunk push ParseLiveQuery.podspec --allow-warnings
         on:
           tags: true
           all_branches: true
-    - stage: distribution
+    - stage: release
       env: Docs
       script: bundle exec jazzy
       deploy:
         provider: pages
-        skip_cleanup: true
+        cleanup: false
         github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
         local_dir: docs/
         on:
+          tags: true
           all_branches: true
