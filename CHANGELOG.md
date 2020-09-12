@@ -2,7 +2,13 @@
 
 ### Master
 
-[Full Changelog](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/compare/2.7.1...master)
+[Full Changelog](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/compare/2.7.2...master)
+
+### 2.7.2
+
+[Full Changelog](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/compare/2.7.1...2.7.2)
+
+- Bump Parse SDK to v.1.19.0 ([#229](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/pull/229)), thanks to [Tom Fox](https://github.com/TomWFox).
 
 ### 2.7.1
 
