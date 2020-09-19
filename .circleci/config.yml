@@ -55,6 +55,7 @@ workflows:
   version: 2
   pr:
     jobs:
+      - carthage
       - ios
       - macos
       - demo
