@@ -75,7 +75,7 @@ workflows:
       - ios
       - macos
       - demo
-      - carthage
+      - carthage:
           requires:
             - ios
   nightly:
