@@ -30,7 +30,7 @@ jobs:
     steps:
       - checkout
       - restore_cache: *cache-pull
-      #- run: *prepare
+      - run: *prepare
       - save_cache: *cache-push
       - run: xcodebuild build -workspace ParseLiveQuery.xcworkspace -sdk iphonesimulator -scheme ParseLiveQuery-iOS -configuration Debug -destination "platform=iOS Simulator,name=iPhone 11,OS=13.2.2" GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c;
       - run: bash <(curl -s https://codecov.io/bash)
@@ -41,7 +41,7 @@ jobs:
     steps:
       - checkout
       - restore_cache: *cache-pull
-      #- run: *prepare
+      - run: *prepare
       - save_cache: *cache-push
       - run: xcodebuild build -workspace ParseLiveQuery.xcworkspace -sdk macosx -scheme ParseLiveQuery-OSX -configuration Debug GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c;
       - run: bash <(curl -s https://codecov.io/bash)
@@ -52,7 +52,7 @@ jobs:
     steps:
       - checkout
       - restore_cache: *cache-pull
-      #- run: *prepare
+      - run: *prepare
       - save_cache: *cache-push
       - run: |
           xcodebuild clean -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo | xcpretty -c;
@@ -65,7 +65,7 @@ jobs:
     steps:
       - checkout
       - restore_cache: *cache-pull
-      #- run: *prepare
+      - run: *prepare
       - save_cache: *cache-push
       - run: carthage build --no-skip-current --platform macos,ios
 
