@@ -30,7 +30,6 @@ jobs:
     - stage: release
       env: Docs
       script:
-        - carthage boostrap --platform iOS 
         - ./jazzy.sh
       deploy:
         provider: pages
