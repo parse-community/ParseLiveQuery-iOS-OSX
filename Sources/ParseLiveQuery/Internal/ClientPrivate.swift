@@ -115,32 +115,33 @@ func == (first: Client.RequestId, second: Client.RequestId) -> Bool {
 // ---------------
 
 extension Client: WebSocketDelegate {
+    public func didReceive(event: WebSocketEvent, client: WebSocket) {
+        switch event {
+        
+        case .connected(_):
+            isConnecting = false
+            let sessionToken = PFUser.current()?.sessionToken ?? ""
+            _ = self.sendOperationAsync(.connect(applicationId: applicationId, sessionToken: sessionToken, clientKey: clientKey))
+        case .disconnected(let reason, let code):
+            isConnecting = false
+            if shouldPrintWebSocketLog { NSLog("ParseLiveQuery: WebSocket did disconnect with error: \(reason) code:\(code)") }
 
-    public func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-        if shouldPrintWebSocketLog { NSLog("ParseLiveQuery: Received binary data but we don't handle it...") }
-    }
-
-    public func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        handleOperationAsync(text).continueWith { [weak self] task in
-            if let error = task.error, self?.shouldPrintWebSocketLog == true {
-                NSLog("ParseLiveQuery: Error processing message: \(error)")
+            // TODO: Better retry logic, unless `disconnect()` was explicitly called
+            if !userDisconnected {
+                reconnect()
             }
-        }
-    }
-
-    public func websocketDidConnect(socket: WebSocketClient) {
-        isConnecting = false
-        let sessionToken = PFUser.current()?.sessionToken ?? ""
-        _ = self.sendOperationAsync(.connect(applicationId: applicationId, sessionToken: sessionToken, clientKey: clientKey))
-    }
-
-    public func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-        isConnecting = false
-        if shouldPrintWebSocketLog { NSLog("ParseLiveQuery: WebSocket did disconnect with error: \(String(describing: error))") }
-
-        // TODO: Better retry logic, unless `disconnect()` was explicitly called
-        if !userDisconnected {
-            reconnect()
+        case .text(let text):
+            handleOperationAsync(text).continueWith { [weak self] task in
+                if let error = task.error, self?.shouldPrintWebSocketLog == true {
+                    NSLog("ParseLiveQuery: Error processing message: \(error)")
+                }
+            }
+        case .binary(_):
+            if shouldPrintWebSocketLog { NSLog("ParseLiveQuery: Received binary data but we don't handle it...") }
+        case .error(let error):
+            NSLog("ParseLiveQuery: Error processing message: \(String(describing: error))")
+        default:
+            break
         }
     }
 }
