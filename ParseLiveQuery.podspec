@@ -24,6 +24,6 @@ Pod::Spec.new do |s|
 
   s.dependency 'Parse', '~> 1.19.0'
   s.dependency 'Bolts-Swift', '~> 1.5.0'
-  s.dependency 'Starscream', '3.1.0'
+  s.dependency 'Starscream', '~> 4.0.4'
 
 end
