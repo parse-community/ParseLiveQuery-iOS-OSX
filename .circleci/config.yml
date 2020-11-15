@@ -32,7 +32,7 @@ jobs:
       - restore_cache: *cache-pull
       - run: *prepare
       - save_cache: *cache-push
-      - run: xcodebuild build -workspace ParseLiveQuery.xcworkspace -sdk iphonesimulator -scheme ParseLiveQuery-iOS -configuration Debug -destination "platform=iOS Simulator,name=iPhone 11,OS=13.2.2" GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c;
+      - run: xcodebuild build -workspace ParseLiveQuery.xcworkspace -sdk iphonesimulator -scheme ParseLiveQuery-iOS -configuration Debug -destination "platform=iOS Simulator,name=iPhone 11" GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c;
       - run: bash <(curl -s https://codecov.io/bash)
       - store_test_results:
           path: build/reports
