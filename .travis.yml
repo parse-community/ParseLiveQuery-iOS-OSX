@@ -29,13 +29,14 @@ jobs:
           all_branches: true
     - stage: release
       env: Docs
-      script: 
+      script:
+        - carthage boostrap --platform iOS 
         - ./jazzy.sh
       deploy:
         provider: pages
         skip_cleanup: true
         github_token: $GITHUB_TOKEN
-        local_dir: docs/
+        local_dir: ./docs/
         on:
           tags: true
           all_branches: true

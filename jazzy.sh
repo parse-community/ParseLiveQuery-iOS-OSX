@@ -8,6 +8,6 @@ bundle exec jazzy \
 --module-version ${ver} \
 --theme fullwidth \
 --skip-undocumented \
---output ./docs \
---build-tool-arguments -scheme,ParseLiveQuery-iOS \
+--output docs/api \
 --module ParseLiveQuery \
+--build-tool-arguments -scheme,ParseLiveQuery-iOS \
