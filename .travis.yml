@@ -7,9 +7,12 @@ branches:
     - /^v?[0-9]+\.[0-9]+\.[0-9]+(-.*)?$/
 cache:
   - cocoapods
+  directories:
+    - vendor/bundle
   
 install:
-  - bundle install
+  - bundle config set path 'vendor/bundle'
+  - travis_wait bundle install
 
 jobs:
   include:
