@@ -153,17 +153,10 @@ extension Client {
             handler: handler
         )
         
-        if let socket = socket {
-            socket.onEvent = { event in
-                switch event {
-                case .connected(_):
-                    self.subscriptions.append(subscriptionRecord)
-                    _ = self.sendOperationAsync(.subscribe(requestId: subscriptionRecord.requestId, query: query as! PFQuery<PFObject>,
-                    sessionToken: PFUser.current()?.sessionToken))
-                default:
-                    break
-                }
-            }
+        if socket != nil {
+            self.subscriptions.append(subscriptionRecord)
+            _ = self.sendOperationAsync(.subscribe(requestId: subscriptionRecord.requestId, query: query as! PFQuery<PFObject>,
+            sessionToken: PFUser.current()?.sessionToken))
         } else if !self.userDisconnected {
             self.reconnect()
             return self.subscribe(query, handler: handler)
