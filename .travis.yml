@@ -22,7 +22,7 @@ jobs:
         - travis_wait bundle exec pod lib lint --allow-warnings
       deploy:
         provider: script
-        skip_cleanup: true
+        edge: true
         script: bundle exec pod trunk push ParseLiveQuery.podspec --allow-warnings
         on:
           all_branches: true
