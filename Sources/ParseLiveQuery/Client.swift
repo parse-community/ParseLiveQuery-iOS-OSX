@@ -152,23 +152,23 @@ extension Client {
             requestId: requestIdGenerator(),
             handler: handler
         )
-        subscriptions.append(subscriptionRecord)
-
-        self.reconnect()
+        
         if let socket = socket {
             socket.onEvent = { event in
                 switch event {
                 case .connected(_):
+                    self.subscriptions.append(subscriptionRecord)
                     _ = self.sendOperationAsync(.subscribe(requestId: subscriptionRecord.requestId, query: query as! PFQuery<PFObject>,
                     sessionToken: PFUser.current()?.sessionToken))
                 default:
-                    if !self.userDisconnected {
-                        self.reconnect()
-                    } else {
-                        NSLog("ParseLiveQuery: Warning: The client was explicitly disconnected! You must explicitly call .reconnect() in order to process your subscriptions.")
-                    }
+                    break
                 }
             }
+        } else if !self.userDisconnected {
+            self.reconnect()
+            return self.subscribe(query, handler: handler)
+        } else {
+            NSLog("ParseLiveQuery: Warning: The client was explicitly disconnected! You must explicitly call .reconnect() in order to process your subscriptions.")
         }
         
         return handler
