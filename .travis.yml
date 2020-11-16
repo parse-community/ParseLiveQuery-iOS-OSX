@@ -19,8 +19,8 @@ jobs:
         provider: script
         skip_cleanup: true
         script:
-          - pod setup
-          - pod trunk push ParseLiveQuery.podspec --allow-warnings
+          pod setup
+          pod trunk push ParseLiveQuery.podspec --allow-warnings
         on:
           all_branches: true
     - stage: release
