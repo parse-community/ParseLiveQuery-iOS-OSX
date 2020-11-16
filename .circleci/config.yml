@@ -49,7 +49,7 @@ jobs:
     steps:
       - checkout
       - run: *prepare
-      - run: carthage build --no-skip-current --platform macos,ios
+      - run: carthage build --no-skip-current --platform macos,ios,tvos,watchos
 
 workflows:
   version: 2
