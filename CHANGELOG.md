@@ -8,10 +8,11 @@
 
 [Full Changelog](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/compare/2.7.2...2.7.3)
 
-- Add watchOS and tvOS support [Corey Baker](https://github.com/cbaker6)
-- Add caching to CI for faster builds [Corey Baker](https://github.com/cbaker6)
-- Update project and podspecs with respect to dependencies [Corey Baker](https://github.com/cbaker6)
-- Update jazzy docs to newer version [Corey Baker](https://github.com/cbaker6)
+- Add watchOS and tvOS support ([#235](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/pull/235)), thanks to [Corey Baker](https://github.com/cbaker6)
+- Add caching to CI for faster builds ([#235](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/pull/235)), thanks to [Corey Baker](https://github.com/cbaker6)
+- Update project and podspecs with respect to dependencies ([#235](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/pull/235)), thanks to [Corey Baker](https://github.com/cbaker6)
+- Update jazzy docs to newer version ([#235](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/pull/235)), thanks to [Corey Baker](https://github.com/cbaker6)
+- Minimum support due to dependencies (iOS 8, macOS 10.10, tvOS 10, watchOS 2.0) ([#235](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/pull/235)), thanks to [Corey Baker](https://github.com/cbaker6)
 
 ### 2.7.2
 
