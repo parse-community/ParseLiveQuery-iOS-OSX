@@ -4,6 +4,15 @@
 
 [Full Changelog](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/compare/2.7.2...master)
 
+### 2.8.0
+
+[Full Changelog](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/compare/2.7.2...2.7.3)
+
+- Bump Starscream dependency to >= 4.0.4 [#236](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/pull/236) [Corey Baker](https://github.com/cbaker6)
+- Bump Parse SDK to v.1.19.1 ([#236](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/pull/236)) [Corey Baker](https://github.com/cbaker6)
+- Minimum support due to Xcode 12 and dependencies (iOS 9) ([#236](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/pull/236)) [Corey Baker](https://github.com/cbaker6)
+
+
 ### 2.7.2
 
 [Full Changelog](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/compare/2.7.1...2.7.2)
