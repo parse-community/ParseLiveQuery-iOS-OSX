@@ -2,7 +2,7 @@
 
 ### Master
 
-[Full Changelog](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/compare/2.7.2...master)
+[Full Changelog](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/compare/2.7.3...master)
 
 ### 2.7.3
 
@@ -107,4 +107,3 @@
 - Fix: Deduplicates subscription requests, thanks to [Nathan Kellert](https://github.com/noobs2ninjas).
 - New: Support for wss, thanks to [@kajensen](https://github.com/kajensen).
 - Fix: Properly deliver events back to obj-c, thanks to [Richard Ross](https://github.com/richardjrossiii).
-
