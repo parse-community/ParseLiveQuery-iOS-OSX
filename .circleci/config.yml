@@ -79,9 +79,6 @@ jobs:
       - run: |
           xcodebuild clean -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo | xcpretty -c;
           xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo -configuration Debug | xcpretty -c;
-      - run: |
-          xcodebuild clean -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo-ObjC | xcpretty -c;
-          xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo-ObjC -configuration Debug | xcpretty -c;
   carthage:
     <<: *defaults
     steps:
@@ -89,7 +86,6 @@ jobs:
       - restore_cache: *cache-pull
       - run: *prepare
       - save_cache: *cache-push
-      - run: carthage build --no-skip-current --platform macos,ios
       - run: carthage build --no-skip-current --platform macos,ios,tvos,watchos
 
 workflows:
