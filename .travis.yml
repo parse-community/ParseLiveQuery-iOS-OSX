@@ -15,10 +15,10 @@ jobs:
       env: CocoaPods
       script:
         - pod setup
-        - pod lib lint --allow-warnings --verbose
+        - pod lib lint --allow-warnings
       deploy:
         provider: script
-        script: pod trunk push ParseLiveQuery.podspec --allow-warnings --verbose
+        script: pod trunk push ParseLiveQuery.podspec --allow-warnings
         on:
           all_branches: true
     - stage: release
