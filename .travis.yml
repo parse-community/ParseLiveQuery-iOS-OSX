@@ -8,24 +8,24 @@ branches:
 cache:
   directories:
   - vendor/bundle
+  
+install:
+  - bundle config set path 'vendor/bundle'
+  - bundle install
 
 jobs:
   include:
     - stage: release
       env: CocoaPods
       script:
-        - pod setup
-        - pod lib lint --allow-warnings
+        - bundle exec pod lib lint --allow-warnings
       deploy:
         provider: script
-        script: pod trunk push ParseLiveQuery.podspec --allow-warnings
+        script: bundle exec pod trunk push ParseLiveQuery.podspec --allow-warnings
         on:
           all_branches: true
     - stage: release
       env: Docs
-      install:
-        - bundle config set path 'vendor/bundle'
-        - travis_wait bundle install
       script:
         - ./jazzy.sh
       deploy:
