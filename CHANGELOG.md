@@ -4,6 +4,15 @@
 
 [Full Changelog](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/compare/2.7.2...master)
 
+### 2.7.3
+
+[Full Changelog](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/compare/2.7.2...2.7.3)
+
+- Add watchOS and tvOS support [Corey Baker](https://github.com/cbaker6)
+- Add caching to CI for faster builds [Corey Baker](https://github.com/cbaker6)
+- Update project and podspecs with respect to dependencies [Corey Baker](https://github.com/cbaker6)
+- Update jazzy docs to newer version [Corey Baker](https://github.com/cbaker6)
+
 ### 2.7.2
 
 [Full Changelog](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/compare/2.7.1...2.7.2)
