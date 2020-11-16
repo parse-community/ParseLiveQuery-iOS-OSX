@@ -1,9 +1,0 @@
-module: "ParseLiveQuery"
-xcodebuild_arguments: ["-scheme","ParseLiveQuery-iOS"]
-theme: "fullwidth"
-skip_undocumented: true
-clean: true
-author_url: "http://parseplatform.org"
-github_url: "https://github.com/parse-community/ParseLiveQuery-iOS-OSX"
-root_url: "http://parseplatform.org/ParseLiveQuery-iOS-OSX/"
-author: "Parse Community"

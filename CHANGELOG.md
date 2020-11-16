@@ -2,7 +2,17 @@
 
 ### Master
 
-[Full Changelog](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/compare/2.7.2...master)
+[Full Changelog](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/compare/2.7.3...master)
+
+### 2.7.3
+
+[Full Changelog](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/compare/2.7.2...2.7.3)
+
+- Add watchOS and tvOS support ([#235](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/pull/235)), thanks to [Corey Baker](https://github.com/cbaker6)
+- Add caching to CI for faster builds ([#235](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/pull/235)), thanks to [Corey Baker](https://github.com/cbaker6)
+- Update project and podspecs with respect to dependencies ([#235](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/pull/235)), thanks to [Corey Baker](https://github.com/cbaker6)
+- Update jazzy docs to newer version ([#235](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/pull/235)), thanks to [Corey Baker](https://github.com/cbaker6)
+- Minimum support due to dependencies (iOS 8, macOS 10.10, tvOS 10, watchOS 2.0) ([#235](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/pull/235)), thanks to [Corey Baker](https://github.com/cbaker6)
 
 ### 2.7.2
 
@@ -97,4 +107,3 @@
 - Fix: Deduplicates subscription requests, thanks to [Nathan Kellert](https://github.com/noobs2ninjas).
 - New: Support for wss, thanks to [@kajensen](https://github.com/kajensen).
 - Fix: Properly deliver events back to obj-c, thanks to [Richard Ross](https://github.com/richardjrossiii).
-

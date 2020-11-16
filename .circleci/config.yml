@@ -1,12 +1,22 @@
 defaults: &defaults
     macos:
-      xcode: "11.2.1"
+      xcode: "11.6.0"
     shell: /bin/bash --login -eo pipefail
 aliases:
+  - &cache-pull
+    keys:
+      - gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+      - gem-cache-v1-{{ arch }}-{{ .Branch }}
+      - gem-cache-v1
+  - &cache-push
+    key: gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+    paths:
+      - vendor/bundle
   - &prepare
     |
       git submodule update --init --recursive
       sudo gem install bundler
+      bundle config set path 'vendor/bundle'
       bundle install
   - &filter-only-master
     branches:
@@ -19,8 +29,10 @@ jobs:
     <<: *defaults
     steps:
       - checkout
+      - restore_cache: *cache-pull
       - run: *prepare
-      - run: xcodebuild build -workspace ParseLiveQuery.xcworkspace -sdk iphonesimulator -scheme ParseLiveQuery-iOS -configuration Debug -destination "platform=iOS Simulator,name=iPhone 11,OS=13.2.2" GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c;
+      - save_cache: *cache-push
+      - run: xcodebuild build -workspace ParseLiveQuery.xcworkspace -sdk iphonesimulator -scheme ParseLiveQuery-iOS -configuration Debug -destination "platform=iOS Simulator,name=iPhone 11" GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c;
       - run: bash <(curl -s https://codecov.io/bash)
       - store_test_results:
           path: build/reports
@@ -28,8 +40,32 @@ jobs:
     <<: *defaults
     steps:
       - checkout
+      - restore_cache: *cache-pull
       - run: *prepare
+      - save_cache: *cache-push
       - run: xcodebuild build -workspace ParseLiveQuery.xcworkspace -sdk macosx -scheme ParseLiveQuery-OSX -configuration Debug GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c;
+      - run: bash <(curl -s https://codecov.io/bash)
+      - store_test_results:
+          path: build/reports
+  watchos:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache: *cache-pull
+      - run: *prepare
+      - save_cache: *cache-push
+      - run: xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme ParseLiveQuery-watchOS -configuration Debug GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c;
+      - run: bash <(curl -s https://codecov.io/bash)
+      - store_test_results:
+          path: build/reports
+  tvos:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache: *cache-pull
+      - run: *prepare
+      - save_cache: *cache-push
+      - run: xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme ParseLiveQuery-tvOS -configuration Debug GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c;
       - run: bash <(curl -s https://codecov.io/bash)
       - store_test_results:
           path: build/reports
@@ -37,7 +73,9 @@ jobs:
     <<: *defaults
     steps:
       - checkout
+      - restore_cache: *cache-pull
       - run: *prepare
+      - save_cache: *cache-push
       - run: |
           xcodebuild clean -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo | xcpretty -c;
           xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo -configuration Debug | xcpretty -c;
@@ -48,17 +86,23 @@ jobs:
     <<: *defaults
     steps:
       - checkout
+      - restore_cache: *cache-pull
       - run: *prepare
+      - save_cache: *cache-push
       - run: carthage build --no-skip-current --platform macos,ios
 
 workflows:
   version: 2
   pr:
     jobs:
-      - carthage
       - ios
       - macos
+      - watchos
+      - tvos
       - demo
+      - carthage:
+          requires:
+            - ios
   nightly:
     jobs:
       - carthage
