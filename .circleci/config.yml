@@ -47,6 +47,28 @@ jobs:
       - run: bash <(curl -s https://codecov.io/bash)
       - store_test_results:
           path: build/reports
+  watchos:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache: *cache-pull
+      - run: *prepare
+      - save_cache: *cache-push
+      - run: xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme ParseLiveQuery-watchOS -configuration Debug -destination "platform=watchOS Simulator,name=Apple Watch Series 6 - 44mm" GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c;
+      - run: bash <(curl -s https://codecov.io/bash)
+      - store_test_results:
+          path: build/reports
+  tvos:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache: *cache-pull
+      - run: *prepare
+      - save_cache: *cache-push
+      - run: xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme ParseLiveQuery-tvOS -configuration Debug -destination "platform=tvOS Simulator,name=Apple TV 4K" GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c;
+      - run: bash <(curl -s https://codecov.io/bash)
+      - store_test_results:
+          path: build/reports
   demo:
     <<: *defaults
     steps:
