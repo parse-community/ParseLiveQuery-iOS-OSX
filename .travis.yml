@@ -17,7 +17,7 @@ jobs:
         - pod lib lint --allow-warnings
       deploy:
         provider: script
-        edge: true
+        skip_cleanup: true
         script: pod trunk push ParseLiveQuery.podspec --allow-warnings
         on:
           all_branches: true
