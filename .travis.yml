@@ -23,9 +23,8 @@ jobs:
       deploy:
         provider: script
         skip_cleanup: true
-        script: travis_wait bundle exec pod trunk push ParseLiveQuery.podspec --allow-warnings
+        script: bundle exec pod trunk push ParseLiveQuery.podspec --allow-warnings
         on:
-          tags: true
           all_branches: true
     - stage: release
       env: Docs
