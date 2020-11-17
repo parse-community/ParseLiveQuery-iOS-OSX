@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'ParseLiveQuery'
-  s.version          = '2.7.3'
+  s.version          = '2.8.0'
   s.license          =  { :type => 'BSD' }
   s.summary          = 'Allows for subscriptions to queries in conjunction with parse-server.'
   s.homepage         = 'http://parseplatform.org'
@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.swift_version = '5.0'
   s.cocoapods_version = '>= 1.4'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
   s.tvos.deployment_target = '10.0'
   s.watchos.deployment_target = '2.0'
   s.osx.deployment_target = '10.10'
@@ -25,6 +25,6 @@ Pod::Spec.new do |s|
 
   s.dependency 'Parse', '~> 1.19.0'
   s.dependency 'Bolts-Swift', '~> 1.5.0'
-  s.dependency 'Starscream', '3.1.0'
+  s.dependency 'Starscream', '~> 4.0.4'
 
 end
