@@ -1,6 +1,6 @@
 language: objective-c
 os: osx
-osx_image: xcode11.6
+osx_image: xcode11.7
 branches:
   only:
     - master
@@ -19,7 +19,7 @@ jobs:
       env: CocoaPods
       script:
         - bundle exec pod setup 
-        - travis_wait bundle exec pod lib lint --allow-warnings
+        - bundle exec pod lib lint --allow-warnings
       deploy:
         provider: script
         skip_cleanup: true
