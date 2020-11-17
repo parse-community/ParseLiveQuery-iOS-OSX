@@ -79,6 +79,9 @@ jobs:
       - run: |
           xcodebuild clean -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo | xcpretty -c;
           xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo -configuration Debug | xcpretty -c;
+      - run: |		
+          xcodebuild clean -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo-ObjC | xcpretty -c;		
+          xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo-ObjC -configuration Debug | xcpretty -c;
   carthage:
     <<: *defaults
     steps:
