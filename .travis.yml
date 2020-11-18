@@ -22,7 +22,7 @@ jobs:
         - bundle exec pod lib lint --allow-warnings
       deploy:
         provider: script
-        skip_cleanup: true
+        cleanup: true
         script: bundle exec pod trunk push ParseLiveQuery.podspec --allow-warnings
         on:
           tags: true
@@ -33,8 +33,8 @@ jobs:
         - ./jazzy.sh
       deploy:
         provider: pages
-        skip_cleanup: true
-        github_token: $GITHUB_TOKEN
+        cleanup: true
+        token: $GITHUB_TOKEN
         local_dir: ./docs/
         on:
           tags: true
