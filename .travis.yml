@@ -33,6 +33,7 @@ jobs:
         - ./jazzy.sh
       deploy:
         provider: pages
+        strategy: git
         cleanup: true
         token: $GITHUB_TOKEN
         local_dir: ./docs/
