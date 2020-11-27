@@ -18,10 +18,10 @@ aliases:
       sudo gem install bundler
       bundle config set path 'vendor/bundle'
       bundle install
-  - &filter-only-master
+  - &filter-only-main
     branches:
       only:
-        - master
+        - main
 
 version: 2
 jobs:
@@ -106,4 +106,4 @@ workflows:
     triggers:
       - schedule:
           cron: "0 1 * * *"
-          filters: *filter-only-master
+          filters: *filter-only-main
