@@ -1,0 +1,50 @@
+name: build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  CI_XCODE_VER: '/Applications/Xcode_11.7.app/Contents/Developer'
+
+jobs:
+  cocoapods:
+    needs: swift-test-spm
+    runs-on: macos-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      - name: CocoaPods
+        run: set -o pipefail && env NSUnbufferedIO=YES pod lib lint --allow-warnings --verbose
+    env:
+        DEVELOPER_DIR: ${{ env.CI_XCODE_VER }}
+  deploy_docs:
+    
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache Gems
+        id: cache-gems
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
+      - name: Install Bundle
+        run: |
+          bundle config path vendor/bundle
+          bundle install
+        env:
+            DEVELOPER_DIR: ${{ env.CI_XCODE_VER }}
+      - name: Create Jazzy Docs
+        run: |
+          ./jazzy.sh
+      - name: Deploy Jazzy Docs
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
