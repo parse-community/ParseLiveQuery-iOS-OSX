@@ -11,7 +11,6 @@ env:
 
 jobs:
   cocoapods:
-    needs: swift-test-spm
     runs-on: macos-latest
     
     steps:
