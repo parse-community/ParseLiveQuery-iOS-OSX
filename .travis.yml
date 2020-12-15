@@ -3,7 +3,7 @@ os: osx
 osx_image: xcode11.7
 branches:
   only:
-    - master
+    - main
     - /^v?[0-9]+\.[0-9]+\.[0-9]+(-.*)?$/
 cache:
   directories:

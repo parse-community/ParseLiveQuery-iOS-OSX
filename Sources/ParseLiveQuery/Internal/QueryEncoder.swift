@@ -53,6 +53,11 @@ extension Dictionary where Key: ExpressibleByStringLiteral, Value: AnyObject {
                 encodedQueryDictionary[key] = geoPoint.encodedDictionary as? Value
             } else if let object = val as? PFObject {
                 encodedQueryDictionary[key] = (try? PFPointerObjectEncoder.object().encode(object)) as? Value
+            } else if let query = val as? PFQuery {
+                let queryState = query.value(forKey: "state") as AnyObject?
+                if let conditions: [String:AnyObject] = queryState?.value(forKey: "conditions") as? [String:AnyObject], let encoded = conditions.encodedQueryDictionary as? Value {
+                    encodedQueryDictionary[key] = encoded
+                }
             } else if let date = val as? Date {
                 encodedQueryDictionary[key] = ["__type": "Date", "iso": date.encodedString] as? Value
             } else {
