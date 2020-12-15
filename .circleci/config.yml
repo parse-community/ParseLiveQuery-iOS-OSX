@@ -18,6 +18,7 @@ aliases:
       sudo gem install bundler
       bundle config set path 'vendor/bundle'
       bundle install
+  - &filter-only-main
     branches:
       only:
         - main
