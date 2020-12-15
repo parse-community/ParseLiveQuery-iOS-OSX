@@ -19,7 +19,7 @@ jobs:
         run: set -o pipefail && env NSUnbufferedIO=YES pod lib lint --allow-warnings --verbose
         env:
           DEVELOPER_DIR: ${{ env.CI_XCODE_VER }}
-  deploy_docs:
+  docs:
     
     runs-on: macos-latest
     steps:
