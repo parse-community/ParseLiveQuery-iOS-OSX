@@ -15,6 +15,9 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Submodules
+      run: |
+        git submodule update --init --recursive
     - name: Build-Test
       run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild build -workspace ParseLiveQuery.xcworkspace -sdk iphonesimulator -scheme ParseLiveQuery-iOS -configuration Debug -destination "platform=iOS Simulator,name=iPhone 11" GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c
     - name: Send codecov
@@ -24,6 +27,9 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Submodules
+      run: |
+        git submodule update --init --recursive
     - name: Build-Test
       run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild build -workspace ParseLiveQuery.xcworkspace -sdk macosx -scheme ParseLiveQuery-OSX -configuration Debug GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c
     - name: Send codecov
@@ -33,6 +39,9 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Submodules
+      run: |
+        git submodule update --init --recursive
     - name: Build-Test
       run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme ParseLiveQuery-tvOS -configuration Debug GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c
     - name: Send codecov
@@ -42,6 +51,9 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Submodules
+      run: |
+        git submodule update --init --recursive
     - name: Build
       run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme ParseLiveQuery-watchOS -configuration Debug GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c
     - name: Send codecov
@@ -51,6 +63,9 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Submodules
+      run: |
+        git submodule update --init --recursive
     - name: Clean
       run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild clean -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo | xcpretty -c
     - name: Build
@@ -62,6 +77,9 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Submodules
+      run: |
+        git submodule update --init --recursive
     - name: Clean
       run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild clean -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo-ObjC | xcpretty -c
     - name: Build
@@ -76,7 +94,7 @@ jobs:
       - name: CocoaPods
         run: set -o pipefail && env NSUnbufferedIO=YES pod lib lint --allow-warnings --verbose
 
-  docs:    
+  docs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
