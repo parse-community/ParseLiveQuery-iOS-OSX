@@ -48,7 +48,6 @@ jobs:
       run: bash <(curl https://codecov.io/bash)
 
   watchos:
-    needs: ios
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
@@ -98,6 +97,7 @@ jobs:
         run: set -o pipefail && env NSUnbufferedIO=YES pod lib lint --allow-warnings --verbose
 
   docs:
+    needs: ios
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
