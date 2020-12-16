@@ -10,17 +10,73 @@ env:
   CI_XCODE_VER: '/Applications/Xcode_11.7.app/Contents/Developer'
 
 jobs:
+
+  ios:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build-Test
+      run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild build -workspace ParseLiveQuery.xcworkspace -sdk iphonesimulator -scheme ParseLiveQuery-iOS -configuration Debug -destination "platform=iOS Simulator,name=iPhone 11" GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c
+    - name: Send codecov
+      run: bash <(curl https://codecov.io/bash)
+      
+  macos:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build-Test
+      run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild build -workspace ParseLiveQuery.xcworkspace -sdk macosx -scheme ParseLiveQuery-OSX -configuration Debug GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c
+    - name: Send codecov
+      run: bash <(curl https://codecov.io/bash)
+
+  tvos:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build-Test
+      run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme ParseLiveQuery-tvOS -configuration Debug GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c
+    - name: Send codecov
+      run: bash <(curl https://codecov.io/bash)
+
+  watchos:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme ParseLiveQuery-watchOS -configuration Debug GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c
+    - name: Send codecov
+      run: bash <(curl https://codecov.io/bash)
+
+  demo-swift:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Clean
+      run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild clean -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo | xcpretty -c
+    - name: Build
+      run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo -configuration Debug | xcpretty -c
+    - name: Send codecov
+      run: bash <(curl https://codecov.io/bash)
+
+  demo-objective-c:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Clean
+      run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild clean -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo-ObjC | xcpretty -c
+    - name: Build
+      run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild build -workspace ParseLiveQuery.xcworkspace -scheme LiveQueryDemo-ObjC -configuration Debug | xcpretty -c
+    - name: Send codecov
+      run: bash <(curl https://codecov.io/bash)
+
   cocoapods:
     runs-on: macos-latest
-    
     steps:
       - uses: actions/checkout@v2
       - name: CocoaPods
         run: set -o pipefail && env NSUnbufferedIO=YES pod lib lint --allow-warnings --verbose
-        env:
-          DEVELOPER_DIR: ${{ env.CI_XCODE_VER }}
-  docs:
-    
+
+  docs:    
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
@@ -36,8 +92,6 @@ jobs:
         run: |
           bundle config path vendor/bundle
           bundle install
-        env:
-          DEVELOPER_DIR: ${{ env.CI_XCODE_VER }}
       - name: Create Jazzy Docs
         run: |
           ./jazzy.sh
