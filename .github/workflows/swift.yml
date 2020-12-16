@@ -48,6 +48,7 @@ jobs:
       run: bash <(curl https://codecov.io/bash)
 
   watchos:
+    needs: ios
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
@@ -60,6 +61,7 @@ jobs:
       run: bash <(curl https://codecov.io/bash)
 
   demo-swift:
+    needs: ios
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
@@ -74,6 +76,7 @@ jobs:
       run: bash <(curl https://codecov.io/bash)
 
   demo-objective-c:
+    needs: ios
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
