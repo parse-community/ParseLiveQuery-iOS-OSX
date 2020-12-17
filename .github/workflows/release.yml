@@ -19,4 +19,3 @@ jobs:
         run: set -o pipefail && env NSUnbufferedIO=YES pod trunk push CertificateSigningRequest.podspec --allow-warnings --verbose
         env:
           COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
-          DEVELOPER_DIR: ${{ env.CI_XCODE_VER }}
