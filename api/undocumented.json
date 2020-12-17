@@ -1,6 +1,208 @@
 {
   "warnings": [
-
+    {
+      "file": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX/Sources/ParseLiveQuery/Client.swift",
+      "line": 26,
+      "symbol": "Client.shouldPrintWebSocketLog",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX/Sources/ParseLiveQuery/Client.swift",
+      "line": 27,
+      "symbol": "Client.shouldPrintWebSocketTrace",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX/Sources/ParseLiveQuery/Client.swift",
+      "line": 28,
+      "symbol": "Client.userDisconnected",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX/Sources/ParseLiveQuery/Client.swift",
+      "line": 212,
+      "symbol": "Client.unsubscribe(matching:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX/Sources/ParseLiveQuery/Internal/ClientPrivate.swift",
+      "line": 35,
+      "symbol": "Client.SubscriptionRecord",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX/Sources/ParseLiveQuery/Internal/ClientPrivate.swift",
+      "line": 100,
+      "symbol": "Client.RequestId",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX/Sources/ParseLiveQuery/Internal/ClientPrivate.swift",
+      "line": 118,
+      "symbol": "Client.didReceive(event:client:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX/Sources/ParseLiveQuery/Internal/ClientPrivate.swift",
+      "line": 154,
+      "symbol": "Event.init(serverResponse:requestId:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX/Sources/ParseLiveQuery/Internal/ClientPrivate.swift",
+      "line": 191,
+      "symbol": "Client.sendOperationAsync(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX/Sources/ParseLiveQuery/Internal/ClientPrivate.swift",
+      "line": 201,
+      "symbol": "Client.handleOperationAsync(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX/Sources/ParseLiveQuery/Internal/Errors.swift",
+      "line": 13,
+      "symbol": "LiveQueryErrors",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX/Sources/ParseLiveQuery/Internal/QueryEncoder.swift",
+      "line": 17,
+      "symbol": "Dictionary.init(query:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX/Sources/ParseLiveQuery/Internal/QueryEncoder.swift",
+      "line": 32,
+      "symbol": "Dictionary.encodedQueryDictionary",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX/Sources/ParseLiveQuery/Internal/QueryEncoder.swift",
+      "line": 72,
+      "symbol": "PFGeoPoint.encodedDictionary",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX/Sources/ParseLiveQuery/ObjCCompat.swift",
+      "line": 117,
+      "symbol": "ObjCCompat.Subscription.SubscribeHandler",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX/Sources/ParseLiveQuery/ObjCCompat.swift",
+      "line": 118,
+      "symbol": "ObjCCompat.Subscription.ErrorHandler",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX/Sources/ParseLiveQuery/ObjCCompat.swift",
+      "line": 119,
+      "symbol": "ObjCCompat.Subscription.EventHandler",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX/Sources/ParseLiveQuery/ObjCCompat.swift",
+      "line": 120,
+      "symbol": "ObjCCompat.Subscription.ObjectHandler",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX/Sources/ParseLiveQuery/ObjCCompat.swift",
+      "line": 242,
+      "symbol": "ObjCCompat.Subscription.didRecieveEvent(_:event:client:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX/Sources/ParseLiveQuery/ObjCCompat.swift",
+      "line": 246,
+      "symbol": "ObjCCompat.Subscription.didRecieveError(_:error:client:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX/Sources/ParseLiveQuery/ObjCCompat.swift",
+      "line": 250,
+      "symbol": "ObjCCompat.Subscription.didSubscribe(_:client:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX/Sources/ParseLiveQuery/ObjCCompat.swift",
+      "line": 254,
+      "symbol": "ObjCCompat.Subscription.didUnsubscribe(_:client:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX/Sources/ParseLiveQuery/ObjCCompat.swift",
+      "line": 342,
+      "symbol": "ObjCCompat.Event.init(event:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX/Sources/ParseLiveQuery/Parse+LiveQuery.swift",
+      "line": 13,
+      "symbol": "Parse.validatedCurrentConfiguration()",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX/Sources/ParseLiveQuery/Subscription.swift",
+      "line": 177,
+      "symbol": "Subscription.PFObjectSubclass",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX/Sources/ParseLiveQuery/Subscription.swift",
+      "line": 179,
+      "symbol": "Subscription.didReceive(_:forQuery:inClient:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX/Sources/ParseLiveQuery/Subscription.swift",
+      "line": 183,
+      "symbol": "Subscription.didEncounter(_:forQuery:inClient:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX/Sources/ParseLiveQuery/Subscription.swift",
+      "line": 187,
+      "symbol": "Subscription.didSubscribe(toQuery:inClient:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX/Sources/ParseLiveQuery/Subscription.swift",
+      "line": 191,
+      "symbol": "Subscription.didUnsubscribe(fromQuery:inClient:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
   ],
-  "source_directory": "/Users/travis/build/parse-community/ParseLiveQuery-iOS-OSX"
+  "source_directory": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX"
 }
