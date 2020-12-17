@@ -1,16 +1,13 @@
 name: ci
-
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
 env:
   CI_XCODE_VER: '/Applications/Xcode_11.7.app/Contents/Developer'
 
 jobs:
-
   ios:
     runs-on: macos-latest
     steps:
@@ -116,9 +113,3 @@ jobs:
       - name: Create Jazzy Docs
         run: |
           ./jazzy.sh
-      - name: Deploy Jazzy Docs
-        if: github.ref == 'refs/heads/main'
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
