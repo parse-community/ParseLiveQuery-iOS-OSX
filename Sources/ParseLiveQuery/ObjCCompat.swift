@@ -27,7 +27,7 @@ public protocol ObjCCompat_SubscriptionHandling {
      - parameter client: The live query client which received this event.
      */
     @objc(liveQuery:didRecieveEvent:inClient:)
-    optional func didRecieveEvent(_ query: PFQuery<PFObject>, event: ObjCCompat.Event, client: Client)
+    optional func didRecieveEvent(_ query: PFQuery<PFObject>, event: PFLiveQueryEvent, client: Client)
 
     /**
      Tells the handler that an error has been received from the live query server.
@@ -62,9 +62,9 @@ public protocol ObjCCompat_SubscriptionHandling {
     optional func didUnsubscribe(_ query: PFQuery<PFObject>, client: Client)
 }
 
-// HACK: Compiler bug causes enums that are declared in structs that are marked as @objc to not actually be emitted by 
-// the compiler (lolwut?). Moving this to global scope fixes the problem, but we can't change the objc name of an enum
-// either, so we pollute the swift namespace here.
+// HACK: Compiler bug causes enums (and sometimes classes) that are declared in structs that are marked as @objc
+// to not actually be emitted by  the compiler (lolwut?). Moving this to global scope fixes the problem, but we can't
+// change the objc name of an enum either, so we pollute the swift namespace here.
 // TODO: Fix this eventually.
 
 /**
@@ -85,29 +85,29 @@ public enum PFLiveQueryEventType: Int {
 }
 
 /**
+ Represents an update on a specific object from the live query server.
+ */
+@objc
+open class PFLiveQueryEvent: NSObject {
+    /// Type of the event.
+    @objc
+    public let type: PFLiveQueryEventType
+
+    /// Object this event is for.
+    @objc
+    public let object: PFObject
+
+    init(type: PFLiveQueryEventType, object: PFObject) {
+        self.type = type
+        self.object = object
+    }
+}
+
+/**
  This struct wraps up all of our Objective-C compatibility layer. You should never need to touch this if you're using Swift.
  */
 public struct ObjCCompat {
     fileprivate init() { }
-
-    /**
-      Represents an update on a specific object from the live query server.
-     */
-    @objc(PFLiveQueryEvent)
-    open class Event: NSObject {
-        /// Type of the event.
-        @objc
-        public let type: PFLiveQueryEventType
-
-        /// Object this event is for.
-        @objc
-        public let object: PFObject
-
-        init(type: PFLiveQueryEventType, object: PFObject) {
-            self.type = type
-            self.object = object
-        }
-    }
 
     /**
      A default implementation of the SubscriptionHandling protocol, using blocks for callbacks.
@@ -116,7 +116,7 @@ public struct ObjCCompat {
     open class Subscription: NSObject {
         public typealias SubscribeHandler = @convention(block) (PFQuery<PFObject>) -> Void
         public typealias ErrorHandler = @convention(block) (PFQuery<PFObject>, NSError) -> Void
-        public typealias EventHandler = @convention(block) (PFQuery<PFObject>, Event) -> Void
+        public typealias EventHandler = @convention(block) (PFQuery<PFObject>, PFLiveQueryEvent) -> Void
         public typealias ObjectHandler = @convention(block) (PFQuery<PFObject>, PFObject) -> Void
 
         var subscribeHandlers = [SubscribeHandler]()
@@ -184,7 +184,7 @@ public struct ObjCCompat {
          - returns: The same subscription, for easy chaining.
          */
         @objc(addEnterHandler:)
-        open func addEnterHandler(_ handler: @escaping  ObjectHandler) -> Subscription {
+        open func addEnterHandler(_ handler: @escaping ObjectHandler) -> Subscription {
             return addEventHandler { $1.type == .entered ? handler($0, $1.object) : () }
         }
 
@@ -239,7 +239,7 @@ public struct ObjCCompat {
 }
 
 extension ObjCCompat.Subscription: ObjCCompat_SubscriptionHandling {
-    public func didRecieveEvent(_ query: PFQuery<PFObject>, event: ObjCCompat.Event, client: Client) {
+    public func didRecieveEvent(_ query: PFQuery<PFObject>, event: PFLiveQueryEvent, client: Client) {
         eventHandlers.forEach { $0(query, event) }
     }
 
@@ -270,7 +270,7 @@ extension Client {
         }
 
         fileprivate func didReceive(_ event: Event<T>, forQuery query: PFQuery<T>, inClient client: Client) {
-            handler?.didRecieveEvent?(query, event: ObjCCompat.Event(event: event), client: client)
+            handler?.didRecieveEvent?(query, event: PFLiveQueryEvent(event: event), client: client)
         }
 
         fileprivate func didEncounter(_ error: Error, forQuery query: PFQuery<T>, inClient client: Client) {
@@ -338,7 +338,7 @@ extension Client {
 // HACK: Another compiler bug - if you have a required initializer with a generic type, the compiler simply refuses to 
 // emit the entire class altogether. Moving this to an extension for now solves the issue.
 
-extension ObjCCompat.Event {
+extension PFLiveQueryEvent {
     convenience init<T>(event: ParseLiveQuery.Event<T>) {
         let results: (type: PFLiveQueryEventType, object: PFObject) = {
             switch event {
