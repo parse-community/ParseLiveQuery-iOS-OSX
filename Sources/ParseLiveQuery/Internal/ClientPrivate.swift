@@ -140,8 +140,32 @@ extension Client: WebSocketDelegate {
             if shouldPrintWebSocketLog { NSLog("ParseLiveQuery: Received binary data but we don't handle it...") }
         case .error(let error):
             NSLog("ParseLiveQuery: Error processing message: \(String(describing: error))")
-        default:
-            break
+        case .viabilityChanged(let isViable):
+            if shouldPrintWebSocketLog { NSLog("ParseLiveQuery: WebSocket viability channged to \(isViable ? "" : "not-")viable") }
+            if !isViable {
+                isConnecting = false
+            }
+            // TODO: Better retry logic, unless `disconnect()` was explicitly called
+            if !userDisconnected, isViable {
+                reconnect()
+            }
+        case .reconnectSuggested(let isSuggested):
+            if shouldPrintWebSocketLog { NSLog("ParseLiveQuery: WebSocket reconnect is \(isSuggested ? "" : "not ")suggested") }
+            // TODO: Better retry logic, unless `disconnect()` was explicitly called
+            if !userDisconnected, isSuggested {
+                reconnect()
+            }
+        case .cancelled:
+            isConnecting = false
+            if shouldPrintWebSocketLog { NSLog("ParseLiveQuery: WebSocket connection cancelled...") }
+            // TODO: Better retry logic, unless `disconnect()` was explicitly called
+            if !userDisconnected {
+                reconnect()
+            }
+        case .pong(_):
+            if shouldPrintWebSocketLog { NSLog("ParseLiveQuery: Received pong but we don't handle it...") }
+        case .ping(_):
+            if shouldPrintWebSocketLog { NSLog("ParseLiveQuery: Received ping but we don't handle it...") }
         }
     }
 }
