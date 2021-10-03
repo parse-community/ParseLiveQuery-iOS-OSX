@@ -1,8 +1,16 @@
 ## ParseLiveQuery-iOS-OSX Changelog
 
-### Master
+### Main
 
-[Full Changelog](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/compare/2.8.0...master)
+[Full Changelog](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/compare/2.8.1...main)
+
+### 2.8.1
+
+[Full Changelog](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/compare/2.8.0...2.8.1)
+
+- Add missing WebSocketEvent cases ([#250](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/pull/250)), thanks to [tmg-mlyons](https://github.com/tmg-mlyons).
+- Move Event outside of ObjCCompat to work around a compiler issue ([#245](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/pull/245)), thanks to [Frédéric Maquin](https://github.com/ephread).
+- Allows for nested inQuery and orQuery ([#240](https://github.com/parse-community/ParseLiveQuery-iOS-OSX/pull/240)), thanks to [Jonathan Lott](https://github.com/jlott1).
 
 ### 2.8.0
 
