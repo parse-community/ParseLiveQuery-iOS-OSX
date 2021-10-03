@@ -19,7 +19,6 @@ jobs:
           COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
 
   docs:
-    needs: ios
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
