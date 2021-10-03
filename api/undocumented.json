@@ -51,21 +51,21 @@
     },
     {
       "file": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX/Sources/ParseLiveQuery/Internal/ClientPrivate.swift",
-      "line": 154,
+      "line": 178,
       "symbol": "Event.init(serverResponse:requestId:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX/Sources/ParseLiveQuery/Internal/ClientPrivate.swift",
-      "line": 191,
+      "line": 215,
       "symbol": "Client.sendOperationAsync(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX/Sources/ParseLiveQuery/Internal/ClientPrivate.swift",
-      "line": 201,
+      "line": 225,
       "symbol": "Client.handleOperationAsync(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -157,7 +157,7 @@
     {
       "file": "/Users/runner/work/ParseLiveQuery-iOS-OSX/ParseLiveQuery-iOS-OSX/Sources/ParseLiveQuery/ObjCCompat.swift",
       "line": 342,
-      "symbol": "ObjCCompat.Event.init(event:)",
+      "symbol": "PFLiveQueryEvent.init(event:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
