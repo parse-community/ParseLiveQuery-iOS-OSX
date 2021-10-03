@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'ParseLiveQuery'
-  s.version          = '2.8.0'
+  s.version          = '2.8.1'
   s.license          =  { :type => 'BSD' }
   s.summary          = 'Allows for subscriptions to queries in conjunction with parse-server.'
   s.homepage         = 'http://parseplatform.org'
