@@ -1,5 +1,11 @@
 # Parse LiveQuery Client for iOS/OSX
 
+---
+
+### ⚠️ The LiveQuery feature has been added as a module to the [Parse Apple SDK](https://github.com/parse-community/Parse-SDK-iOS-OSX). This repository is archived and will no longer receive any updates.
+
+---
+
 [![Platforms][platforms-svg]][platforms-link]
 [![Carthage compatible][carthage-svg]][carthage-link]
 [![Podspec][podspec-svg]][podspec-link]
